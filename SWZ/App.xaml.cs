@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-using SWZ.DAL;
+using SWZ.DAL.Courses;
 using System.Diagnostics;
 using System.Collections.Generic;
 
@@ -33,16 +33,12 @@ namespace SWZ
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
-            MSSQLPropositionDAO prop = new MSSQLPropositionDAO();
-            List<Proposition> lprop = prop.GetPropositions();
-
-            foreach(Proposition p in lprop)
+            MSSQLCourseDAO mSSQLCoursesDAO = new MSSQLCourseDAO();
+            List<Course> lcs = mSSQLCoursesDAO.GetCourses();
+            foreach(Course c in lcs)
             {
-               
-                Debug.WriteLine(p);
+                Debug.WriteLine(c);
             }
-
 
             Frame rootFrame = Window.Current.Content as Frame;
 

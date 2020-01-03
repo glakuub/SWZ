@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWZ.DAL
+namespace SWZ.DAL.Users
 {
-    class UserDAO : IUserDAO
+    class MSSQLUserDAO : IUserDAO
     {
         public User getUser(int id)
         {

@@ -119,12 +119,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Courses\Course.cs" />
+    <Compile Include="DAL\Courses\ICourseDAO.cs" />
+    <Compile Include="DAL\Courses\MSSQLCourseDAO.cs" />
     <Compile Include="DAL\IPropositionDAO.cs" />
-    <Compile Include="DAL\IUserDAO.cs" />
+    <Compile Include="DAL\Users\IUserDAO.cs" />
     <Compile Include="DAL\Proposition.cs" />
     <Compile Include="DAL\MSSQLPropositionDAO.cs" />
-    <Compile Include="DAL\User.cs" />
-    <Compile Include="DAL\UserDAO.cs" />
+    <Compile Include="DAL\Users\User.cs" />
+    <Compile Include="DAL\Users\MSSQLUserDAO.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
