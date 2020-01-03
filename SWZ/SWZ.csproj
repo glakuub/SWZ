@@ -122,10 +122,10 @@
     <Compile Include="DAL\Courses\Course.cs" />
     <Compile Include="DAL\Courses\ICourseDAO.cs" />
     <Compile Include="DAL\Courses\MSSQLCourseDAO.cs" />
-    <Compile Include="DAL\IPropositionDAO.cs" />
+    <Compile Include="DAL\Propositions\IPropositionDAO.cs" />
     <Compile Include="DAL\Users\IUserDAO.cs" />
-    <Compile Include="DAL\Proposition.cs" />
-    <Compile Include="DAL\MSSQLPropositionDAO.cs" />
+    <Compile Include="DAL\Propositions\Proposition.cs" />
+    <Compile Include="DAL\Propositions\MSSQLPropositionDAO.cs" />
     <Compile Include="DAL\Users\User.cs" />
     <Compile Include="DAL\Users\MSSQLUserDAO.cs" />
     <Compile Include="MainPage.xaml.cs">

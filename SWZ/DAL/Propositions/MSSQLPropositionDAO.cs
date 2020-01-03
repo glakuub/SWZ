@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWZ.DAL
+namespace SWZ.DAL.Propositions
 {
     class MSSQLPropositionDAO : IPropositionDAO
     {
