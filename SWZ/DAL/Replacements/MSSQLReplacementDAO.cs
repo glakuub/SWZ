@@ -28,11 +28,11 @@ namespace SWZ.DAL.Replacements
 
             while (dataReader.Read())
             {
-
-                Replacement replacement= new Replacement();
-                replacement.replacedID = dataReader.GetInt32(0);
-                replacement.replacementID = dataReader.GetInt32(1);
-                replacements.Add(replacement);
+                if (!dataReader.IsDBNull(0) && !dataReader.IsDBNull(1))
+                {
+                    Replacement replacement = new Replacement(dataReader.GetInt32(0), dataReader.GetInt32(1));
+                    replacements.Add(replacement);
+                }
             }
             dataReader.Close();
             command.Dispose();
