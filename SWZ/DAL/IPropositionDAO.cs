@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL
 {
-    class UserDAO : IUserDAO
+    interface IPropositionDAO
     {
-        public int insertUser(User user)
-        {   
+        List<Proposition> GetPropositions();
+        void addProposition(Proposition proposition);
 
-            throw new NotImplementedException();
-        }
     }
 }

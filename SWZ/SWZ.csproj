@@ -119,7 +119,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Class1.cs" />
+    <Compile Include="DAL\IPropositionDAO.cs" />
+    <Compile Include="DAL\IUserDAO.cs" />
+    <Compile Include="DAL\Proposition.cs" />
+    <Compile Include="DAL\MSSQLPropositionDAO.cs" />
+    <Compile Include="DAL\User.cs" />
+    <Compile Include="DAL\UserDAO.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

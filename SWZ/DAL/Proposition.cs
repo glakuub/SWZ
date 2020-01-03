@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL
 {
-    class User
+    class Proposition
     {
         int id;
-        string firstName;
-        string lastName;
-        string login;
-        string password;
-        string fieldOfStudy;
-        string facultySymbol;
-        
-        public User(int id)
+        public int proposing;
+        public int authorizing;
+        public DateTime dateOfSubmission;
+        public int replacementFor;
+
+        public Proposition(int id)
         {
             this.id = id;
         }
+
     }
 }

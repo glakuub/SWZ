@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL
 {
-    interface IUzytkownicyDAO
+    interface IUserDAO
     {
-        int insertUser();
+        int insertUser(User user);
+        User getUser(int id);
     }
+
 }
