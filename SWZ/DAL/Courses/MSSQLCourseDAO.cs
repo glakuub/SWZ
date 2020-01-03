@@ -9,20 +9,16 @@ namespace SWZ.DAL.Courses
 {
     class MSSQLCourseDAO : ICourseDAO
     {
+        static string connectionString = @"Server=jakubgladysz.com;Database=SWZ;User Id=sa;Password=Geforce9600gt!;";
         SqlCommand command;
         SqlDataReader dataReader;
         SqlConnection connection;
 
         public List<Course> GetCourses()
         {
-           
-
                 List<Course> courses = new List<Course>();
-
                 string query = "SELECT * FROM SWZ.dbo.kursy";
-                string connectionString = @"Server=jakubgladysz.com;Database=SWZ;User Id=sa;Password=Geforce9600gt!;";
-                string result = "";
-
+                
                 connection = new SqlConnection(connectionString);
                 command = new SqlCommand(query, connection);
 

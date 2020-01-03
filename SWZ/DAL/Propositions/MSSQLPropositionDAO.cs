@@ -10,6 +10,7 @@ namespace SWZ.DAL.Propositions
 {
     class MSSQLPropositionDAO : IPropositionDAO
     {
+        static string connectionString = @"Server=jakubgladysz.com;Database=SWZ;User Id=sa;Password=Geforce9600gt!;";
         SqlCommand command;
         SqlDataReader dataReader;
         SqlConnection connection;
@@ -21,13 +22,9 @@ namespace SWZ.DAL.Propositions
 
         public List<Proposition> GetPropositions()
         {
-           
             List<Proposition> propositions = new List<Proposition>();
 
             string query = "SELECT * FROM SWZ.dbo.propozycje";
-            string connectionString = @"Server=jakubgladysz.com;Database=SWZ;User Id=sa;Password=Geforce9600gt!;";
-            string result = "";
-
             connection = new SqlConnection(connectionString);
             command = new SqlCommand(query, connection);
 
