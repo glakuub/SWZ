@@ -6,6 +6,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 using SWZ.DAL;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace SWZ
 {
@@ -31,6 +33,17 @@ namespace SWZ
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+
+            MSSQLPropositionDAO prop = new MSSQLPropositionDAO();
+            List<Proposition> lprop = prop.GetPropositions();
+
+            foreach(Proposition p in lprop)
+            {
+               
+                Debug.WriteLine(p);
+            }
+
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

@@ -8,6 +8,11 @@ namespace SWZ.DAL
 {
     class UserDAO : IUserDAO
     {
+        public User getUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public int insertUser(User user)
         {   
 

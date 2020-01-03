@@ -19,5 +19,20 @@ namespace SWZ.DAL
             this.id = id;
         }
 
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append(id.ToString());
+            result.Append("|");
+            result.Append(proposing.ToString());
+            result.Append("|");
+            result.Append(authorizing.ToString());
+            result.Append("|");
+            result.Append(dateOfSubmission.ToString());
+            result.Append("|");
+            result.Append(replacementFor.ToString());
+            return result.ToString();
+        }
+
     }
 }
