@@ -158,6 +158,18 @@
     <Compile Include="DAL\Propositions\MSSQLPropositionDAO.cs" />
     <Compile Include="DAL\Users\User.cs" />
     <Compile Include="DAL\Users\MSSQLUserDAO.cs" />
+    <Compile Include="Models\AuthorizingEmployee.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CoursesGroup.cs" />
+    <Compile Include="Models\LearningEffect.cs" />
+    <Compile Include="Models\Proposition.cs" />
+    <Compile Include="Models\Replacement.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudyPlan.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Views\FindReplacement.xaml.cs">
+      <DependentUpon>FindReplacement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -199,7 +211,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
