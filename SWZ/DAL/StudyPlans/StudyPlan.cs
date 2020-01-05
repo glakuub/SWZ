@@ -8,7 +8,7 @@ namespace SWZ.DAL.StudyPlans
 {
     class StudyPlan
     {
-        int id;
+        public int id;
         public string facultySymbol;
         public string fieldOfStudy;
         public int degreeOfStudy;

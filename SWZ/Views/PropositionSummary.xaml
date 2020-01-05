@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="SWZ.PropositionSummary"
+    x:Class="SWZ.Views.PropositionSummary"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SWZ"
+    xmlns:local="using:SWZ.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -12,15 +12,15 @@
         <StackPanel Margin="50">
             <TextBlock Text="Utworzono propozycję:"></TextBlock>
             <ListView Height="150">
-                
+
             </ListView>
             <TextBlock Text="Dla kursu:"></TextBlock>
             <TextBlock Text="---dane kursu---"></TextBlock>
             <TextBlock Text="---dane kursu---"></TextBlock>
             <TextBlock Text="---dane kursu---"></TextBlock>
             <StackPanel Orientation="Horizontal">
-            <Button Content="Zatwierdź"></Button>
-            <Button Content="Anuluj"></Button>
+                <Button Content="Zatwierdź"></Button>
+                <Button Content="Anuluj"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

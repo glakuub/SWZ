@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWZ.ViewModels
+namespace SWZ.Models
 {
-    class MainPage: NotificationBase
+    class AuthorizingEmployeeModel: UserModel
     {
     }
 }

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="SWZ.FindReplacement"
+    x:Class="SWZ.Views.FindReplacement"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SWZ"
@@ -13,45 +13,66 @@
             <StackPanel Orientation="Horizontal" Margin="50">
                 <StackPanel Margin="0,0,20,0">
                     <TextBlock Text="Wydział:" />
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
+                    <TextBox Text="{x:Bind viewModel.SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Kierunek studiów"/>
                     <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Kierunek studiów"/>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="Stacjonarne"></RadioButton>
-                        <RadioButton Content="Niestacjonarne"></RadioButton>
+                        <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind viewModel.Type0, Mode=TwoWay}"></RadioButton>
+                        <RadioButton Content="Niestacjonarne" ></RadioButton>
                     </StackPanel>
                     <TextBlock Text="Język studiów"/>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="polski"></RadioButton>
-                        <RadioButton Content="angielski"></RadioButton>
+                        <RadioButton Content="polski" IsChecked="{x:Bind viewModel.Lang0, Mode=TwoWay}"></RadioButton>
+                        <RadioButton Content="angielski" ></RadioButton>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="20,0,0,0">
-                        <TextBlock Text="Kod kursu:" />
-                        <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
-                        <TextBlock Text="Nazwa kursu:"/>
-                        <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
-                        <TextBlock Text="Forma kursu:"/>
-                        <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0"/>
+                    <TextBlock Text="Kod kursu:" />
+                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
+                    <TextBlock Text="Nazwa kursu"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind viewModel.SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
+                    <TextBlock Text="Forma kursu:"/>
+                    <ComboBox HorizontalAlignment="Stretch" 
+                              VerticalAlignment="Stretch" 
+                              x:Name="SearchCourseType"
+                              SelectedIndex="{x:Bind viewModel.SelectedCourseType, Mode=TwoWay}">
+                    </ComboBox>
+                    <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0"/>
 
 
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
-            <TextBlock Text="Kurs:"></TextBlock>
-            <ListView Height="100" >
-                
-            </ListView>
-            <TextBlock Text="Zamienniki:"></TextBlock>
-            <ListView Height="200">
+                <TextBlock Text="Kurs:"></TextBlock>
+                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Code}"></TextBlock>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                <TextBlock Text="{Binding ECTS}"></TextBlock>
+                                <TextBlock Text="{Binding ZZU}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                  
+                </ListView>
+                <TextBlock Text="Zamienniki:"></TextBlock>
+                <ListView x:Name="Replacements" ItemsSource="{x:Bind viewModel.replacements}" Height="100" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Code}"></TextBlock>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                <TextBlock Text="{Binding ECTS}"></TextBlock>
+                                <TextBlock Text="{Binding ZZU}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-            </ListView>
+                </ListView>
             </StackPanel>
         </StackPanel>
-
-
-
     </Grid>
 </Page>

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SWZ.Models
 {
-    class Proposition
+    class PropositionModel
     {
         int id;
         DateTime dateOfSubmission;
-        Student proposing;
-        AuthorizingEmployee authorizing;
-        Course replacing;
-        List<Course> replacements;
+        StudentModel proposing;
+        AuthorizingEmployeeModel authorizing;
+        CourseModel replacing;
+        List<CourseModel> replacements;
     }
 }

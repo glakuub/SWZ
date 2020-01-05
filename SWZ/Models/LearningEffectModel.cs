@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace SWZ.Models
 {
-    class User
+    class LearningEffectModel
     {
         int id;
-        string firstName;
-        string lastName;
-        string login;
-        string password;
+        string KEK;
+        string KEKDescription;
+        string PRK;
     }
-    
 }

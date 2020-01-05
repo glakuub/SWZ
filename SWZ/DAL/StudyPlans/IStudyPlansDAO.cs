@@ -9,6 +9,7 @@ namespace SWZ.DAL.StudyPlans
     interface IStudyPlansDAO
     {
         List<StudyPlan> GetStudyPlans();
+        StudyPlan GetStudyPlan(int id);
         void SaveStudyPlan(StudyPlan studyPlan);
     }
 }

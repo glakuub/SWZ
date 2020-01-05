@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -11,7 +12,8 @@ namespace SWZ.ViewModels
     public class NotificationBase
     {
         public event PropertyChangedEventHandler propertyChanged;
-        protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string property = null)
+
+        protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] String property = null)
         {
             if(EqualityComparer<T>.Default.Equals(field,value))
             {
@@ -23,8 +25,19 @@ namespace SWZ.ViewModels
             return true;
         }
 
-        private void RaisePropertyChanged(string property)
+        protected bool SetProperty<T>(T currentValue, T newValue, Action DoSet,
+            [CallerMemberName] String property = null)
         {
+            if (EqualityComparer<T>.Default.Equals(currentValue, newValue)) return false;
+            DoSet.Invoke();
+            RaisePropertyChanged(property);
+            return true;
+        }
+
+        protected void RaisePropertyChanged([CallerMemberName] String property = null)
+        {
+
+            Debug.WriteLine("changed " + property);
             propertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }

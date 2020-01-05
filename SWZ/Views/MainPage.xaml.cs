@@ -12,7 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using SWZ.Views;
+using SWZ.ViewModels;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace SWZ
@@ -22,9 +23,16 @@ namespace SWZ
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        NotificationBase mainPage;
         public MainPage()
         {
             this.InitializeComponent();
+            mainPage = new MainPageViewModel();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(FindReplacement));
         }
     }
 }

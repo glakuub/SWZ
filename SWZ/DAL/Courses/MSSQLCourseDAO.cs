@@ -38,7 +38,6 @@ namespace SWZ.DAL.Courses
                     course.studyPlanID = dataReader.GetInt32(7);
                     if (!dataReader.IsDBNull(8))
                     course.coursesGroupID = dataReader.GetInt32(8);
-                   
                     course.isCoursesGroup = dataReader.GetBoolean(9);
                     courses.Add(course);
 

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace SWZ.Models
 {
-    class Replacement
+    class CoursesGroupModel: CourseModel
     {
-        int id;
-        Course replaced;
-        List<Course> replacements;
-        DateTime dateOfAuthorization;
+        List<CourseModel> courses;
     }
 }

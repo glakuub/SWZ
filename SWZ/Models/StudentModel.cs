@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace SWZ.Models
 {
-    class AuthorizingEmployee: User
+    class StudentModel: UserModel
     {
+        string fieldOfStudy;
+        string facultySymbol;
     }
 }

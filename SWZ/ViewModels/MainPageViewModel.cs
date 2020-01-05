@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWZ.Models
+namespace SWZ.ViewModels
 {
-    class Student: User
+    class MainPageViewModel: NotificationBase
     {
-        string fieldOfStudy;
-        string facultySymbol;
     }
 }
