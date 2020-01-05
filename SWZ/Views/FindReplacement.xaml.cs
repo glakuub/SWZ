@@ -41,6 +41,6 @@ namespace SWZ.Views
             //Courses.ItemsSource = viewModel.courses;
         }
 
-        
+       
     }
 }

@@ -34,10 +34,7 @@ namespace SWZ.ViewModels
             get { return this_.semesterNumber; }
             set { SetProperty(this_.semesterNumber, value, () => this_.semesterNumber = value); }
         }
-        public string Type
-        {
-            get { return this_.courseType.ToString(); }
-        }
+        
         public string FacultySymbol
         {
             get { return this_.studyPlan.facultySymbol; }
@@ -45,6 +42,10 @@ namespace SWZ.ViewModels
         public string FieldOfStudy
         {
             get { return this_.studyPlan.fieldOfStudies; }
+        }
+        public CourseType Type
+        {
+            get { return this_.courseType; }
         }
         public StudyDegree StudyDegree
         {

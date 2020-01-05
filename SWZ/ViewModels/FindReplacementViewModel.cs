@@ -17,6 +17,20 @@ namespace SWZ.ViewModels
         public ObservableCollection<ReplacementViewModel> replacements;
 
 
+        public FindReplacementViewModel(CoursesModel coursesModel)
+        {
+            courses = new ObservableCollection<CourseViewModel>();
+            replacements = new ObservableCollection<ReplacementViewModel>();
+            this.coursesModel = coursesModel;
+            coursesModel.GetCourses();
+
+            /*
+            foreach (CourseModel cm in coursesModel.courseModelsList)
+            {
+                courses.Add(new CourseViewModel(cm));
+            }*/
+        }
+
         string _searchName;
         public string SearchName
         {
@@ -35,8 +49,26 @@ namespace SWZ.ViewModels
             }
         }
 
+        string _searchCode;
+        public string SearchCode
+        {
+            get { return _searchCode; }
+            set { SetProperty(ref _searchCode, value);
+                filterCourses();
+            }
+        }
 
-        Language _searchLanguage;
+        string _searchFieldOfStudy;
+        public string SearchFieldOfStudy
+        {
+            get { return _searchFieldOfStudy; }
+            set { SetProperty(ref _searchFieldOfStudy, value);
+                filterCourses();
+            }
+        }
+
+
+        Language _searchLanguage = (Language) 1;
         bool _lang0Checked = true;
         public bool Lang0
         {
@@ -50,7 +82,7 @@ namespace SWZ.ViewModels
             }
         }
 
-        StudyType _searchStudyType;
+        StudyType _searchStudyType = (StudyType)1;
         bool _type0Checked = true;
         public bool Type0
         {
@@ -64,11 +96,11 @@ namespace SWZ.ViewModels
             }
         }
 
-        CourseType _searchCourseType;
+        CourseType _searchCourseType = (CourseType) 0;
         public int SelectedCourseType
         {
-            get { return (int)_searchCourseType; }
-            set { SetProperty(ref _searchCourseType, (CourseType)value);
+            get { return (int)_searchCourseType - 1; }
+            set { SetProperty(ref _searchCourseType, (CourseType)(value + 1));
                 filterCourses();
                 Debug.WriteLine(value);
             }
@@ -84,19 +116,7 @@ namespace SWZ.ViewModels
             }
         }
 
-        public FindReplacementViewModel(CoursesModel coursesModel)
-        {
-            courses = new ObservableCollection<CourseViewModel>();
-            replacements = new ObservableCollection<ReplacementViewModel>();
-            this.coursesModel = coursesModel;
-            coursesModel.GetCourses();
-          
-
-            foreach (CourseModel cm in coursesModel.courseModelsList)
-            {
-                courses.Add(new CourseViewModel(cm));
-            }
-        }
+       
         
 
         void filterCourses()
@@ -109,21 +129,27 @@ namespace SWZ.ViewModels
 
             lcvm = lcvm.FindAll(cvm => cvm.StudyType.Equals(_searchStudyType));
 
+            lcvm = lcvm.FindAll(cvm => cvm.Type.Equals(_searchCourseType));
+
             if (_searchName!=null && _searchName!=string.Empty)
             {
-                lcvm = lcvm.FindAll(cvm => cvm.Name.ToUpper().StartsWith(_searchName.ToUpper()));
-
-               
+                lcvm = lcvm.FindAll(cvm => cvm.Name.ToUpper().StartsWith(_searchName.ToUpper())); 
             }
 
             if (_searchFaculty != null && _searchFaculty != string.Empty)
             {
-                
                lcvm = lcvm.FindAll(cvm => cvm.FacultySymbol.ToUpper().StartsWith(_searchFaculty.ToUpper()));
-              
+            }
+            if (_searchCode != null && _searchCode != string.Empty)
+            {
+                lcvm = lcvm.FindAll(cvm => cvm.Code.ToUpper().StartsWith(_searchCode.ToUpper()));
+            }
+            if (_searchFieldOfStudy != null && _searchFieldOfStudy != string.Empty)
+            {
+                lcvm = lcvm.FindAll(cvm => cvm.FieldOfStudy.ToUpper().StartsWith(_searchFieldOfStudy.ToUpper()));
             }
 
-            
+
             courses.Clear();
             foreach (CourseViewModel cvm in lcvm)
             {

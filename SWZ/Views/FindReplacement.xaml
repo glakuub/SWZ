@@ -15,7 +15,7 @@
                     <TextBlock Text="Wydział:" />
                     <TextBox Text="{x:Bind viewModel.SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Kierunek studiów"/>
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind viewModel.SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250" />
                     <TextBlock Text="Kierunek studiów"/>
                     <StackPanel Orientation="Horizontal">
                         <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind viewModel.Type0, Mode=TwoWay}"></RadioButton>
@@ -29,7 +29,7 @@
                 </StackPanel>
                 <StackPanel Margin="20,0,0,0">
                     <TextBlock Text="Kod kursu:" />
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind viewModel.SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Nazwa kursu"/>
                     <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind viewModel.SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Forma kursu:"/>
