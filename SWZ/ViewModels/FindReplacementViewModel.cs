@@ -13,16 +13,18 @@ namespace SWZ.ViewModels
     class FindReplacementViewModel : NotificationBase
     {
         CoursesModel coursesModel;
+        ReplacementsModel replacementsModel;
         public ObservableCollection<CourseViewModel> courses;
         public ObservableCollection<ReplacementViewModel> replacements;
 
 
-        public FindReplacementViewModel(CoursesModel coursesModel)
+        public FindReplacementViewModel(CoursesModel coursesModel, ReplacementsModel replacementsModel)
         {
             courses = new ObservableCollection<CourseViewModel>();
             replacements = new ObservableCollection<ReplacementViewModel>();
             this.coursesModel = coursesModel;
-            coursesModel.GetCourses();
+            this.replacementsModel = replacementsModel;
+            coursesModel.GetCoursesFromData();
 
             /*
             foreach (CourseModel cm in coursesModel.courseModelsList)
@@ -118,7 +120,14 @@ namespace SWZ.ViewModels
 
        
         
-
+        void findReplacements()
+        {
+            replacementsModel.SetReplaced(coursesModel.At(SelectedCourseIndex));
+            foreach(ReplacementModel rm in replacementsModel.GetReplacements())
+            {
+                replacements.Add(new ReplacementViewModel(rm));
+            }
+        }
         void filterCourses()
         {
             Debug.WriteLine("filter");
@@ -170,7 +179,7 @@ namespace SWZ.ViewModels
         {
             if (coursesModel != null)
             {
-                coursesModel.GetCourses();
+                coursesModel.GetCoursesFromData();
                 refreshLocalCourses();
 
             }

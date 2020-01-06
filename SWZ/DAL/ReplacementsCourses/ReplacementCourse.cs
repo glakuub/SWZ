@@ -8,8 +8,8 @@ namespace SWZ.DAL.ReplacementsCourses
 {
     class ReplacementCourse
     {
-        int replacementID;
-        int courseID;
+        public int replacementID;
+        public int courseID;
 
         public ReplacementCourse(int replacementID, int courseID)
         {

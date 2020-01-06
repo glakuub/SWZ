@@ -165,6 +165,7 @@
     <Compile Include="Models\LearningEffectModel.cs" />
     <Compile Include="Models\PropositionModel.cs" />
     <Compile Include="Models\ReplacementModel.cs" />
+    <Compile Include="Models\ReplacementsModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\StudyPlanModel.cs" />
     <Compile Include="Models\UserModel.cs" />

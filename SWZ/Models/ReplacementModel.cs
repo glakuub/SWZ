@@ -11,7 +11,7 @@ namespace SWZ.Models
 
         public DateTime dateOfAuthorization;
         int id;
-        CourseModel replaced
+        public CourseModel replaced
         {
             get { return replaced; }
             set { replaced = value; }

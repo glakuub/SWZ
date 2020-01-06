@@ -8,7 +8,7 @@ namespace SWZ.DAL.Courses
 {
     class Course
     {
-        int id;
+        public int id;
         public string courseCode;
         public string courseName;
         public int ects;

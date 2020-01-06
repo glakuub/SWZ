@@ -10,7 +10,7 @@ namespace SWZ.Models
     enum SemesterType { letni, zimowy}
     class CourseModel
     {
-        int id;
+        public int id;
         public string code;
         public string name;
         public int ects;
@@ -20,6 +20,12 @@ namespace SWZ.Models
         public CourseType courseType;
         public StudyPlanModel studyPlan;
        
+        public CourseModel() { }
+        public CourseModel(int id)
+        {
+            this.id = id;
+        }
 
+            
     }
 }

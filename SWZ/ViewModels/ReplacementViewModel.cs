@@ -16,6 +16,7 @@ namespace SWZ.ViewModels
             get { return this_.dateOfAuthorization.ToLongDateString(); }
           
         }
-       
+        
+
     }
 }

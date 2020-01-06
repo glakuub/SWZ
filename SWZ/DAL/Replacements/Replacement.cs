@@ -8,8 +8,8 @@ namespace SWZ.DAL.Replacements
 {
     class Replacement
     {
-        int id;
-        int replacedID;
+        public int id;
+        public int replacedID;
 
         public Replacement(int id, int replacedID)
         {

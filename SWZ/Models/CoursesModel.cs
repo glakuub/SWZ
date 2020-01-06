@@ -19,7 +19,20 @@ namespace SWZ.Models
         {
             courseModelsList = new List<CourseModel>();
         }
-        public void GetCourses()
+        public CourseModel GetCourseByID(int id)
+        {
+            CourseModel course = null;
+
+            return courseModelsList.Find(cm => cm.id == id);
+        }
+        public CourseModel At(int index)
+        {
+            if (index >= 0 && index < courseModelsList.Count - 1)
+                return courseModelsList[index];
+            else
+                return null;
+        }
+        public void GetCoursesFromData()
         {
             ICourseDAO courseDAO = new MSSQLCourseDAO();
             IStudyPlansDAO studyPlansDAO = new MSSQLStudyPlansDAO();
@@ -28,7 +41,7 @@ namespace SWZ.Models
 
             foreach(Course c in coursesList)
             {
-                CourseModel cm = new CourseModel();
+                CourseModel cm = new CourseModel(c.id);
                 cm.code = c.courseCode;
                 cm.name = c.courseName;
                 cm.semesterNumber = c.semesterNumber;

@@ -26,12 +26,14 @@ namespace SWZ.Views
     {
         FindReplacementViewModel viewModel;
         CoursesModel coursesModel;
+        ReplacementsModel replacementsModel;
         public FindReplacement()
         {
             
             
             coursesModel = new CoursesModel();
-            viewModel = new FindReplacementViewModel(coursesModel);
+            replacementsModel = new ReplacementsModel();
+            viewModel = new FindReplacementViewModel(coursesModel, replacementsModel);
 
           
             this.InitializeComponent();

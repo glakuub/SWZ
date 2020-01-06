@@ -9,5 +9,6 @@ namespace SWZ.DAL.Courses
     interface ICourseDAO
     {
         List<Course> GetCourses();
+        Course FindCourseById(int id);
     }
 }

@@ -9,6 +9,7 @@ namespace SWZ.DAL.Replacements
     interface IReplacementDAO
     {
         List<Replacement> GetReplacements();
+        List<Replacement> FindByReplacedId(int id);
         void SaveReplacement(Replacement replacement);
 
     }
