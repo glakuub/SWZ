@@ -12,25 +12,19 @@ namespace SWZ.ViewModels
 {
     class FindReplacementViewModel : NotificationBase
     {
-        CoursesModel coursesModel;
-        ReplacementsModel replacementsModel;
-        public ObservableCollection<CourseViewModel> courses;
-        public ObservableCollection<ReplacementViewModel> replacements;
+        public CoursesModel coursesModel;
+        public ReplacementsModel replacementsModel;
+        public ObservableCollection<CourseViewModel> Courses { set; get; }
+        public ObservableCollection<ReplacementViewModel> Replacements { set; get; }
 
-
-        public FindReplacementViewModel(CoursesModel coursesModel, ReplacementsModel replacementsModel)
+        
+        public FindReplacementViewModel()
         {
-            courses = new ObservableCollection<CourseViewModel>();
-            replacements = new ObservableCollection<ReplacementViewModel>();
-            this.coursesModel = coursesModel;
-            this.replacementsModel = replacementsModel;
+            Courses = new ObservableCollection<CourseViewModel>();
+            Replacements = new ObservableCollection<ReplacementViewModel>();
+            coursesModel = new CoursesModel();
+            replacementsModel = new ReplacementsModel();
             coursesModel.GetCoursesFromData();
-
-            /*
-            foreach (CourseModel cm in coursesModel.courseModelsList)
-            {
-                courses.Add(new CourseViewModel(cm));
-            }*/
         }
 
         string _searchName;
@@ -115,6 +109,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _selectedCourseIndex, value);
+                findReplacements();
             }
         }
 
@@ -122,17 +117,18 @@ namespace SWZ.ViewModels
         
         void findReplacements()
         {
+            Replacements.Clear();
             replacementsModel.SetReplaced(coursesModel.At(SelectedCourseIndex));
-            foreach(ReplacementModel rm in replacementsModel.GetReplacements())
+            foreach(ReplacementModel rm in replacementsModel.GetReplacementsFromData())
             {
-                replacements.Add(new ReplacementViewModel(rm));
+                Replacements.Add(new ReplacementViewModel(rm));
             }
         }
         void filterCourses()
         {
             Debug.WriteLine("filter");
             refreshLocalCourses();
-            List<CourseViewModel> lcvm = courses.ToList();
+            List<CourseViewModel> lcvm = Courses.ToList();
 
             lcvm = lcvm.FindAll(cvm => cvm.Language.Equals(_searchLanguage));
 
@@ -159,20 +155,20 @@ namespace SWZ.ViewModels
             }
 
 
-            courses.Clear();
+            Courses.Clear();
             foreach (CourseViewModel cvm in lcvm)
             {
-                courses.Add(cvm);
+                Courses.Add(cvm);
             }
-
+           
 
         }
         void refreshLocalCourses()
         {
-            courses.Clear();
+            Courses.Clear();
             foreach (CourseModel cm in coursesModel.courseModelsList)
             {
-                courses.Add(new CourseViewModel(cm));
+                Courses.Add(new CourseViewModel(cm));
             }
         }
         void refreshCoursesFromData()

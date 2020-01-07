@@ -25,22 +25,20 @@ namespace SWZ.Views
     public sealed partial class FindReplacement : Page
     {
         FindReplacementViewModel viewModel;
-        CoursesModel coursesModel;
-        ReplacementsModel replacementsModel;
+       
         public FindReplacement()
         {
             
             
-            coursesModel = new CoursesModel();
-            replacementsModel = new ReplacementsModel();
-            viewModel = new FindReplacementViewModel(coursesModel, replacementsModel);
+            
+            viewModel = new FindReplacementViewModel();
 
           
             this.InitializeComponent();
             var _typeEnumVals = Enum.GetValues(typeof(CourseType)).Cast<CourseType>();
             if (_typeEnumVals != null)
                 SearchCourseType.ItemsSource = _typeEnumVals;
-            //Courses.ItemsSource = viewModel.courses;
+            
         }
 
        

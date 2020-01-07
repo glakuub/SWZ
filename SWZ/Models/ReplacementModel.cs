@@ -9,25 +9,23 @@ namespace SWZ.Models
     class ReplacementModel
     {
 
-        public DateTime dateOfAuthorization;
+        public DateTime DateOfAuthorization { get; set; }
+        public CourseModel Replaced{get; set;}
+        public List<CourseModel> Replacements { get; set; }
         int id;
-        public CourseModel replaced
+        public ReplacementModel()
         {
-            get { return replaced; }
-            set { replaced = value; }
+            Replacements = new List<CourseModel>();
         }
-        List<CourseModel> replacements;
-       
-        public ReplacementModel() { }
         public ReplacementModel(int id)
         {
             this.id = id;
-            replacements = new List<CourseModel>();
+            Replacements = new List<CourseModel>();
         }
 
         public void AddCourse(CourseModel course)
         {
-            replacements.Add(course);
+            Replacements.Add(course);
         }
         
     }

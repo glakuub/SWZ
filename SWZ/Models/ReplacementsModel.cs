@@ -23,34 +23,37 @@ namespace SWZ.Models
         {
             this.replacedModel = replacedModel;
         }
-        public List<ReplacementModel> GetReplacements()
+        public List<ReplacementModel> GetReplacementsFromData()
         {
             List<ReplacementModel> rml = new List<ReplacementModel>();
-            IReplacementDAO replacementDAO = new MSSQLReplacementDAO();
-            IReplacementsCoursesDAO replacementsCoursesDAO = new MSSQLReplacementsCoursesDAO();
-
-            List<Replacement> replacements = replacementDAO.FindByReplacedId(replacedModel.id);
-            CoursesModel coursesModel = new CoursesModel();
-
-            foreach(Replacement r in replacements)
+            if (replacedModel != null)
             {
-                ReplacementModel replacementModel = new ReplacementModel();
-                replacementModel.replaced = replacedModel;
-                List<ReplacementCourse> replacements_courses = replacementsCoursesDAO.FindByReplacementId(r.id);
-                foreach(ReplacementCourse rc in replacements_courses)
+               
+                IReplacementDAO replacementDAO = new MSSQLReplacementDAO();
+                IReplacementsCoursesDAO replacementsCoursesDAO = new MSSQLReplacementsCoursesDAO();
+
+                List<Replacement> replacements = replacementDAO.FindByReplacedId(replacedModel.id);
+                CoursesModel coursesModel = new CoursesModel();
+
+                foreach (Replacement r in replacements)
                 {
-                    replacementModel.AddCourse(coursesModel.GetCourseByID(rc.replacementID));
+                    ReplacementModel replacementModel = new ReplacementModel();
+                    replacementModel.Replaced = replacedModel;
+                    List<ReplacementCourse> replacements_courses = replacementsCoursesDAO.FindByReplacementId(r.id);
+                    foreach (ReplacementCourse rc in replacements_courses)
+                    {
+                        replacementModel.AddCourse(coursesModel.GetCourseByID(rc.courseID));
+                    }
+
+                    rml.Add(replacementModel);
+
+
                 }
 
-                rml.Add(replacementModel);
+
 
 
             }
-
-           
-
-
-
 
             return rml;
         }

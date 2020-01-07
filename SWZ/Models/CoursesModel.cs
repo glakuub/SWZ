@@ -17,12 +17,11 @@ namespace SWZ.Models
         }*/
         public CoursesModel()
         {
-            courseModelsList = new List<CourseModel>();
+            
         }
         public CourseModel GetCourseByID(int id)
         {
-            CourseModel course = null;
-
+            GetCoursesFromData();
             return courseModelsList.Find(cm => cm.id == id);
         }
         public CourseModel At(int index)
@@ -34,6 +33,11 @@ namespace SWZ.Models
         }
         public void GetCoursesFromData()
         {
+            if (courseModelsList == null)
+            {
+                courseModelsList = new List<CourseModel>();
+
+            }
             ICourseDAO courseDAO = new MSSQLCourseDAO();
             IStudyPlansDAO studyPlansDAO = new MSSQLStudyPlansDAO();
             List<Course> coursesList = courseDAO.GetCourses();

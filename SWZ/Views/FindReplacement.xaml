@@ -2,11 +2,12 @@
     x:Class="SWZ.Views.FindReplacement"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SWZ"
+    xmlns:viewmodel="using:SWZ.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    >
 
     <Grid>
         <StackPanel Orientation="Vertical">
@@ -45,7 +46,7 @@
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
                 <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}">
+                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -59,17 +60,29 @@
                   
                 </ListView>
                 <TextBlock Text="Zamienniki:"></TextBlock>
-                <ListView x:Name="Replacements" ItemsSource="{x:Bind viewModel.replacements}" Height="100" >
+                <ListView x:Name="Replacements" ItemsSource="{x:Bind viewModel.Replacements}" Height="100" >
                     <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding DateOfAuthorization}"></TextBlock>
-                                                      </StackPanel>
+                        <DataTemplate x:DataType="viewmodel:ReplacementViewModel">
+                            <ListView ItemsSource="{x:Bind Courses}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="viewmodel:CourseViewModel">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{x:Bind Code}"></TextBlock>
+                                            <TextBlock Text="{x:Bind Name}"></TextBlock>
+                                            <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                                            <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+                                        </StackPanel>
+
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                  
 
                 </ListView>
             </StackPanel>
         </StackPanel>
     </Grid>
+
 </Page>

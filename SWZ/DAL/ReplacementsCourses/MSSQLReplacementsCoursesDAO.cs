@@ -16,7 +16,7 @@ namespace SWZ.DAL.ReplacementsCourses
 
         public List<ReplacementCourse> FindByReplacementId(int id)
         {
-            string query = $"SELECT * FROM SWZ.dbo.zamienniki_kursy WHERE zamiennik={id}";
+            string query = $"SELECT * FROM SWZ.dbo.zamienniki_kursy WHERE zamiennikid={id}";
             List<ReplacementCourse> replacements_courses = new List<ReplacementCourse>();
          
             connection = new SqlConnection(connectionString);

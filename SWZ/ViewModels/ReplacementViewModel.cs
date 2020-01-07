@@ -9,13 +9,30 @@ namespace SWZ.ViewModels
 {
     class ReplacementViewModel: NotificationBase<ReplacementModel>
     {
-        public ReplacementViewModel(ReplacementModel replacement= null) : base(replacement) { }
+
+        List<CourseViewModel> lcvm;
+        public ReplacementViewModel(ReplacementModel replacement= null) : base(replacement)
+        {
+            lcvm = new List<CourseViewModel>();
+            foreach (CourseModel cm in this_.Replacements)
+            {
+                lcvm.Add(new CourseViewModel(cm));
+            }
+        }
+
        
+
+        public ReplacementViewModel()
+        {
+           
+        }
         public string DateOfAuthorization
         {
-            get { return this_.dateOfAuthorization.ToLongDateString(); }
+            get { return this_.DateOfAuthorization.ToLongDateString(); }
           
         }
+        public List<CourseViewModel> Courses
+        {get{ return lcvm; } }
         
 
     }
