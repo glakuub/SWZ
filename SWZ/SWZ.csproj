@@ -170,6 +170,8 @@
     <Compile Include="Models\StudyPlanModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
+    <Compile Include="ViewModels\CreatePropositionViewModel.cs" />
+    <Compile Include="ViewModels\FindCourseBase.cs" />
     <Compile Include="ViewModels\FindReplacementViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\NotificationBase.cs" />

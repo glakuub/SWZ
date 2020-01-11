@@ -8,16 +8,16 @@ namespace SWZ.DAL.Courses
 {
     class Course
     {
-        public int id;
-        public string courseCode;
-        public string courseName;
-        public int ects;
-        public int courseType;
-        public int zzu;
-        public int semesterNumber;
-        public int studyPlanID;
-        public int? coursesGroupID;
-        public bool isCoursesGroup;
+        public int id { set; get; }
+        public string courseCode { set; get; }
+        public string courseName { set; get; }
+        public int ects { set; get; }
+        public int courseType { set; get; }
+        public int zzu { set; get; }
+        public int semesterNumber { set; get; }
+        public int studyPlanID { set; get; }
+        public int? coursesGroupID { set; get; }
+        public bool isCoursesGroup { set; get; }
 
 
         public Course(int id)

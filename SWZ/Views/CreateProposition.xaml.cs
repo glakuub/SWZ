@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SWZ.ViewModels;
+using SWZ.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,9 +24,16 @@ namespace SWZ.Views
     /// </summary>
     public sealed partial class CreateProposition : Page
     {
+        CreatePropositionViewModel viewModel;
         public CreateProposition()
         {
+            viewModel = new CreatePropositionViewModel();
+
+
             this.InitializeComponent();
+            var _typeEnumVals = Enum.GetValues(typeof(CourseType)).Cast<CourseType>();
+            if (_typeEnumVals != null)
+                SearchCourseType.ItemsSource = _typeEnumVals;
         }
     }
 }

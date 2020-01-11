@@ -10,7 +10,7 @@ namespace SWZ.Models
 {
     class CoursesModel
     {
-        public List<CourseModel> courseModelsList;
+        public List<CourseModel> courseModelsList { set; get; }
         /*{
             get { return courseModelsList; }
             set { courseModelsList = value; }
@@ -68,5 +68,6 @@ namespace SWZ.Models
                 
             }
         }
+
     }
 }
