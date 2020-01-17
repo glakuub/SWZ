@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWZ.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,10 +21,20 @@ namespace SWZ.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
     public sealed partial class StudentView : Page
     {
+        StudentViewModel viewModel;
         public StudentView()
         {
+            viewModel = new StudentViewModel();
+            viewModel.GoBack = new CommandHandler(() =>
+            {
+                if (this.Frame.CanGoBack)
+                {
+                    this.Frame.GoBack();
+                }
+            });
             this.InitializeComponent();
         }
 

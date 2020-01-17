@@ -10,6 +10,7 @@
 
     <Grid>
         <StackPanel Orientation="Vertical">
+            <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
             <StackPanel Orientation="Horizontal" Margin="50">
                 <StackPanel Margin="0,0,20,0">
                     <TextBlock Text="Wydział:" />
@@ -38,7 +39,7 @@
                               x:Name="SearchCourseType"
                               SelectedIndex="{x:Bind viewModel.SelectedCourseType, Mode=TwoWay}">
                     </ComboBox>
-                    <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0"/>
+                    
 
 
                 </StackPanel>
@@ -60,7 +61,7 @@
                 </ListView>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Proponowane zamienniki:"></TextBlock>
-                    <Button Content="Dodaj kurs" ></Button>
+                    <Button Content="Dodaj kurs" Command="{x:Bind Path=viewModel.GoToAddCourseToProposition}"></Button>
                 </StackPanel>
                 <ListView Height="150">
 

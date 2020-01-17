@@ -33,12 +33,7 @@ namespace SWZ
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            MSSQLCourseDAO mSSQLCoursesDAO = new MSSQLCourseDAO();
-            List<Course> lcs = mSSQLCoursesDAO.GetCourses();
-            foreach(Course c in lcs)
-            {
-                Debug.WriteLine(c);
-            }
+          
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -70,6 +65,7 @@ namespace SWZ
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Ensure the current window is active
+                rootFrame.CacheSize = 2;
                 Window.Current.Activate();
             }
         }

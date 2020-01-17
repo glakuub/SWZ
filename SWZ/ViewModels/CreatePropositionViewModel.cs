@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using SWZ.Models;
 
 namespace SWZ.ViewModels
 {
-    class CreatePropositionViewModel: FindCourseBase
+    class CreatePropositionViewModel: FindCourseBaseViewModel
     {
-     
+       
+
+        public ICommand GoToAddCourseToProposition{ set; get; }
     }
 }

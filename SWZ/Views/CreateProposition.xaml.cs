@@ -28,9 +28,20 @@ namespace SWZ.Views
         public CreateProposition()
         {
             viewModel = new CreatePropositionViewModel();
+            viewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
+                Frame.Navigate(typeof(AddCourseToProposition)); });
+            viewModel.GoBack = new CommandHandler(() =>{
+                if (this.Frame.CanGoBack)
+                {
+                    this.Frame.GoBack();
+                }
+            });
 
 
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+
+
             var _typeEnumVals = Enum.GetValues(typeof(CourseType)).Cast<CourseType>();
             if (_typeEnumVals != null)
                 SearchCourseType.ItemsSource = _typeEnumVals;

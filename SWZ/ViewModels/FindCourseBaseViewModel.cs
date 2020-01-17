@@ -5,19 +5,20 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using SWZ.Models;
 
 namespace SWZ.ViewModels
 {
-    class FindCourseBase: NotificationBase
+    class FindCourseBaseViewModel: NotificationBase
     {
         public CoursesModel coursesModel { set; get; }
         public ReplacementsModel replacementsModel { set; get; }
         public ObservableCollection<CourseViewModel> Courses { set; get; }
         public ObservableCollection<ReplacementViewModel> Replacements { set; get; }
+        public ICommand GoBack { set; get; }
 
-
-        public FindCourseBase()
+        public FindCourseBaseViewModel()
         {
             Courses = new ObservableCollection<CourseViewModel>();
             Replacements = new ObservableCollection<ReplacementViewModel>();

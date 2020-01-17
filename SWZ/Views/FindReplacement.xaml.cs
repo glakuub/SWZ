@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SWZ.ViewModels;
 using SWZ.Models;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,6 +33,7 @@ namespace SWZ.Views
             
             
             viewModel = new FindReplacementViewModel();
+            viewModel.GoBack = new CommandHandler(()=> { this.Frame.GoBack(); });
 
           
             this.InitializeComponent();

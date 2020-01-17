@@ -169,16 +169,20 @@
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\StudyPlanModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="ViewModels\AddCourseToPropositionViewModel.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\CreatePropositionViewModel.cs" />
-    <Compile Include="ViewModels\FindCourseBase.cs" />
+    <Compile Include="ViewModels\FindCourseBaseViewModel.cs" />
     <Compile Include="ViewModels\FindReplacementViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\NotificationBase.cs" />
     <Compile Include="ViewModels\ReplacementViewModel.cs" />
+    <Compile Include="ViewModels\StudentViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\AddCourseToProposition.xaml.cs">
       <DependentUpon>AddCourseToProposition.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CommandHandler.cs" />
     <Compile Include="Views\CreateProposition.xaml.cs">
       <DependentUpon>CreateProposition.xaml</DependentUpon>
     </Compile>

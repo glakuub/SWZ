@@ -27,5 +27,6 @@ namespace SWZ
         {
             this.Frame.Navigate(typeof(StudentView));
         }
+       
     }
 }

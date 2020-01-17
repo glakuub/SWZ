@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWZ.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,17 @@ namespace SWZ.Views
     /// </summary>
     public sealed partial class UserView : Page
     {
+        UserViewModel viewModel;
         public UserView()
         {
             this.InitializeComponent();
+            viewModel = new UserViewModel();
+            viewModel.GoBack = new CommandHandler(()=> {
+                if (this.Frame.CanGoBack)
+                {
+                    this.Frame.GoBack();
+                }
+            });
         }
     }
 }
