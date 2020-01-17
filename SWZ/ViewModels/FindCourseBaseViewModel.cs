@@ -13,17 +13,17 @@ namespace SWZ.ViewModels
     class FindCourseBaseViewModel: NotificationBase
     {
         public CoursesModel coursesModel { set; get; }
-        public ReplacementsModel replacementsModel { set; get; }
+        
         public ObservableCollection<CourseViewModel> Courses { set; get; }
-        public ObservableCollection<ReplacementViewModel> Replacements { set; get; }
+       
         public ICommand GoBack { set; get; }
 
         public FindCourseBaseViewModel()
         {
             Courses = new ObservableCollection<CourseViewModel>();
-            Replacements = new ObservableCollection<ReplacementViewModel>();
+           
             coursesModel = new CoursesModel();
-            replacementsModel = new ReplacementsModel();
+            
             coursesModel.GetCoursesFromData();
         }
 

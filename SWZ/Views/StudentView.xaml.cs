@@ -24,10 +24,10 @@ namespace SWZ.Views
     /// 
     public sealed partial class StudentView : Page
     {
-        StudentViewModel viewModel;
+        StudentPageViewModel viewModel;
         public StudentView()
         {
-            viewModel = new StudentViewModel();
+            viewModel = new StudentPageViewModel();
             viewModel.GoBack = new CommandHandler(() =>
             {
                 if (this.Frame.CanGoBack)

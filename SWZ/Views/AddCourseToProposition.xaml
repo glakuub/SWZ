@@ -35,18 +35,32 @@
                     <TextBlock Text="Nazwa kursu:"/>
                     <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Forma kursu:"/>
-                    <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                    <Button Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0"/>
+                    <ComboBox HorizontalAlignment="Stretch" 
+                              VerticalAlignment="Stretch" 
+                              x:Name="SearchCourseType"
+                              SelectedIndex="{x:Bind viewModel.SelectedCourseType, Mode=TwoWay}">
+                    </ComboBox>
+                    
 
 
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
                 <TextBlock Text="Kurs:"></TextBlock>
-                <ListView Height="100" >
+                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Code}"></TextBlock>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                                <TextBlock Text="{Binding ECTS}"></TextBlock>
+                                <TextBlock Text="{Binding ZZU}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
                 </ListView>
-                <Button Content="Dodaj"></Button>
+                <Button Content="Dodaj" Command="{x:Bind viewModel.AddCourse}"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

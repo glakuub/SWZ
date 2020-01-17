@@ -14,7 +14,16 @@ namespace SWZ.ViewModels
     class FindReplacementViewModel : FindCourseBaseViewModel
     {
 
-        
+        public ReplacementsModel replacementsModel { set; get; }
+        public ObservableCollection<ReplacementViewModel> Replacements { set; get; }
+
+        public FindReplacementViewModel()
+        {
+            Replacements = new ObservableCollection<ReplacementViewModel>();
+            replacementsModel = new ReplacementsModel();
+
+        }
+
         public new int SelectedCourseIndex
         {
             get { return _selectedCourseIndex; }

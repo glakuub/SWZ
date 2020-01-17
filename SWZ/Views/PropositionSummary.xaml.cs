@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWZ.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,17 @@ namespace SWZ.Views
     /// </summary>
     public sealed partial class PropositionSummary : Page
     {
+        PropositionSummaryViewModel viewModel;
         public PropositionSummary()
         {
+            viewModel = new PropositionSummaryViewModel();
+            
             this.InitializeComponent();
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var propositionViewModel = e.Parameter as PropositionViewModel;
+            viewModel.PropositionViewModel = propositionViewModel;
         }
     }
 }

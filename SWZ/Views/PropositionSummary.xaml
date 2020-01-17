@@ -15,7 +15,7 @@
 
             </ListView>
             <TextBlock Text="Dla kursu:"></TextBlock>
-            <TextBlock Text="---dane kursu---"></TextBlock>
+            <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.Name}"></TextBlock>
             <TextBlock Text="---dane kursu---"></TextBlock>
             <TextBlock Text="---dane kursu---"></TextBlock>
             <StackPanel Orientation="Horizontal">

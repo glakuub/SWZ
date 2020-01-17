@@ -29,7 +29,8 @@ namespace SWZ.Views
         {
             viewModel = new CreatePropositionViewModel();
             viewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
-                Frame.Navigate(typeof(AddCourseToProposition)); });
+            Frame.Navigate(typeof(AddCourseToProposition),viewModel.AddedCourses); });
+
             viewModel.GoBack = new CommandHandler(() =>{
                 if (this.Frame.CanGoBack)
                 {

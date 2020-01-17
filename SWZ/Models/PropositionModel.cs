@@ -8,11 +8,11 @@ namespace SWZ.Models
 {
     class PropositionModel
     {
-        int id;
-        DateTime dateOfSubmission;
-        StudentModel proposing;
-        AuthorizingEmployeeModel authorizing;
-        CourseModel replacing;
-        List<CourseModel> replacements;
+        public int id { set; get; }
+        public DateTime dateOfSubmission { set; get; }
+        public StudentModel proposing { set; get; }
+        public AuthorizingEmployeeModel authorizing { set; get; }
+        public CourseModel replacing { set; get; }
+        public List<CourseModel> replacements { set; get; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using SWZ.ViewModels;
+using SWZ.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -34,7 +36,17 @@ namespace SWZ.Views
                     this.Frame.GoBack();
                 }
             });
-                this.InitializeComponent();
+       
+            this.InitializeComponent();
+            var _typeEnumVals = Enum.GetValues(typeof(CourseType)).Cast<CourseType>();
+            if (_typeEnumVals != null)
+                SearchCourseType.ItemsSource = _typeEnumVals;
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {   
+            var addedCourses = e.Parameter as ObservableCollection<CourseViewModel>;
+
+            viewModel.addedCourses = addedCourses;
         }
     }
 }
