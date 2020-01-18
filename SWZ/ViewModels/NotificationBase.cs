@@ -51,5 +51,6 @@ namespace SWZ.ViewModels
         {
             this_ = thing ?? new T();
         }
+        public T Model { get { return this_; } }
     }
 }

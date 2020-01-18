@@ -12,8 +12,8 @@ namespace SWZ.ViewModels
     {
 
         public String Date { set { this_.DateOfSubmission = DateTime.Parse(value); } get { return this_.DateOfSubmission.ToString(); } }
-        public CourseViewModel Course { set; get; }
-        public StudentViewModel Student { set; get; }
+        public CourseViewModel Course { set { this_.Replacing = value.Model; } get { return new CourseViewModel(this_.Replacing); } }
+        public StudentViewModel Student { set { this_.Proposing = value.Model; } get { return new StudentViewModel(this_.Proposing); } }
 
         public ObservableCollection<CourseViewModel> Replacements { set;  get; }
 

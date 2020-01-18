@@ -52,19 +52,18 @@ namespace SWZ.DAL.Propositions
         public int SaveProposition(Proposition proposition)
         {
             int insertedId = -1;
-            string query = $"INSERT INTO SWZ.dbo.propozycje (skladajacy, datazlozenia, zamienieniany)" +
-                $"OUTPUT Inserted.ID" +
-                $"VALUES ({proposition.proposing},{proposition.dateOfSubmission},{proposition.replacementFor});";
+            string query = $"INSERT INTO SWZ.dbo.propozycje (skladajacy, datazlozenia, zamieniany)" +
+                $" OUTPUT Inserted.ID" +
+                $" VALUES ({proposition.proposing},@1,{proposition.replacementFor});";
 
             using (connection = new SqlConnection(connectionString))
             {
                 command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@1", proposition.dateOfSubmission);
+
                 connection.Open();
-                dataReader = command.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    insertedId = dataReader.GetInt32(0);
-                }
+                insertedId = (int)command.ExecuteScalar();
+                
             }
 
             return insertedId;
