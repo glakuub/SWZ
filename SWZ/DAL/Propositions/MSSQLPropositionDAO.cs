@@ -48,5 +48,14 @@ namespace SWZ.DAL.Propositions
             return propositions;
         }
 
+        public void SaveProposition(Proposition proposition)
+        {
+            throw new NotImplementedException();
+        }
+
+        int IPropositionDAO.SaveProposition(Proposition proposition)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

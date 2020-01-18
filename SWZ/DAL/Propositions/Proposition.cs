@@ -8,14 +8,15 @@ namespace SWZ.DAL.Propositions
 {
     class Proposition
     {
-        int id;
+        int? id;
         public int proposing;
         public int authorizing;
         public DateTime dateOfSubmission;
         public int replacementFor;
 
-        public Proposition(int id)
+        public Proposition(int? id = null)
         {
+            if(id!=null)
             this.id = id;
         }
 

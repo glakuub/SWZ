@@ -9,7 +9,8 @@ namespace SWZ.DAL.Propositions
     interface IPropositionDAO
     {
         List<Proposition> GetPropositions();
-        void addProposition(Proposition proposition);
+        int SaveProposition(Proposition proposition);
+        
 
     }
 }

@@ -39,6 +39,7 @@ namespace SWZ.ViewModels
         void UpdatePropositionViewModel()
         {   
             PropositionViewModel.Course = Courses[_selectedCourseIndex];
+            PropositionViewModel.Replacements = AddedCourses;
 
         }
     }

@@ -45,7 +45,22 @@ namespace SWZ.DAL.ReplacementsCourses
 
         public void SaveReplacementCourse(ReplacementCourse replacementCourse)
         {
-            throw new NotImplementedException();
+
+            
+            string query = $"INSERT INTO SWZ.dbo.zamienniki_kursy ";
+
+            connection = new SqlConnection(connectionString);
+            command = new SqlCommand(query, connection);
+
+            connection.Open();
+            
+
+          
+            dataReader.Close();
+            command.Dispose();
+            connection.Close();
+
+            
         }
     }
 }

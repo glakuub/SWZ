@@ -15,7 +15,7 @@ namespace SWZ.DAL.PropositionsCourses
 
         public void SavePropositionCourse(PropositionCourse propositionCourse)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

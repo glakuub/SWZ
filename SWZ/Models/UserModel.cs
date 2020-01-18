@@ -8,7 +8,7 @@ namespace SWZ.Models
 {
     class UserModel
     {
-        int id;
+        public int Id { set; get; }
         string firstName;
         string lastName;
         string login;

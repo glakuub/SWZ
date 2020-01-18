@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SWZ.Views"
+    xmlns:viewmodel="using:SWZ.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -11,13 +12,23 @@
     <Grid>
         <StackPanel Margin="50">
             <TextBlock Text="Utworzono propozycję:"></TextBlock>
-            <ListView Height="150">
+            <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.PropositionViewModel.Replacements}" Height="100" >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodel:CourseViewModel">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind Code}"></TextBlock>
+                            <TextBlock Text="{x:Bind Name}"></TextBlock>
+                            <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                            <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
             </ListView>
             <TextBlock Text="Dla kursu:"></TextBlock>
+            <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.FacultySymbol}"></TextBlock>
+            <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.Code}"></TextBlock>
             <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.Name}"></TextBlock>
-            <TextBlock Text="---dane kursu---"></TextBlock>
-            <TextBlock Text="---dane kursu---"></TextBlock>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Zatwierdź"></Button>
                 <Button Content="Anuluj"></Button>

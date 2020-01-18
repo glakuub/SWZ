@@ -11,22 +11,22 @@ namespace SWZ.ViewModels
     class PropositionViewModel: NotificationBase<PropositionModel>
     {
 
-        public String Date { set { this_.dateOfSubmission = DateTime.Parse(value); } get { return this_.dateOfSubmission.ToString(); } }
+        public String Date { set { this_.DateOfSubmission = DateTime.Parse(value); } get { return this_.DateOfSubmission.ToString(); } }
         public CourseViewModel Course { set; get; }
         public StudentViewModel Student { set; get; }
 
-        ObservableCollection<CourseViewModel> _replacements;
+        public ObservableCollection<CourseViewModel> Replacements { set;  get; }
 
         public PropositionViewModel(PropositionModel model = null):base(model)
         {
             if (model != null)
             {
-                Course = new CourseViewModel(model.replacing);
-                Student = new StudentViewModel(model.proposing);
-                if(model.replacements!=null)
-                foreach (CourseModel cm in model.replacements)
+                Course = new CourseViewModel(model.Replacing);
+                Student = new StudentViewModel(model.Proposing);
+                if(model.Replacements!=null)
+                foreach (CourseModel cm in model.Replacements)
                 {
-                    _replacements.Add(new CourseViewModel(cm));
+                    Replacements.Add(new CourseViewModel(cm));
                 }
             }
         }

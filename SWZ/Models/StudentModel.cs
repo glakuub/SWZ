@@ -8,6 +8,7 @@ namespace SWZ.Models
 {
     class StudentModel: UserModel
     {
+
         string fieldOfStudy;
         string facultySymbol;
     }
