@@ -18,11 +18,17 @@ namespace SWZ.ViewModels
         public PropositionSummaryViewModel()
         {
             GoBack = new CommandHandler(GoBackMethod);
+            SaveProposition = new CommandHandler(SavePropositionMethod);
         }
         private void GoBackMethod()
         {
                 var rootFrame = Window.Current.Content as Frame;
                 rootFrame.GoBack();
+        }
+        private void SavePropositionMethod()
+        {
+            PropositionViewModel.Save();
+            
         }
 
 

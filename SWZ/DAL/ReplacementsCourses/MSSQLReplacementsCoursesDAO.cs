@@ -47,18 +47,16 @@ namespace SWZ.DAL.ReplacementsCourses
         {
 
             
-            string query = $"INSERT INTO SWZ.dbo.zamienniki_kursy ";
+            string query = $"INSERT INTO SWZ.dbo.propozycje_kursy " +
+                $"(propozycjaid, zamiennikid) VALUES ({replacementCourse.replacementID},{replacementCourse.courseID});";
 
-            connection = new SqlConnection(connectionString);
-            command = new SqlCommand(query, connection);
-
-            connection.Open();
-            
-
-          
-            dataReader.Close();
-            command.Dispose();
-            connection.Close();
+            using (connection = new SqlConnection(connectionString))
+            {
+                command = new SqlCommand(query, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                                              
+            }
 
             
         }

@@ -40,6 +40,8 @@ namespace SWZ.ViewModels
         {   
             PropositionViewModel.Course = Courses[_selectedCourseIndex];
             PropositionViewModel.Replacements = AddedCourses;
+            PropositionViewModel.Date = DateTime.Now.ToString();
+            PropositionViewModel.Student = new StudentViewModel(new StudentModel());
 
         }
     }

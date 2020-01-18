@@ -47,15 +47,27 @@ namespace SWZ.DAL.Propositions
 
             return propositions;
         }
-
-        public void SaveProposition(Proposition proposition)
+             
+       
+        public int SaveProposition(Proposition proposition)
         {
-            throw new NotImplementedException();
-        }
+            int insertedId = -1;
+            string query = $"INSERT INTO SWZ.dbo.propozycje (skladajacy, datazlozenia, zamienieniany)" +
+                $"OUTPUT Inserted.ID" +
+                $"VALUES ({proposition.proposing},{proposition.dateOfSubmission},{proposition.replacementFor});";
 
-        int IPropositionDAO.SaveProposition(Proposition proposition)
-        {
-            throw new NotImplementedException();
+            using (connection = new SqlConnection(connectionString))
+            {
+                command = new SqlCommand(query, connection);
+                connection.Open();
+                dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    insertedId = dataReader.GetInt32(0);
+                }
+            }
+
+            return insertedId;
         }
     }
 }

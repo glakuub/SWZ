@@ -17,6 +17,8 @@ namespace SWZ.ViewModels
 
         public ObservableCollection<CourseViewModel> Replacements { set;  get; }
 
+        public void Save() => this_.Save();
+
         public PropositionViewModel(PropositionModel model = null):base(model)
         {
             if (model != null)

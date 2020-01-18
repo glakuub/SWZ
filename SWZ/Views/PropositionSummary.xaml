@@ -30,7 +30,7 @@
             <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.Code}"></TextBlock>
             <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.Name}"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Zatwierdź"></Button>
+                <Button Content="Zatwierdź" Command="{x:Bind viewModel.SaveProposition}"></Button>
                 <Button Content="Anuluj"></Button>
             </StackPanel>
         </StackPanel>
