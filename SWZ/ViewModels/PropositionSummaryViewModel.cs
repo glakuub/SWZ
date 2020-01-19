@@ -28,6 +28,9 @@ namespace SWZ.ViewModels
         private void SavePropositionMethod()
         {
             PropositionViewModel.Save();
+            var rootFrame = Window.Current.Content as Frame;
+            rootFrame.BackStack.RemoveAt(rootFrame.BackStackDepth - 1);
+            rootFrame.GoBack();
             
         }
 

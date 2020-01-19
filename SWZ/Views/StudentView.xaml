@@ -8,13 +8,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
             
-        </StackPanel>
-        <Button Content="Znajdź zamiennik" HorizontalAlignment="Left" Margin="105,112,0,0" VerticalAlignment="Top" Height="40" Width="200" Click="Button_Click"/>
-        <Button Content="Złóż propozycję" HorizontalAlignment="Left" Margin="105,168,0,0" VerticalAlignment="Top" Height="40" Width="200" Click="Button_Click_1"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+         </Grid.RowDefinitions>
+     
+        
+           
+            
+         <Button HorizontalAlignment="Left"  Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind Path=viewModel.GoBack}"  Margin="0,0,0,0" VerticalAlignment="Center"/>
+         <TextBlock HorizontalAlignment="Right" Text="{x:Bind viewModel.LoggedUserName}" />
+            
+
+
+        
+        <Button Grid.Row="1" Content="Znajdź zamiennik" HorizontalAlignment="Left" Margin="105,112,0,0" VerticalAlignment="Top" Height="40" Width="200" Click="Button_Click"/>
+        <Button Grid.Row ="1" Content="Złóż propozycję" HorizontalAlignment="Left" Margin="105,168,0,0" VerticalAlignment="Top" Height="40" Width="200" Click="Button_Click_1"/>
+        
     </Grid>
 </Page>

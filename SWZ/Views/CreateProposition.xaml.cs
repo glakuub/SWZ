@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+﻿using SWZ.Models;
 using SWZ.ViewModels;
-using SWZ.Models;
+using System;
+using System.Linq;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,15 +14,15 @@ namespace SWZ.Views
     /// </summary>
     public sealed partial class CreateProposition : Page
     {
-        CreatePropositionViewModel _viewModel { set; get; }
+        CreatePropositionViewModel viewModel { set; get; }
         
         public CreateProposition()
         {
-            _viewModel = new CreatePropositionViewModel();
-            _viewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
-            Frame.Navigate(typeof(AddCourseToProposition),_viewModel.AddedCourses); });
+            viewModel = new CreatePropositionViewModel();
+            viewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
+            Frame.Navigate(typeof(AddCourseToProposition),viewModel.AddedCourses); });
 
-            _viewModel.GoBack = new CommandHandler(() =>{
+            viewModel.GoBack = new CommandHandler(() =>{
                 if (this.Frame.CanGoBack)
                 {
                     this.Frame.GoBack();

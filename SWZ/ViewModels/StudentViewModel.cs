@@ -8,7 +8,15 @@ using System.Threading.Tasks;
 namespace SWZ.ViewModels
 {
     class StudentViewModel:NotificationBase<StudentModel>
-    {
-        public StudentViewModel(StudentModel model) : base(model) { }
+    {   
+
+        public string FirstName { set { this_.FirstName = value; } get {return this_.FirstName; } }
+        public string LastName { set { this_.LastName = value; } get {return this_.LastName; } }
+
+        public StudentViewModel(StudentModel model) : base(model) {
+
+           
+
+        }
     }
 }
