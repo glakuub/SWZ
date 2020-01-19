@@ -54,7 +54,7 @@ namespace SWZ.DAL.Propositions
             int insertedId = -1;
             string query = $"INSERT INTO SWZ.dbo.propozycje (skladajacy, datazlozenia, zamieniany)" +
                 $" OUTPUT Inserted.ID" +
-                $" VALUES ({proposition.proposing},@1,{proposition.replacementFor});";
+                $" VALUES (1,@1,{proposition.replacementFor});";
 
             using (connection = new SqlConnection(connectionString))
             {

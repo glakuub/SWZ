@@ -3,12 +3,15 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SWZ.Views"
+    xmlns:viewmodel="using:SWZ.ViewModels"
+    xmlns:view="using:SWZ.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid>
+    <Grid >
         <StackPanel Orientation="Vertical">
             <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
             <StackPanel Orientation="Horizontal" Margin="50">
@@ -63,14 +66,15 @@
                     <TextBlock Text="Proponowane zamienniki:"></TextBlock>
                     <Button Content="Dodaj kurs" Command="{x:Bind Path=viewModel.GoToAddCourseToProposition}"></Button>
                 </StackPanel>
-                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind viewModel.AddedCourses}" Height="100" >
+                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind viewModel.AddedCourses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedReplacementCourse}">
                     <ListView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="viewmodel:CourseViewModel">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Code}"></TextBlock>
-                                <TextBlock Text="{Binding Name}"></TextBlock>
-                                <TextBlock Text="{Binding ECTS}"></TextBlock>
-                                <TextBlock Text="{Binding ZZU}"></TextBlock>
+                                <TextBlock Text="{x:Bind Code}"></TextBlock>
+                                <TextBlock Text="{x:Bind Name}"></TextBlock>
+                                <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                                <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+                                <Button Command="{Binding DataContext.viewModel.DeleteCourse, ElementName=AddedCourses}"></Button>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

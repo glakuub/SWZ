@@ -15,7 +15,26 @@ namespace SWZ.ViewModels
         public CourseViewModel Course { set { this_.Replacing = value.Model; } get { return new CourseViewModel(this_.Replacing); } }
         public StudentViewModel Student { set { this_.Proposing = value.Model; } get { return new StudentViewModel(this_.Proposing); } }
 
-        public ObservableCollection<CourseViewModel> Replacements { set;  get; }
+        public ObservableCollection<CourseViewModel> Replacements {
+            set
+            {
+                List<CourseModel> cmlist = new List<CourseModel>();
+                foreach (CourseViewModel cvm in value)
+                {
+                    cmlist.Add(cvm.Model);
+                };
+                this_.Replacements = cmlist;
+            }
+            get
+            {
+                ObservableCollection<CourseViewModel> cvmlist = new ObservableCollection<CourseViewModel>();
+                foreach (CourseModel cm in this_.Replacements)
+                {
+                    cvmlist.Add(new CourseViewModel(cm));
+                }
+                return cvmlist;
+            }
+        }
 
         public void Save() => this_.Save();
 

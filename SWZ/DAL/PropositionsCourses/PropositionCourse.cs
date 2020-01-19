@@ -8,13 +8,13 @@ namespace SWZ.DAL.PropositionsCourses
 {
     class PropositionCourse
     {
-        int propositionID;
-        int replacementID;
+        public int PropositionID { private set; get; }
+        public int CourseID { private set; get; }
 
         public PropositionCourse(int propositionID, int replacementID)
         {
-            this.propositionID = propositionID;
-            this.replacementID = replacementID;
+            this.PropositionID = propositionID;
+            this.CourseID = replacementID;
         }
     }
 }

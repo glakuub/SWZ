@@ -21,11 +21,16 @@ namespace SWZ.ViewModels
 
         public ICommand CreateProposition { set; get; }
 
+        public ICommand DeleteCourse { set; get; }
+
+        public int SelectedReplacementCourse { set; get; }
+
         public PropositionViewModel PropositionViewModel { set; get; }
         public CreatePropositionViewModel()
         {
             AddedCourses = new ObservableCollection<CourseViewModel>();
             CreateProposition = new CommandHandler(GoToPropositionSummary);
+            DeleteCourse = new CommandHandler(DeleteSelected);
             PropositionViewModel = new PropositionViewModel(new PropositionModel());
         }
 
@@ -43,6 +48,14 @@ namespace SWZ.ViewModels
             PropositionViewModel.Date = DateTime.Now.ToString();
             PropositionViewModel.Student = new StudentViewModel(new StudentModel());
 
+        }
+        void DeleteSelected()
+        {
+            Debug.WriteLine("delete selected");
+            if(_selectedCourseIndex > 0 && _selectedCourseIndex < AddedCourses.Count - 1)
+            {
+                AddedCourses.RemoveAt(_selectedCourseIndex);
+            }
         }
     }
 }
