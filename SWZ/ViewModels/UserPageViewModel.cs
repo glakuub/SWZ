@@ -7,8 +7,15 @@ using System.Windows.Input;
 
 namespace SWZ.ViewModels
 {
-    class UserViewModel
+    class UserPageViewModel
     {
         public ICommand GoBack { set; get; }
+
+        public ICommand GoToFindReplacements { set; get; }
+
+        public UserPageViewModel()
+        {
+            UserSession.Get.UserID = null;
+        }
     }
 }

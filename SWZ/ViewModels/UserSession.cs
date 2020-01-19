@@ -17,11 +17,14 @@ namespace SWZ.ViewModels
 
 
 
-            private UserSession() { }
+            private UserSession() {
+                UserID = null;
+            }
 
             public static UserSession Get { get { return _current; } }
 
-            public int UserID { set; get; }
+            public int? UserID { set; get; }
+            
 
 
 

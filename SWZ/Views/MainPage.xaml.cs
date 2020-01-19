@@ -20,7 +20,7 @@ namespace SWZ
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(FindReplacement));
+            this.Frame.Navigate(typeof(UserView));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

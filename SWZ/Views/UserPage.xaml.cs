@@ -23,17 +23,19 @@ namespace SWZ.Views
     /// </summary>
     public sealed partial class UserView : Page
     {
-        UserViewModel viewModel;
+        UserPageViewModel viewModel;
         public UserView()
-        {
+        {   
             this.InitializeComponent();
-            viewModel = new UserViewModel();
+            viewModel = new UserPageViewModel();
             viewModel.GoBack = new CommandHandler(()=> {
                 if (this.Frame.CanGoBack)
                 {
                     this.Frame.GoBack();
                 }
             });
+            viewModel.GoToFindReplacements = new CommandHandler(() =>
+            Frame.Navigate(typeof(FindReplacement)));
         }
     }
 }

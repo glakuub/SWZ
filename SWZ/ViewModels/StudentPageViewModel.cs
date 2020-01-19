@@ -12,7 +12,9 @@ namespace SWZ.ViewModels
     {
         public ICommand GoBack { set; get; }
 
-        public string LoggedUserName { get { return GetUserName(UserSession.Get.UserID); } }
+        public string LoggedUserName {
+            get {
+                return UserSession.Get.UserID==null?string.Empty: $"Zalogowano jako: {GetUserName(UserSession.Get.UserID.Value)}"; } }
 
         public StudentPageViewModel()
         {

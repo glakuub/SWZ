@@ -182,7 +182,7 @@
     <Compile Include="ViewModels\StudentPageViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="ViewModels\UserSession.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\UserPageViewModel.cs" />
     <Compile Include="Views\AddCourseToProposition.xaml.cs">
       <DependentUpon>AddCourseToProposition.xaml</DependentUpon>
     </Compile>
@@ -200,11 +200,11 @@
     <Compile Include="Views\PropositionSummary.xaml.cs">
       <DependentUpon>PropositionSummary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StudentView.xaml.cs">
-      <DependentUpon>StudentView.xaml</DependentUpon>
+    <Compile Include="Views\StudentPage.xaml.cs">
+      <DependentUpon>StudentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserView.xaml.cs">
-      <DependentUpon>UserView.xaml</DependentUpon>
+    <Compile Include="Views\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -248,11 +248,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StudentView.xaml">
+    <Page Include="Views\StudentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserView.xaml">
+    <Page Include="Views\UserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
