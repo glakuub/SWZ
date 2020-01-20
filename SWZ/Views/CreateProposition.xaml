@@ -11,35 +11,42 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid >
-        <StackPanel Orientation="Vertical">
-            <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Button Grid.Row ="0" Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind ViewModel.GoBack}"/>
+        <TextBlock HorizontalAlignment="Right" Text="{x:Bind ViewModel.LoggedUserName}" />
+        
+        <StackPanel Grid.Row="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="50">
                 <StackPanel Margin="0,0,20,0">
                     <TextBlock Text="Wydział:" />
-                    <TextBox Text="{x:Bind viewModel.SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Height="30" Width="250"/>
+                    <TextBox Text="{x:Bind ViewModel.SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Kierunek studiów"/>
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind viewModel.SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250" />
+                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind ViewModel.SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250" />
                     <TextBlock Text="Kierunek studiów"/>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind viewModel.Type0, Mode=TwoWay}"></RadioButton>
+                        <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind ViewModel.Type0, Mode=TwoWay}"></RadioButton>
                         <RadioButton Content="Niestacjonarne" ></RadioButton>
                     </StackPanel>
                     <TextBlock Text="Język studiów"/>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="polski" IsChecked="{x:Bind viewModel.Lang0, Mode=TwoWay}"></RadioButton>
+                        <RadioButton Content="polski" IsChecked="{x:Bind ViewModel.Lang0, Mode=TwoWay}"></RadioButton>
                         <RadioButton Content="angielski" ></RadioButton>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="20,0,0,0">
                     <TextBlock Text="Kod kursu:" />
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind viewModel.SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind ViewModel.SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Nazwa kursu"/>
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind viewModel.SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind ViewModel.SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
                     <TextBlock Text="Forma kursu:"/>
                     <ComboBox HorizontalAlignment="Stretch" 
                               VerticalAlignment="Stretch" 
                               x:Name="SearchCourseType"
-                              SelectedIndex="{x:Bind viewModel.SelectedCourseType, Mode=TwoWay}">
+                              SelectedIndex="{x:Bind ViewModel.SelectedCourseType, Mode=TwoWay}">
                     </ComboBox>
                     
 
@@ -48,7 +55,7 @@
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
                 <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}">
+                <ListView x:Name="Courses" ItemsSource="{x:Bind ViewModel.Courses}" Height="100" SelectedIndex="{x:Bind ViewModel.SelectedCourseIndex, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -63,9 +70,10 @@
                 </ListView>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Proponowane zamienniki:"></TextBlock>
-                    <Button Content="Dodaj kurs" Command="{x:Bind Path=viewModel.GoToAddCourseToProposition}"></Button>
+                    <Button Content="Dodaj kurs" Command="{x:Bind Path=ViewModel.GoToAddCourseToProposition}"></Button>
+                    <Button  Content="Usuń" Command="{x:Bind Path=ViewModel.DeleteCourse}"></Button>
                 </StackPanel>
-                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind viewModel.AddedCourses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedReplacementCourse}">
+                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind ViewModel.AddedCourses}" Height="100" SelectedIndex="{x:Bind ViewModel.SelectedReplacementCourse, Mode=TwoWay}" >
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewmodel:CourseViewModel">
                             <StackPanel Orientation="Horizontal">
@@ -73,13 +81,12 @@
                                 <TextBlock Text="{x:Bind Name}"></TextBlock>
                                 <TextBlock Text="{x:Bind ECTS}"></TextBlock>
                                 <TextBlock Text="{x:Bind ZZU}"></TextBlock>
-                                <Button Command="{Binding DataContext.viewModel.DeleteCourse, ElementName=AddedCourses}"></Button>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
                 </ListView>
-                <Button Content="Utwórz propozycję" Command="{x:Bind viewModel.CreateProposition}"></Button>
+                <Button Content="{x:Bind ViewModel.CanGoToSummary.ToString()}"   Command="{x:Bind ViewModel.CreateProposition}" ></Button>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -13,11 +13,11 @@ namespace SWZ.ViewModels
     {
         public PropositionViewModel PropositionViewModel { set; get; }
         public ICommand SaveProposition { set; get; }
-        public ICommand GoBack { set; get; }
+        public ICommand Cancel { set; get; }
 
         public PropositionSummaryViewModel()
         {
-            GoBack = new CommandHandler(GoBackMethod);
+            Cancel = new CommandHandler(GoBackMethod);
             SaveProposition = new CommandHandler(SavePropositionMethod);
         }
         private void GoBackMethod()

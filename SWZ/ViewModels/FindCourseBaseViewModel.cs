@@ -12,7 +12,7 @@ namespace SWZ.ViewModels
 {
     class FindCourseBaseViewModel: NotificationBase
     {
-        public CoursesModel coursesModel { set; get; }
+        public CoursesModel CoursesModel { set; get; }
         
         public ObservableCollection<CourseViewModel> Courses { set; get; }
        
@@ -22,9 +22,9 @@ namespace SWZ.ViewModels
         {
             Courses = new ObservableCollection<CourseViewModel>();
            
-            coursesModel = new CoursesModel();
+            CoursesModel = new CoursesModel();
             
-            coursesModel.GetCoursesFromData();
+            CoursesModel.GetCoursesFromData();
         }
 
         string _searchName;
@@ -112,7 +112,7 @@ namespace SWZ.ViewModels
             {
                 SetProperty(ref _searchCourseType, (CourseType)(value + 1));
                 filterCourses();
-                Debug.WriteLine(value);
+                //Debug.WriteLine(value);
             }
         }
 
@@ -132,7 +132,7 @@ namespace SWZ.ViewModels
       
         void filterCourses()
         {
-            Debug.WriteLine("filter");
+           
             refreshLocalCourses();
             List<CourseViewModel> lcvm = Courses.ToList();
 
@@ -172,16 +172,16 @@ namespace SWZ.ViewModels
         void refreshLocalCourses()
         {
             Courses.Clear();
-            foreach (CourseModel cm in coursesModel.courseModelsList)
+            foreach (CourseModel cm in CoursesModel.courseModelsList)
             {
                 Courses.Add(new CourseViewModel(cm));
             }
         }
         void refreshCoursesFromData()
         {
-            if (coursesModel != null)
+            if (CoursesModel != null)
             {
-                coursesModel.GetCoursesFromData();
+                CoursesModel.GetCoursesFromData();
                 refreshLocalCourses();
 
             }

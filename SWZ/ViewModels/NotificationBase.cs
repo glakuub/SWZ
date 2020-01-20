@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SWZ.ViewModels
 {
-    public class NotificationBase
+    public class NotificationBase: INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler propertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] String property = null)
         {
@@ -38,7 +38,8 @@ namespace SWZ.ViewModels
         {
 
             Debug.WriteLine("changed " + property);
-            propertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+            
         }
     }
     public class NotificationBase<T>: NotificationBase where T: class, new()

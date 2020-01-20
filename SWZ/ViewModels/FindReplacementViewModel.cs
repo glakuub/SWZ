@@ -47,7 +47,7 @@ namespace SWZ.ViewModels
         void findReplacements()
         {
             Replacements.Clear();
-            replacementsModel.SetReplaced(coursesModel.At(SelectedCourseIndex));
+            replacementsModel.SetReplaced(CoursesModel.At(SelectedCourseIndex));
             foreach(ReplacementModel rm in replacementsModel.GetReplacementsFromData())
             {
                 Replacements.Add(new ReplacementViewModel(rm));

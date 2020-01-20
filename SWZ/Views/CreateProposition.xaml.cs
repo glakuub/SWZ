@@ -14,15 +14,15 @@ namespace SWZ.Views
     /// </summary>
     public sealed partial class CreateProposition : Page
     {
-        CreatePropositionViewModel viewModel { set; get; }
+        CreatePropositionViewModel ViewModel { set; get; }
         
         public CreateProposition()
         {
-            viewModel = new CreatePropositionViewModel();
-            viewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
-            Frame.Navigate(typeof(AddCourseToProposition),viewModel.AddedCourses); });
+            ViewModel = new CreatePropositionViewModel();
+            ViewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
+            Frame.Navigate(typeof(AddCourseToProposition),ViewModel.AddedCourses); });
 
-            viewModel.GoBack = new CommandHandler(() =>{
+            ViewModel.GoBack = new CommandHandler(() =>{
                 if (this.Frame.CanGoBack)
                 {
                     this.Frame.GoBack();
@@ -38,5 +38,7 @@ namespace SWZ.Views
             if (_typeEnumVals != null)
                 SearchCourseType.ItemsSource = _typeEnumVals;
         }
+
+      
     }
 }
