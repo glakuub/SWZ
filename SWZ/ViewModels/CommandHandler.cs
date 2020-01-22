@@ -10,20 +10,24 @@ namespace SWZ.ViewModels
     class CommandHandler : ICommand
     {
         public event EventHandler CanExecuteChanged;
+      
         private Action _action;
         private Action<object> _actionParam;
+        private Predicate<object> _canExecute;
 
-        public CommandHandler(Action action)
+        public CommandHandler(Action action, Predicate<object> _canExecute=null)
         {
             this._action = action;
+            this._canExecute = _canExecute;
         }
-        public CommandHandler(Action<object> action)
+        public CommandHandler(Action<object> action, Predicate<object> _canExecute=null)
         {
             this._actionParam = action;
+            this._canExecute = _canExecute;
         }
         public bool CanExecute(object parameter)
         {
-            return true;
+            return _canExecute==null?true:_canExecute(parameter);
         }
 
         public void Execute(object parameter)
@@ -32,6 +36,10 @@ namespace SWZ.ViewModels
                 this._actionParam(parameter);
             else
                 this._action();
+        }
+        public void OnCanExecuteChanged()
+        {
+            CanExecuteChanged(this, EventArgs.Empty);
         }
     }
 }

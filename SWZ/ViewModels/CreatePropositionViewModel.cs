@@ -14,11 +14,12 @@ using Windows.UI.Xaml.Controls;
 namespace SWZ.ViewModels
 {
      class CreatePropositionViewModel: FindCourseBaseViewModel
-    {   
-        
-        public bool CanDelete { set; get; }
-        private bool _canGoToSummary = true;
-        public bool CanGoToSummary { set { Debug.WriteLine(value); SetProperty(ref _canGoToSummary,value); } get { return _canGoToSummary; } }
+    {
+
+        private bool _canDelete = false;
+        public bool CanDelete { set { SetProperty(ref _canDelete, value); } get{ return _canDelete; } }
+        private bool _canGoToSummary = false;
+        public bool CanGoToSummary { set { SetProperty(ref _canGoToSummary,value); } get { return _canGoToSummary; } }
         public ObservableCollection<CourseViewModel> AddedCourses { set; get; }
 
         public ICommand GoToAddCourseToProposition{ set; get; }
@@ -28,7 +29,8 @@ namespace SWZ.ViewModels
         
         public ICommand DeleteCourse { set; get; }
 
-        public int SelectedReplacementCourse { set; get; }
+        private int _selectedReplacementCourse = -1;
+        public int SelectedReplacementCourse { set { SetProperty(ref _selectedReplacementCourse, value);CheckCanDelete(); } get { return _selectedReplacementCourse; } }
 
         public PropositionViewModel PropositionViewModel { set; get; }
 
@@ -61,12 +63,14 @@ namespace SWZ.ViewModels
             AddedCourses.CollectionChanged += (sender, args) =>
             {
                 CheckCanGoToSummary();
+                CheckCanDelete();
             };
-            CreateProposition = new CommandHandler(GoToPropositionSummary);
-            DeleteCourse = new CommandHandler(DeleteSelected);
+            CreateProposition = new CommandHandler(GoToPropositionSummary, can);
+            DeleteCourse = new CommandHandler(DeleteSelected, can);
             PropositionViewModel = new PropositionViewModel(new PropositionModel());
         }
 
+        Predicate<object> can = (can) => { return can==null?true:(bool)can; };
         void GoToPropositionSummary()
         {   
             var rootFrame = Window.Current.Content as Frame;
@@ -101,6 +105,13 @@ namespace SWZ.ViewModels
                 CanGoToSummary = true;
             else
                 CanGoToSummary = false;
+        }
+        public void CheckCanDelete()
+        {
+            if (SelectedReplacementCourse > -1 && AddedCourses.Count >= 0)
+                CanDelete = true;
+            else
+                CanDelete = false;
         }
 
     }

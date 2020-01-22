@@ -100,7 +100,7 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Proponowane zamienniki:"></TextBlock>
                     <Button Content="Dodaj kurs" Command="{x:Bind Path=ViewModel.GoToAddCourseToProposition}"></Button>
-                    <Button  Content="Usuń" Command="{x:Bind Path=ViewModel.DeleteCourse}"></Button>
+                    <Button  Content="Usuń" Command="{x:Bind Path=ViewModel.DeleteCourse}" CommandParameter="{x:Bind ViewModel.CanDelete, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
                 </StackPanel>
 
                 <ListView x:Name="AddedCourses" ItemsSource="{x:Bind ViewModel.AddedCourses}" Height="200" SelectedIndex="{x:Bind ViewModel.SelectedReplacementCourse, Mode=TwoWay}" ItemTemplateSelector="{StaticResource Selector}">
@@ -109,7 +109,7 @@
                 </ListView>
 
                
-                <Button Content="{x:Bind ViewModel.CanGoToSummary.ToString()}"   Command="{x:Bind ViewModel.CreateProposition}" ></Button>
+                <Button Content="Przekaż"   Command="{x:Bind ViewModel.CreateProposition}" CommandParameter="{x:Bind ViewModel.CanGoToSummary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
             </StackPanel>
         </StackPanel>
     </Grid>
