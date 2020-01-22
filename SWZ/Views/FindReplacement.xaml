@@ -99,16 +99,16 @@
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
                 <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" ItemTemplateSelector="{StaticResource Selector}">
+                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="200" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" ItemTemplateSelector="{StaticResource Selector}">
                     
                   
                 </ListView>
                 <TextBlock Text="Zamienniki:"></TextBlock>
-                <ListView x:Name="Replacements" ItemsSource="{x:Bind viewModel.Replacements}" Height="100" >
+                <ListView x:Name="Replacements" ItemsSource="{x:Bind viewModel.Replacements}" Height="200" >
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewmodel:ReplacementViewModel">
-                            <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False">
-                                <ListView.ItemTemplate>
+                            <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False" ItemTemplateSelector="{StaticResource Selector}">
+                                <!--<ListView.ItemTemplate>
                                     <DataTemplate x:DataType="viewmodel:CourseViewModel">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{x:Bind Code}"></TextBlock>
@@ -118,7 +118,7 @@
                                         </StackPanel>
 
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
+                                </ListView.ItemTemplate>!-->
                             </ListView>
                         </DataTemplate>
                     </ListView.ItemTemplate>

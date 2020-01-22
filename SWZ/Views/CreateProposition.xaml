@@ -10,6 +10,44 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{x:Bind Code}"></TextBlock>
+                <TextBlock Text="{x:Bind Name}"></TextBlock>
+                <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="GK"></TextBlock>
+                    <TextBlock Text="{x:Bind Code}"></TextBlock>
+                    <TextBlock Text="{x:Bind Name}"></TextBlock>
+                    <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                    <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+
+                </StackPanel>
+                <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodel:CourseViewModel">
+                            <TextBlock Text="{x:Bind Type}"></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+        </DataTemplate>
+
+        <viewmodel:CourseDataTemplateSelector x:Key="Selector"
+                                              Course="{StaticResource Course}"
+                                              CoursesGroup="{StaticResource CoursesGroup}"></viewmodel:CourseDataTemplateSelector>
+    </Page.Resources>
+
+
+
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -55,17 +93,8 @@
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
                 <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind ViewModel.Courses}" Height="100" SelectedIndex="{x:Bind ViewModel.SelectedCourseIndex, Mode=TwoWay}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Code}"></TextBlock>
-                                <TextBlock Text="{Binding Name}"></TextBlock>
-                                <TextBlock Text="{Binding ECTS}"></TextBlock>
-                                <TextBlock Text="{Binding ZZU}"></TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                <ListView x:Name="Courses" ItemsSource="{x:Bind ViewModel.Courses}" Height="200" SelectedIndex="{x:Bind ViewModel.SelectedCourseIndex, Mode=TwoWay}" ItemTemplateSelector="{StaticResource Selector}">
+
 
                 </ListView>
                 <StackPanel Orientation="Horizontal">
@@ -73,19 +102,13 @@
                     <Button Content="Dodaj kurs" Command="{x:Bind Path=ViewModel.GoToAddCourseToProposition}"></Button>
                     <Button  Content="Usuń" Command="{x:Bind Path=ViewModel.DeleteCourse}"></Button>
                 </StackPanel>
-                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind ViewModel.AddedCourses}" Height="100" SelectedIndex="{x:Bind ViewModel.SelectedReplacementCourse, Mode=TwoWay}" >
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="viewmodel:CourseViewModel">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{x:Bind Code}"></TextBlock>
-                                <TextBlock Text="{x:Bind Name}"></TextBlock>
-                                <TextBlock Text="{x:Bind ECTS}"></TextBlock>
-                                <TextBlock Text="{x:Bind ZZU}"></TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+
+                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind ViewModel.AddedCourses}" Height="200" SelectedIndex="{x:Bind ViewModel.SelectedReplacementCourse, Mode=TwoWay}" ItemTemplateSelector="{StaticResource Selector}">
+
 
                 </ListView>
+
+               
                 <Button Content="{x:Bind ViewModel.CanGoToSummary.ToString()}"   Command="{x:Bind ViewModel.CreateProposition}" ></Button>
             </StackPanel>
         </StackPanel>

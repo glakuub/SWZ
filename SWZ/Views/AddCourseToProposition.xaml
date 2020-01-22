@@ -9,6 +9,42 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{x:Bind Code}"></TextBlock>
+                <TextBlock Text="{x:Bind Name}"></TextBlock>
+                <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="GK"></TextBlock>
+                    <TextBlock Text="{x:Bind Code}"></TextBlock>
+                    <TextBlock Text="{x:Bind Name}"></TextBlock>
+                    <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                    <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+
+                </StackPanel>
+                <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodel:CourseViewModel">
+                            <TextBlock Text="{x:Bind Type}"></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+        </DataTemplate>
+
+        <viewmodel:CourseDataTemplateSelector x:Key="Selector"
+                                              Course="{StaticResource Course}"
+                                              CoursesGroup="{StaticResource CoursesGroup}"></viewmodel:CourseDataTemplateSelector>
+    </Page.Resources>
+
     <Grid>
         <StackPanel Orientation="Vertical">
             <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
@@ -47,17 +83,8 @@
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
                 <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Code}"></TextBlock>
-                                <TextBlock Text="{Binding Name}"></TextBlock>
-                                <TextBlock Text="{Binding ECTS}"></TextBlock>
-                                <TextBlock Text="{Binding ZZU}"></TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="200" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" ItemTemplateSelector="{StaticResource Selector}">
+
 
                 </ListView>
                 <Button Content="Dodaj" Command="{x:Bind viewModel.AddCourse}"></Button>

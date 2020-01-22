@@ -116,7 +116,7 @@ namespace SWZ.ViewModels
             }
         }
 
-        protected int _selectedCourseIndex;
+        protected int _selectedCourseIndex = -1;
         public int SelectedCourseIndex
         {
             get { return _selectedCourseIndex; }

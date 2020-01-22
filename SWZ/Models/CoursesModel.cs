@@ -43,15 +43,17 @@ namespace SWZ.Models
             List<Course> coursesList = courseDAO.GetCourses();
             StudyPlan studyPlan = null;
 
+            courseModelsList.Clear();
             foreach(Course c in coursesList)
             {
                 if (c.IsCoursesGroup && c.CoursesGroupID != null) continue;
                 CourseModel cm = null;
                 if (c.IsCoursesGroup && c.CoursesGroupID == null)
-                {   
-                    
+                {
+
                     cm = new CoursesGroupModel
                     {
+                        Id = c.Id,
                         Code = c.CourseCode,
                         Name = c.CourseName,
                         SemesterNumber = c.SemesterNumber,

@@ -10,13 +10,16 @@ namespace SWZ.ViewModels
     class ReplacementViewModel: NotificationBase<ReplacementModel>
     {
 
-        List<CourseViewModel> lcvm;
+        private List<CourseViewModel> lcvm;
         public ReplacementViewModel(ReplacementModel replacement= null) : base(replacement)
         {
             lcvm = new List<CourseViewModel>();
             foreach (CourseModel cm in this_.Replacements)
             {
-                lcvm.Add(new CourseViewModel(cm));
+                if (cm is CoursesGroupModel)
+                    lcvm.Add(new CoursesGroupViewModel(cm as CoursesGroupModel));
+                else
+                    lcvm.Add(new CourseViewModel(cm));
             }
         }
 
