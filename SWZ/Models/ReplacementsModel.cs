@@ -32,7 +32,7 @@ namespace SWZ.Models
                 IReplacementDAO replacementDAO = new MSSQLReplacementDAO();
                 IReplacementsCoursesDAO replacementsCoursesDAO = new MSSQLReplacementsCoursesDAO();
 
-                List<Replacement> replacements = replacementDAO.FindByReplacedId(replacedModel.id);
+                List<Replacement> replacements = replacementDAO.FindByReplacedId(replacedModel.Id);
                 CoursesModel coursesModel = new CoursesModel();
 
                 foreach (Replacement r in replacements)

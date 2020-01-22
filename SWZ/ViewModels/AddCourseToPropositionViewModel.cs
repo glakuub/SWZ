@@ -14,7 +14,7 @@ namespace SWZ.ViewModels
     class AddCourseToPropositionViewModel: FindCourseBaseViewModel
     {
         public ICommand AddCourse { set; get; }
-        public ObservableCollection<CourseViewModel> addedCourses { set; get; }
+        public ObservableCollection<CourseViewModel> AddedCourses { set; get; }
 
         public AddCourseToPropositionViewModel()
         {
@@ -26,7 +26,7 @@ namespace SWZ.ViewModels
             if(Courses !=null && Courses.Count > 0)
             {   
                 if(_selectedCourseIndex != -1 && Courses.Count > _selectedCourseIndex && Courses[_selectedCourseIndex] != null)
-                addedCourses.Add(Courses[_selectedCourseIndex]);
+                AddedCourses.Add(Courses[_selectedCourseIndex]);
 
                 var rootFrame = Window.Current.Content as Frame;
                 rootFrame.GoBack();

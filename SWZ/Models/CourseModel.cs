@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace SWZ.Models
 {   
-    public enum CourseType { wykład = 1, ćwiczenia = 2, laboratorium = 3, projekt = 4}
+    public enum CourseType { wykład = 1, ćwiczenia = 2, laboratorium = 3, projekt = 4, grupa = 5}
     enum SemesterType { letni, zimowy}
     class CourseModel
     {
-        public int id;
-        public string code;
-        public string name;
-        public int ects;
-        public int zzu;
-        public int semesterNumber;
-        public SemesterType semesterType;
-        public CourseType courseType;
-        public StudyPlanModel studyPlan;
-       
+        public int Id { set; get; }
+        public string Code { set; get; }
+        public string Name { set; get; }
+        public int Ects { set; get; }
+        public int Zzu { set; get; }
+        public int SemesterNumber { set; get; }
+        public SemesterType SemesterType { set; get; }
+        public CourseType CourseType { set; get; }
+        public StudyPlanModel StudyPlan { set; get; }
+
         public CourseModel() { }
         public CourseModel(int id)
         {
-            this.id = id;
+            this.Id = id;
         }
 
             

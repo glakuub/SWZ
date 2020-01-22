@@ -10,5 +10,6 @@ namespace SWZ.DAL.Courses
     {
         List<Course> GetCourses();
         Course FindCourseById(int id);
+        List<Course> FindCoursesInGroup(int id);
     }
 }

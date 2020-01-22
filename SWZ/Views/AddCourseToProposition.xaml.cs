@@ -46,7 +46,7 @@ namespace SWZ.Views
         {   
             var addedCourses = e.Parameter as ObservableCollection<CourseViewModel>;
 
-            viewModel.addedCourses = addedCourses;
+            viewModel.AddedCourses = addedCourses;
         }
     }
 }

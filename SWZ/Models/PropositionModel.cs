@@ -23,7 +23,7 @@ namespace SWZ.Models
             Proposition prop = new Proposition();
             prop.dateOfSubmission = DateOfSubmission;
             prop.proposing = Proposing.Id;
-            prop.replacementFor = Replacing.id;
+            prop.replacementFor = Replacing.Id;
 
             int prop_id = pdao.SaveProposition(prop);
 
@@ -31,7 +31,7 @@ namespace SWZ.Models
 
              foreach(CourseModel cm in Replacements)
             {
-                pcdao.SavePropositionCourse(new PropositionCourse(prop_id, cm.id));
+                pcdao.SavePropositionCourse(new PropositionCourse(prop_id, cm.Id));
             }
 
         }

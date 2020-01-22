@@ -10,6 +10,7 @@ namespace SWZ.DAL.Courses
     class MSSQLCourseDAO : ICourseDAO
     {
         static string connectionString = App.ConnectionString;
+       
         SqlCommand command;
         SqlDataReader dataReader;
         SqlConnection connection;
@@ -28,18 +29,28 @@ namespace SWZ.DAL.Courses
             while (dataReader.Read())
             {
 
-                course = new Course(dataReader.GetInt32(0));
-                course.courseCode = dataReader.GetString(1);
-                course.courseName = dataReader.GetString(2);
-                course.ects = dataReader.GetInt32(3);
-                course.courseType = dataReader.GetInt32(4);
-                course.zzu = dataReader.GetInt32(5);
-                course.semesterNumber = dataReader.GetInt32(6);
-                course.studyPlanID = dataReader.GetInt32(7);
+                
+                if (!dataReader.IsDBNull(0))
+                    course.Id = dataReader.GetInt32(0);
+                if (!dataReader.IsDBNull(1))
+                    course.CourseCode = dataReader.GetString(1);
+                if (!dataReader.IsDBNull(2))
+                    course.CourseName = dataReader.GetString(2);
+                if (!dataReader.IsDBNull(3))
+                    course.Ects = dataReader.GetInt32(3);
+                if (!dataReader.IsDBNull(4))
+                    course.CourseType = dataReader.GetInt32(4);
+                if (!dataReader.IsDBNull(5))
+                    course.Zzu = dataReader.GetInt32(5);
+                if (!dataReader.IsDBNull(6))
+                    course.SemesterNumber = dataReader.GetInt32(6);
+                if (!dataReader.IsDBNull(7))
+                    course.StudyPlanID = dataReader.GetInt32(7);
                 if (!dataReader.IsDBNull(8))
-                    course.coursesGroupID = dataReader.GetInt32(8);
-                course.isCoursesGroup = dataReader.GetBoolean(9);
-               
+                    course.CoursesGroupID = dataReader.GetInt32(8);
+                if (!dataReader.IsDBNull(9))
+                    course.IsCoursesGroup = dataReader.GetBoolean(9);
+
 
             }
             dataReader.Close();
@@ -49,11 +60,24 @@ namespace SWZ.DAL.Courses
             return course;
         }
 
+        public List<Course> FindCoursesInGroup(int id)
+        {
+            return _getCourses($"WHERE GrupaKursówID={id}");
+        }
+
+
         public List<Course> GetCourses()
         {
+            return _getCourses();
+        }
+
+        private List<Course> _getCourses(string where=null)
+        {
                 List<Course> courses = new List<Course>();
-                string query = "SELECT * FROM SWZ.dbo.kursy";
-                
+                string query = where == null ? "SELECT * FROM SWZ.dbo.kursy" : $"SELECT * FROM SWZ.dbo.kursy {where}";
+
+
+
                 connection = new SqlConnection(connectionString);
                 command = new SqlCommand(query, connection);
 
@@ -63,18 +87,28 @@ namespace SWZ.DAL.Courses
                 while (dataReader.Read())
                 {
 
-                    Course course = new Course(dataReader.GetInt32(0));
-                    course.courseCode = dataReader.GetString(1);
-                    course.courseName = dataReader.GetString(2);
-                    course.ects = dataReader.GetInt32(3);
-                    course.courseType = dataReader.GetInt32(4);
-                    course.zzu = dataReader.GetInt32(5);
-                    course.semesterNumber = dataReader.GetInt32(6);
-                    course.studyPlanID = dataReader.GetInt32(7);
-                    if (!dataReader.IsDBNull(8))
-                    course.coursesGroupID = dataReader.GetInt32(8);
-                    course.isCoursesGroup = dataReader.GetBoolean(9);
-                    courses.Add(course);
+                Course course = new Course();
+                if (!dataReader.IsDBNull(0))
+                    course.Id = dataReader.GetInt32(0);
+                if(!dataReader.IsDBNull(1))
+                    course.CourseCode = dataReader.GetString(1);
+                if (!dataReader.IsDBNull(2))
+                    course.CourseName = dataReader.GetString(2);
+                if (!dataReader.IsDBNull(3))
+                    course.Ects = dataReader.GetInt32(3);
+                if (!dataReader.IsDBNull(4))
+                    course.CourseType = dataReader.GetInt32(4);
+                if (!dataReader.IsDBNull(5))
+                    course.Zzu = dataReader.GetInt32(5);
+                if (!dataReader.IsDBNull(6))
+                    course.SemesterNumber = dataReader.GetInt32(6);
+                if (!dataReader.IsDBNull(7))
+                    course.StudyPlanID = dataReader.GetInt32(7);
+                if (!dataReader.IsDBNull(8))
+                    course.CoursesGroupID = dataReader.GetInt32(8);
+                if (!dataReader.IsDBNull(9))
+                    course.IsCoursesGroup = dataReader.GetBoolean(9);
+                courses.Add(course);
 
                 }
                 dataReader.Close();

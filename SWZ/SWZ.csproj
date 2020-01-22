@@ -170,6 +170,8 @@
     <Compile Include="Models\StudyPlanModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\AddCourseToPropositionViewModel.cs" />
+    <Compile Include="ViewModels\CourseDataTemplateSelector.cs" />
+    <Compile Include="ViewModels\CoursesGroupViewModel.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\CreatePropositionViewModel.cs" />
     <Compile Include="ViewModels\FindCourseBaseViewModel.cs" />

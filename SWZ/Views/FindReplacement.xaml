@@ -9,12 +9,54 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     >
 
+    <Page.Resources>
+        <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{x:Bind Code}"></TextBlock>
+                <TextBlock Text="{x:Bind Name}"></TextBlock>
+                <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="GK"></TextBlock>
+                    <TextBlock Text="{x:Bind Code}"></TextBlock>
+                    <TextBlock Text="{x:Bind Name}"></TextBlock>
+                    <TextBlock Text="{x:Bind ECTS}"></TextBlock>
+                    <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+                    
+                </StackPanel>
+                <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodel:CourseViewModel">
+                            <TextBlock Text="{x:Bind Type}"></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+           
+        </DataTemplate>
+
+        <viewmodel:CourseDataTemplateSelector x:Key="Selector"
+                                              Course="{StaticResource Course}"
+                                              CoursesGroup="{StaticResource CoursesGroup}"></viewmodel:CourseDataTemplateSelector>
+    </Page.Resources>
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         
+       
+
+
+
+
         <Button Grid.Row="0" Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
         <TextBlock HorizontalAlignment="Right" Text="{x:Bind viewModel.LoggedUserName}" />
         
@@ -57,24 +99,15 @@
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
                 <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Code}"></TextBlock>
-                                <TextBlock Text="{Binding Name}"></TextBlock>
-                                <TextBlock Text="{Binding ECTS}"></TextBlock>
-                                <TextBlock Text="{Binding ZZU}"></TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="100" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" ItemTemplateSelector="{StaticResource Selector}">
+                    
                   
                 </ListView>
                 <TextBlock Text="Zamienniki:"></TextBlock>
                 <ListView x:Name="Replacements" ItemsSource="{x:Bind viewModel.Replacements}" Height="100" >
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewmodel:ReplacementViewModel">
-                            <ListView ItemsSource="{x:Bind Courses}">
+                            <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False">
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="viewmodel:CourseViewModel">
                                         <StackPanel Orientation="Horizontal">

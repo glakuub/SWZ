@@ -11,53 +11,53 @@ namespace SWZ.ViewModels
         public CourseViewModel(CourseModel course = null) : base(course) { }
         public string Code
         {
-            get { return this_.code; }
-            set { SetProperty(this_.code, value, () => this_.code = value); }
+            get { return this_.Code; }
+            set { SetProperty(this_.Code, value, () => this_.Code = value); }
         }
         public string Name
         {
-            get { return this_.name; }
-            set { SetProperty(this_.code, value, () => this_.code = value); }
+            get { return this_.Name; }
+            set { SetProperty(this_.Code, value, () => this_.Code = value); }
         }
         public int ECTS
         {
-            get { return this_.ects; }
-            set { SetProperty(this_.ects, value, () => this_.ects = value); }
+            get { return this_.Ects; }
+            set { SetProperty(this_.Ects, value, () => this_.Ects = value); }
         }
         public int ZZU
         {
-            get { return this_.zzu; }
-            set { SetProperty(this_.zzu, value, () => this_.zzu = value); }
+            get { return this_.Zzu; }
+            set { SetProperty(this_.Zzu, value, () => this_.Zzu = value); }
         }
         public int SemesterNumber
         {
-            get { return this_.semesterNumber; }
-            set { SetProperty(this_.semesterNumber, value, () => this_.semesterNumber = value); }
+            get { return this_.SemesterNumber; }
+            set { SetProperty(this_.SemesterNumber, value, () => this_.SemesterNumber = value); }
         }
         
         public string FacultySymbol
         {
-            get { return this_.studyPlan.facultySymbol; }
+            get { return this_.StudyPlan.facultySymbol; }
         }
         public string FieldOfStudy
         {
-            get { return this_.studyPlan.fieldOfStudies; }
+            get { return this_.StudyPlan.fieldOfStudies; }
         }
         public CourseType Type
         {
-            get { return this_.courseType; }
+            get { return this_.CourseType; }
         }
         public StudyDegree StudyDegree
         {
-            get { return this_.studyPlan.studyDegree; }
+            get { return this_.StudyPlan.studyDegree; }
         }
         public StudyType StudyType
         {
-            get { return this_.studyPlan.studyType; }
+            get { return this_.StudyPlan.studyType; }
         }
         public Language Language
         {
-            get { return this_.studyPlan.language; }
+            get { return this_.StudyPlan.language; }
         }
 
     }

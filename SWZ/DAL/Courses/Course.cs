@@ -8,45 +8,45 @@ namespace SWZ.DAL.Courses
 {
     class Course
     {
-        public int id { set; get; }
-        public string courseCode { set; get; }
-        public string courseName { set; get; }
-        public int ects { set; get; }
-        public int courseType { set; get; }
-        public int zzu { set; get; }
-        public int semesterNumber { set; get; }
-        public int studyPlanID { set; get; }
-        public int? coursesGroupID { set; get; }
-        public bool isCoursesGroup { set; get; }
+        public int Id { set; get; }
+        public string CourseCode { set; get; }
+        public string CourseName { set; get; }
+        public int Ects { set; get; }
+        public int CourseType { set; get; }
+        public int Zzu { set; get; }
+        public int SemesterNumber { set; get; }
+        public int StudyPlanID { set; get; }
+        public int? CoursesGroupID { set; get; }
+        public bool IsCoursesGroup { set; get; }
 
 
-        public Course(int id)
+        public Course()
         {
-            this.id = id;
+            
         }
 
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
-            result.Append(id.ToString());
+            result.Append(Id.ToString());
             result.Append("|");
-            result.Append(courseCode.ToString());
+            result.Append(CourseCode.ToString());
             result.Append("|");
-            result.Append(courseName.ToString());
+            result.Append(CourseName.ToString());
             result.Append("|");
-            result.Append(ects.ToString());
+            result.Append(Ects.ToString());
             result.Append("|");
-            result.Append(courseType.ToString());
+            result.Append(CourseType.ToString());
             result.Append("|");
-            result.Append(zzu.ToString());
+            result.Append(Zzu.ToString());
             result.Append("|");
-            result.Append(semesterNumber.ToString());
+            result.Append(SemesterNumber.ToString());
             result.Append("|");
-            result.Append(studyPlanID.ToString());
+            result.Append(StudyPlanID.ToString());
             result.Append("|");
-            result.Append(coursesGroupID.ToString());
+            result.Append(CoursesGroupID.ToString());
             result.Append("|");
-            result.Append(isCoursesGroup.ToString());
+            result.Append(IsCoursesGroup.ToString());
             return result.ToString();
         }
     }
