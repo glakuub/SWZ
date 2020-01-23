@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL.Courses
 {
-    class Course
+    public class Course
     {
         public int Id { set; get; }
         public string CourseCode { set; get; }

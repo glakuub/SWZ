@@ -172,7 +172,7 @@ namespace SWZ.ViewModels
         void refreshLocalCourses()
         {
             Courses.Clear();
-            foreach (CourseModel cm in CoursesModel.courseModelsList)
+            foreach (CourseModel cm in CoursesModel.CourseModelsList)
             {
                 if (cm is CoursesGroupModel)
                     Courses.Add(new CoursesGroupViewModel(cm as CoursesGroupModel));

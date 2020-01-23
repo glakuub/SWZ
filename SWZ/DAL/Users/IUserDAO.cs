@@ -8,8 +8,8 @@ namespace SWZ.DAL.Users
 {
     interface IUserDAO
     {
-        int insertUser(User user);
-        User getUser(int id);
+        int SaveUser(User user);
+        User GetUserById(int id);
     }
 
 }

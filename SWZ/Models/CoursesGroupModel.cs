@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SWZ.Models
 {
-    class CoursesGroupModel: CourseModel
+    public class CoursesGroupModel: CourseModel
     {
         private List<CourseModel> _courses;
         public void AddCourse(CourseModel course)

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SWZ.Models
 {
-    class ReplacementModel
+    public class ReplacementModel
     {
 
         public DateTime DateOfAuthorization { get; set; }
         public CourseModel Replaced{get; set;}
         public List<CourseModel> Replacements { get; set; }
-        int id;
+        readonly int id;
         public ReplacementModel()
         {
             Replacements = new List<CourseModel>();

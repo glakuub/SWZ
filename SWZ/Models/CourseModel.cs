@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace SWZ.Models
 {   
     public enum CourseType { wykład = 1, ćwiczenia = 2, laboratorium = 3, projekt = 4, grupa = 5}
-    enum SemesterType { letni, zimowy}
-    class CourseModel
+    public enum SemesterType { letni, zimowy}
+    public class CourseModel
     {
         public int Id { set; get; }
         public string Code { set; get; }

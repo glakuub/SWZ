@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL.Courses
 {
-    interface ICourseDAO
+    public interface ICourseDAO
     {
         List<Course> GetCourses();
         Course FindCourseById(int id);

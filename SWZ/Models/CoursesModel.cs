@@ -10,11 +10,8 @@ namespace SWZ.Models
 {
     class CoursesModel
     {
-        public List<CourseModel> courseModelsList { set; get; }
-        /*{
-            get { return courseModelsList; }
-            set { courseModelsList = value; }
-        }*/
+        public List<CourseModel> CourseModelsList { set; get; }
+        
         public CoursesModel()
         {
             
@@ -22,23 +19,35 @@ namespace SWZ.Models
         public CourseModel GetCourseByID(int id)
         {
             GetCoursesFromData();
-            return courseModelsList.Find(cm => cm.Id == id);
+            return CourseModelsList.Find(cm => cm.Id == id);
         }
         public CourseModel At(int index)
         {
-            if (index >= 0 && index < courseModelsList.Count - 1)
-                return courseModelsList[index];
+            if (index >= 0 && index < CourseModelsList.Count - 1)
+                return CourseModelsList[index];
             else
                 return null;
         }
         public void GetCoursesFromData()
         {
-            if (courseModelsList == null)
+            if (CourseModelsList == null)
             {
-                courseModelsList = new List<CourseModel>();
+                CourseModelsList = new List<CourseModel>();
 
             }
             ICourseDAO courseDAO = new MSSQLCourseDAO();
+            List<Course> coursesList = courseDAO.GetCourses();
+            CourseModelsList.Clear();
+            foreach (Course c in coursesList)
+            {
+                var model = Mapper.FromDTO(c);
+                if(model!=null)
+                CourseModelsList.Add(model);
+            }
+
+
+
+            /*
             IStudyPlansDAO studyPlansDAO = new MSSQLStudyPlansDAO();
             List<Course> coursesList = courseDAO.GetCourses();
             StudyPlan studyPlan = null;
@@ -105,7 +114,7 @@ namespace SWZ.Models
                 courseModelsList.Add(cm);
 
                 
-            }
+            }*/
         }
 
     }

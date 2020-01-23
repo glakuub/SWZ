@@ -17,7 +17,7 @@ namespace SWZ.Models
         {
             StudentModel studentModel = null;
             var userDao = new MSSQLUserDAO();
-            var userDb = userDao.getUser(id);
+            var userDb = userDao.GetUserById(id);
             if (userDb != null)
             {
                 if (Enum.Parse<User.UserType>(userDb.Type.ToUpper()).Equals(User.UserType.STUDENT))

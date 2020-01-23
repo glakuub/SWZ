@@ -39,7 +39,7 @@ namespace SWZ.Models
                 {
                     ReplacementModel replacementModel = new ReplacementModel();
                     replacementModel.Replaced = replacedModel;
-                    List<ReplacementCourse> replacements_courses = replacementsCoursesDAO.FindByReplacementId(r.id);
+                    List<ReplacementCourse> replacements_courses = replacementsCoursesDAO.FindByReplacementId(r.Id);
                     foreach (ReplacementCourse rc in replacements_courses)
                     {
                         replacementModel.AddCourse(coursesModel.GetCourseByID(rc.courseID));

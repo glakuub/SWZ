@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL.Replacements
 {
-    class MSSQLReplacementDAO : IReplacementDAO
+    public class MSSQLReplacementDAO : IReplacementDAO
     {   
-        static string connectionString = @"Server=jakubgladysz.com;Database=SWZ;User Id=sa;Password=Geforce9600gt!;";
-        SqlCommand command;
-        SqlConnection connection;
-        SqlDataReader dataReader;
+        private static string connectionString = App.ConnectionString;
+        private SqlConnection connection;
+        private SqlDataReader dataReader;
+        private SqlCommand command;
 
         public List<Replacement> FindByReplacedId(int id)
         {

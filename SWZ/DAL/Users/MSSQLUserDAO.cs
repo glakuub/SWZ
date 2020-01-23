@@ -9,16 +9,16 @@ namespace SWZ.DAL.Users
 {
     class MSSQLUserDAO : IUserDAO
     {
-        static string connectionString = @"Server=jakubgladysz.com;Database=SWZ;User Id=sa;Password=Geforce9600gt!;";
-        SqlCommand command;
-        SqlConnection connection;
-        SqlDataReader dataReader;
+        private static string connectionString = App.ConnectionString;
+        private SqlCommand command;
+        private SqlConnection connection;
+        private SqlDataReader dataReader;
 
-        public User getUser(int id)
+        public User GetUserById(int id)
         {
             string query = "SELECT * FROM SWZ.dbo.uzytkownicy WHERE id=@1";
-            User user;
-            using (connection = new SqlConnection(App.ConnectionString))
+            User user = null;
+            using (connection = new SqlConnection(connectionString))
             {
                 command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@1", id);
@@ -53,7 +53,7 @@ namespace SWZ.DAL.Users
             return user;
         }
 
-        public int insertUser(User user)
+        public int SaveUser(User user)
         {   
 
             throw new NotImplementedException();

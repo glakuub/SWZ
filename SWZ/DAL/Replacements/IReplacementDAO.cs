@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL.Replacements
 {
-    interface IReplacementDAO
+    public interface IReplacementDAO
     {
         List<Replacement> GetReplacements();
         List<Replacement> FindByReplacedId(int id);

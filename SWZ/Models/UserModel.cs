@@ -19,7 +19,7 @@ namespace SWZ.Models
         {
             UserModel userModel = null;
             var userDao = new MSSQLUserDAO();
-            var userDb = userDao.getUser(id);
+            var userDb = userDao.GetUserById(id);
             if(userDb!=null)
             {
                 userModel = new UserModel();

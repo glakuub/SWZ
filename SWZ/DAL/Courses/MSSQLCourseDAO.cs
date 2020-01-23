@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL.Courses
 {
-    class MSSQLCourseDAO : ICourseDAO
+    public class MSSQLCourseDAO : ICourseDAO
     {
         static string connectionString = App.ConnectionString;
        
@@ -16,9 +16,11 @@ namespace SWZ.DAL.Courses
         SqlConnection connection;
 
         public Course FindCourseById(int id)
-        {
+        {   
+
+            /*
             Course course = null;
-            string query = $"SELECT * FROM SWZ.dbo.kursy WHERE id={id}";
+            string query = $"SELECT * FROM SWZ.dbo.kursy WHERE id={id};";
 
             connection = new SqlConnection(connectionString);
             command = new SqlCommand(query, connection);
@@ -55,14 +57,14 @@ namespace SWZ.DAL.Courses
             }
             dataReader.Close();
             command.Dispose();
-            connection.Close();
+            connection.Close();*/
 
-            return course;
+            return _getCourses($"WHERE id={id};")[0];
         }
 
         public List<Course> FindCoursesInGroup(int id)
         {
-            return _getCourses($"WHERE GrupaKursówID={id}");
+            return _getCourses($"WHERE GrupaKursówID={id};");
         }
 
 

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace SWZ.DAL.Replacements
 {
-    class Replacement
+    public class Replacement
     {
-        public int id;
-        public int replacedID;
+        public int Id { get; }
+        public int ReplacedID { get; }
 
         public Replacement(int id, int replacedID)
         {
-            this.id = id;
-            this.replacedID = replacedID;
+            this.Id = id;
+            this.ReplacedID = replacedID;
         }
         
     }
