@@ -4,96 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SWZ.Views"
     xmlns:viewmodel="using:SWZ.ViewModels"
+    xmlns:views="using:SWZ.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
     <Page.Resources>
-        <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-        <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
-        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="Padding" Value="0"></Setter>
-    </Style>
-
-    <DataTemplate x:Key="Header">
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Column="0" Text="Kod"></TextBlock>
-            <TextBlock Grid.Column="1" Text="Nazwa"></TextBlock>
-            <TextBlock Grid.Column="2" Text="ECTS"></TextBlock>
-            <TextBlock Grid.Column="3" Text="ZZU"></TextBlock>
-        </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
-            <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
-            <TextBlock Text="{x:Bind ECTS}" Grid.Column="2"></TextBlock>
-            <TextBlock Text="{x:Bind ZZU}" Grid.Column="3"></TextBlock>
-        </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel">
-        <Grid HorizontalAlignment="Stretch">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
-            <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
-            <TextBlock Text="{x:Bind ECTS}" Grid.Column="2"></TextBlock>
-            <TextBlock Text="{x:Bind ZZU}" Grid.Column="3"></TextBlock>
-
-            <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
-
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="viewmodel:CourseViewModel">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
-                                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
-                            <TextBlock Text="{x:Bind Type}" Grid.Column="1"></TextBlock>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-    </DataTemplate>
-
-    <viewmodel:CourseDataTemplateSelector x:Key="Selector"
-                                              Course="{StaticResource Course}"
-                                              CoursesGroup="{StaticResource CoursesGroup}"></viewmodel:CourseDataTemplateSelector
-                                              >
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <views:Dictionary/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
 
 

@@ -200,6 +200,7 @@
     <Compile Include="Views\CreateProposition.xaml.cs">
       <DependentUpon>CreateProposition.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Dictionary.cs" />
     <Compile Include="Views\FindReplacement.xaml.cs">
       <DependentUpon>FindReplacement.xaml</DependentUpon>
     </Compile>
@@ -243,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateProposition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
