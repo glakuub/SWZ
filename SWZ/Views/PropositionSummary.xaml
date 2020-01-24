@@ -8,31 +8,130 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+    </Style>
 
-    <Grid>
-        <StackPanel Margin="50">
-            <TextBlock Text="Utworzono propozycję:"></TextBlock>
-            <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.PropositionViewModel.Replacements}" Height="100" >
+    <DataTemplate x:Key="Header">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Kod"></TextBlock>
+            <TextBlock Grid.Column="1" Text="Nazwa"></TextBlock>
+            <TextBlock Grid.Column="2" Text="ECTS"></TextBlock>
+            <TextBlock Grid.Column="3" Text="ZZU"></TextBlock>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
+            <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
+            <TextBlock Text="{x:Bind ECTS}" Grid.Column="2"></TextBlock>
+            <TextBlock Text="{x:Bind ZZU}" Grid.Column="3"></TextBlock>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel">
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
+            <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
+            <TextBlock Text="{x:Bind ECTS}" Grid.Column="2"></TextBlock>
+            <TextBlock Text="{x:Bind ZZU}" Grid.Column="3"></TextBlock>
+
+            <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewmodel:CourseViewModel">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Bind Code}"></TextBlock>
-                            <TextBlock Text="{x:Bind Name}"></TextBlock>
-                            <TextBlock Text="{x:Bind ECTS}"></TextBlock>
-                            <TextBlock Text="{x:Bind ZZU}"></TextBlock>
-                        </StackPanel>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                                <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
+                            <TextBlock Text="{x:Bind Type}" Grid.Column="1"></TextBlock>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
-            <TextBlock Text="Dla kursu:"></TextBlock>
-            <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.FacultySymbol}"></TextBlock>
-            <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.Code}"></TextBlock>
-            <TextBlock Text="{x:Bind viewModel.PropositionViewModel.Course.Name}"></TextBlock>
-            <StackPanel Orientation="Horizontal">
+        </Grid>
+    </DataTemplate>
+
+    <viewmodel:CourseDataTemplateSelector x:Key="Selector"
+                                              Course="{StaticResource Course}"
+                                              CoursesGroup="{StaticResource CoursesGroup}"></viewmodel:CourseDataTemplateSelector
+                                              >
+    </Page.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Utworzono propozycję:"></TextBlock>
+        <ListView Grid.Row="0" Grid.Column="1" x:Name="Courses" 
+                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                              ItemsSource="{x:Bind viewModel.PropositionViewModel.Replacements}" 
+                              Height="200"  
+                              ItemTemplateSelector="{StaticResource Selector}"
+                              HeaderTemplate="{StaticResource Header}"
+                             >
+
+
+        </ListView>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock  Text="Dla kursu:"></TextBlock>
+            <TextBlock   Text="{x:Bind viewModel.PropositionViewModel.Course.FacultySymbol}"></TextBlock>
+            <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.Code}"></TextBlock>
+            <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.Name}"></TextBlock>
+            <StackPanel  Orientation="Horizontal">
                 <Button Content="Zatwierdź" Command="{x:Bind viewModel.SaveProposition}"></Button>
                 <Button Content="Anuluj" Command="{x:Bind viewModel.Cancel}"></Button>
             </StackPanel>
+
         </StackPanel>
+       
+        
     </Grid>
 </Page>

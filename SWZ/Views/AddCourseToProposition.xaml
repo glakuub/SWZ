@@ -10,34 +10,86 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
+
+        <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>
+
+        <DataTemplate x:Key="Header">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Kod"></TextBlock>
+                <TextBlock Grid.Column="1" Text="Nazwa"></TextBlock>
+                <TextBlock Grid.Column="2" Text="ECTS"></TextBlock>
+                <TextBlock Grid.Column="3" Text="ZZU"></TextBlock>
+            </Grid>
+        </DataTemplate>
+
         <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{x:Bind Code}"></TextBlock>
-                <TextBlock Text="{x:Bind Name}"></TextBlock>
-                <TextBlock Text="{x:Bind ECTS}"></TextBlock>
-                <TextBlock Text="{x:Bind ZZU}"></TextBlock>
-            </StackPanel>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
+                <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
+                <TextBlock Text="{x:Bind ECTS}" Grid.Column="2"></TextBlock>
+                <TextBlock Text="{x:Bind ZZU}" Grid.Column="3"></TextBlock>
+            </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="GK"></TextBlock>
-                    <TextBlock Text="{x:Bind Code}"></TextBlock>
-                    <TextBlock Text="{x:Bind Name}"></TextBlock>
-                    <TextBlock Text="{x:Bind ECTS}"></TextBlock>
-                    <TextBlock Text="{x:Bind ZZU}"></TextBlock>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
+                <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
+                <TextBlock Text="{x:Bind ECTS}" Grid.Column="2"></TextBlock>
+                <TextBlock Text="{x:Bind ZZU}" Grid.Column="3"></TextBlock>
 
-                </StackPanel>
-                <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False">
+                <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewmodel:CourseViewModel">
-                            <TextBlock Text="{x:Bind Type}"></TextBlock>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
+                                <TextBlock Text="{x:Bind Type}" Grid.Column="1"></TextBlock>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackPanel>
-
+            </Grid>
         </DataTemplate>
 
         <viewmodel:CourseDataTemplateSelector x:Key="Selector"
@@ -83,7 +135,12 @@
             </StackPanel>
             <StackPanel Margin="50,0,50,0">
                 <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" Height="200" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" ItemTemplateSelector="{StaticResource Selector}">
+                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" 
+                          Height="200" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ItemTemplateSelector="{StaticResource Selector}"
+                          HeaderTemplate="{StaticResource Header}"
+                          >
 
 
                 </ListView>

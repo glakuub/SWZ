@@ -36,6 +36,7 @@ namespace SWZ.DAL.Courses
                 {
                     var submodel = new CourseModel()
                     {
+                        Code = c.CourseCode,
                         CourseType = (CourseType)c.CourseType
                     };
                     (model as CoursesGroupModel).AddCourse(submodel);
