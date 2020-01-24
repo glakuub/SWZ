@@ -18,7 +18,7 @@ namespace SWZ.ViewModels
 
         public StudentPageViewModel()
         {
-            UserSession.Get.UserID = 1;
+            UserSession.Get.UserID = 2;
         }
 
         private string GetUserName(int id)

@@ -33,6 +33,7 @@ namespace SWZ.Views
             
             
             viewModel = new FindReplacementViewModel();
+            
             viewModel.GoBack = new CommandHandler(()=> { this.Frame.GoBack(); });
 
           

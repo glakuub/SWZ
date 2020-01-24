@@ -23,8 +23,8 @@ namespace SWZ.ViewModels
             Courses = new ObservableCollection<CourseViewModel>();
            
             CoursesModel = new CoursesModel();
+            RefreshCoursesFromData();
             
-            CoursesModel.GetCoursesFromData();
         }
 
         string _searchName;
@@ -180,7 +180,7 @@ namespace SWZ.ViewModels
                     Courses.Add(new CourseViewModel(cm));
             }
         }
-        void refreshCoursesFromData()
+        private void RefreshCoursesFromData()
         {
             if (CoursesModel != null)
             {

@@ -44,6 +44,8 @@ namespace SWZ.DAL.Users
                         user.FacultySymbol = dataReader.GetString(6);
                     if (!dataReader.IsDBNull(7))
                         user.Type = dataReader.GetString(7);
+                    if (!dataReader.IsDBNull(8))
+                        user.IndexNumber = dataReader.GetInt32(8);
 
 
                 }

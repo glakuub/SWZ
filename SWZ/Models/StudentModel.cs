@@ -10,8 +10,9 @@ namespace SWZ.Models
     class StudentModel: UserModel
     {
 
-        public string fieldOfStudy { set; get; }
-        public string facultySymbol { set; get; }
+        public string FieldOfStudy { set; get; }
+        public string FacultySymbol { set; get; }
+        public int IndexNumber { set; get; }
 
         public new static StudentModel GetById(int id)
         {
@@ -28,8 +29,9 @@ namespace SWZ.Models
                     studentModel.LastName = userDb.LastName;
                     studentModel.Login = userDb.Login;
                     studentModel.Password = userDb.Password;
-                    studentModel.fieldOfStudy = userDb.FieldOfStudy;
-                    studentModel.facultySymbol = userDb.FacultySymbol;
+                    studentModel.FieldOfStudy = userDb.FieldOfStudy;
+                    studentModel.FacultySymbol = userDb.FacultySymbol;
+                    studentModel.IndexNumber = userDb.IndexNumber;
                 }
 
 

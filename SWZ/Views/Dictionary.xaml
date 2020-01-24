@@ -18,21 +18,34 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Text="Kod"></TextBlock>
             <TextBlock Grid.Column="1" Text="Nazwa"></TextBlock>
-            <TextBlock Grid.Column="2" Text="ECTS"></TextBlock>
-            <TextBlock Grid.Column="3" Text="ZZU"></TextBlock>
+            <TextBlock Grid.Column="2" Text="Typ"></TextBlock>
+            <TextBlock Grid.Column="3" Text="Wydział"></TextBlock>
+            <TextBlock Grid.Column="4" Text="Kiernek"></TextBlock>
+            <TextBlock Grid.Column="5" Text="Tryb"></TextBlock>
+            <TextBlock Grid.Column="6" Text="Język"></TextBlock>
+            <TextBlock Grid.Column="7" Text="ECTS"></TextBlock>
+            <TextBlock Grid.Column="8" Text="ZZU"></TextBlock>
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="CourseGrid">
+        
+    </DataTemplate>
+    
     <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
         <Grid >
             <Grid.RowDefinitions>
@@ -41,13 +54,23 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
             <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
-            <TextBlock Text="{x:Bind ECTS}" Grid.Column="2"></TextBlock>
-            <TextBlock Text="{x:Bind ZZU}" Grid.Column="3"></TextBlock>
+            <TextBlock Text="{x:Bind Type}" Grid.Column="2"></TextBlock>
+            <TextBlock Text="{x:Bind FacultySymbol}" Grid.Column="3"></TextBlock>
+            <TextBlock Text="{x:Bind FieldOfStudy}" Grid.Column="4"></TextBlock>
+            <TextBlock Text="{x:Bind StudyType}" Grid.Column="5"></TextBlock>
+            <TextBlock Text="{x:Bind Language}" Grid.Column="6"></TextBlock>
+            <TextBlock Text="{x:Bind ECTS}" Grid.Column="7"></TextBlock>
+            <TextBlock Text="{x:Bind ZZU}" Grid.Column="8"></TextBlock>
         </Grid>
     </DataTemplate>
 
@@ -60,13 +83,23 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*" MinWidth="100"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
             <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
-            <TextBlock Text="{x:Bind ECTS}" Grid.Column="2"></TextBlock>
-            <TextBlock Text="{x:Bind ZZU}" Grid.Column="3"></TextBlock>
+            <TextBlock Text="{x:Bind Type}" Grid.Column="2"></TextBlock>
+            <TextBlock Text="{x:Bind FacultySymbol}" Grid.Column="3"></TextBlock>
+            <TextBlock Text="{x:Bind FieldOfStudy}" Grid.Column="4"></TextBlock>
+            <TextBlock Text="{x:Bind StudyType}" Grid.Column="5"></TextBlock>
+            <TextBlock Text="{x:Bind Language}" Grid.Column="6"></TextBlock>
+            <TextBlock Text="{x:Bind ECTS}" Grid.Column="7"></TextBlock>
+            <TextBlock Text="{x:Bind ZZU}" Grid.Column="8"></TextBlock>
 
             <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
 

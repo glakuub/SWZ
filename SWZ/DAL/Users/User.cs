@@ -18,6 +18,7 @@ namespace SWZ.DAL.Users
         public string FieldOfStudy { set; get; }
         public string FacultySymbol { set; get; }
         public string Type { set; get; }
+        public int IndexNumber { set; get; }
 
 
     }

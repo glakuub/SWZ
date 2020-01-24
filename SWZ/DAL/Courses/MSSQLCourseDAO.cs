@@ -18,46 +18,7 @@ namespace SWZ.DAL.Courses
         public Course FindCourseById(int id)
         {   
 
-            /*
-            Course course = null;
-            string query = $"SELECT * FROM SWZ.dbo.kursy WHERE id={id};";
-
-            connection = new SqlConnection(connectionString);
-            command = new SqlCommand(query, connection);
-
-            connection.Open();
-            dataReader = command.ExecuteReader();
-
-            while (dataReader.Read())
-            {
-
-                
-                if (!dataReader.IsDBNull(0))
-                    course.Id = dataReader.GetInt32(0);
-                if (!dataReader.IsDBNull(1))
-                    course.CourseCode = dataReader.GetString(1);
-                if (!dataReader.IsDBNull(2))
-                    course.CourseName = dataReader.GetString(2);
-                if (!dataReader.IsDBNull(3))
-                    course.Ects = dataReader.GetInt32(3);
-                if (!dataReader.IsDBNull(4))
-                    course.CourseType = dataReader.GetInt32(4);
-                if (!dataReader.IsDBNull(5))
-                    course.Zzu = dataReader.GetInt32(5);
-                if (!dataReader.IsDBNull(6))
-                    course.SemesterNumber = dataReader.GetInt32(6);
-                if (!dataReader.IsDBNull(7))
-                    course.StudyPlanID = dataReader.GetInt32(7);
-                if (!dataReader.IsDBNull(8))
-                    course.CoursesGroupID = dataReader.GetInt32(8);
-                if (!dataReader.IsDBNull(9))
-                    course.IsCoursesGroup = dataReader.GetBoolean(9);
-
-
-            }
-            dataReader.Close();
-            command.Dispose();
-            connection.Close();*/
+         
 
             return _getCourses($"WHERE id={id};")[0];
         }
