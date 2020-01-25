@@ -15,7 +15,7 @@ namespace SWZ.ViewModels
 
         public UserPageViewModel()
         {
-            UserSession.Get.UserID = null;
+            
         }
     }
 }

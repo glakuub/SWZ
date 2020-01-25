@@ -22,10 +22,10 @@ namespace SWZ.Views
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     /// 
-    public sealed partial class StudentView : Page
+    public sealed partial class StudentPage : Page
     {
         StudentPageViewModel viewModel;
-        public StudentView()
+        public StudentPage()
         {
             viewModel = new StudentPageViewModel();
             viewModel.GoBack = new CommandHandler(() =>

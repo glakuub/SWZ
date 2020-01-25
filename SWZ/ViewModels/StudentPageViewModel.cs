@@ -11,15 +11,23 @@ namespace SWZ.ViewModels
 {
     class StudentPageViewModel
     {
+       
         public ICommand GoBack { set; get; }
+        public ICommand GoToFindReplacement { set; get; }
+        public ICommand GoToCreaeteProposition { set; get; }
 
-        public string LoggedUserName {
-            get {
-                return UserSession.Get.UserID==null?string.Empty: $"Zalogowano jako: {GetUserName(UserSession.Get.UserID.Value)}"; } }
+        public string LoggedUserName
+        {
+            get
+            {
+                return UserSession.Get.IsSet ? $"Zalogowano jako: { UserSession.Get.StudentFirstName} {UserSession.Get.StudentLastName}" : string.Empty;
+            }
+        }
 
         public StudentPageViewModel()
-        {
-            UserSession.Get.UserID = 2;
+        {   
+            
+            
         }
 
         private string GetUserName(int id)
@@ -40,7 +48,7 @@ namespace SWZ.ViewModels
     }
     class LoginException : Exception
     {
-        private static readonly string _message = "Could not connect to data source. ";
-        public override string Message => base.Message;
+        private static readonly string _message = "Could not log in user ";
+        public override string Message => _message;
     }
 }

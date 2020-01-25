@@ -13,29 +13,15 @@ namespace SWZ
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        NotificationBase mainPage;
+        MainPageViewModel viewModel;
         public MainPage()
         {
+            viewModel = new MainPageViewModel();
             this.InitializeComponent();
-            mainPage = new MainPageViewModel();
+            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(UserView));
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                this.Frame.Navigate(typeof(StudentView));
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
+      
        
     }
 }

@@ -23,8 +23,8 @@
             <ColumnDefinition Width="50"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" >
-            <Button Content="Użytkownik"  Margin="50,50,50,0" HorizontalAlignment="Stretch" Click="Button_Click"/>
-            <Button Content="Student"   Margin="50" HorizontalAlignment="Stretch" Click="Button_Click_1"/>
+            <Button Content="Użytkownik"  Margin="50,50,50,0" HorizontalAlignment="Stretch" Command="{x:Bind viewModel.GoToUserPage}"/>
+            <Button Content="Student"   Margin="50" HorizontalAlignment="Stretch" Command="{x:Bind viewModel.GoToStudentPage}"/>
         </StackPanel>
         
 

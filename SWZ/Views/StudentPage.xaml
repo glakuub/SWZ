@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="SWZ.Views.StudentView"
+    x:Class="SWZ.Views.StudentPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SWZ.Views"

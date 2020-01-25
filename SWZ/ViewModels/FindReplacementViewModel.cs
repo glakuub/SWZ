@@ -17,7 +17,7 @@ namespace SWZ.ViewModels
         {
             get
             {
-                return UserSession.Get.UserID == null ? string.Empty : $"Zalogowano jako: {GetUserName(UserSession.Get.UserID.Value)}";
+                return UserSession.Get.IsSet ? $"Zalogowano jako: { UserSession.Get.StudentFirstName} {UserSession.Get.StudentLastName}" : string.Empty;
             }
         }
 
