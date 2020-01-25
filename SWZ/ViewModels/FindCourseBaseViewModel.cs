@@ -23,7 +23,9 @@ namespace SWZ.ViewModels
             Courses = new ObservableCollection<CourseViewModel>();
            
             CoursesModel = new CoursesModel();
-            RefreshCoursesFromData();
+
+            Task.Run(() => { CoursesModel.GetCoursesFromData(); });
+            
             
         }
 
