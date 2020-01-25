@@ -14,15 +14,15 @@ namespace SWZ.Views
     /// </summary>
     public sealed partial class CreateProposition : Page
     {
-        CreatePropositionViewModel ViewModel { set; get; }
+        CreatePropositionViewModel viewModel { set; get; }
         
         public CreateProposition()
         {
-            ViewModel = new CreatePropositionViewModel();
-            ViewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
-            Frame.Navigate(typeof(AddCourseToProposition),ViewModel.AddedCourses); });
+            viewModel = new CreatePropositionViewModel();
+            viewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
+            Frame.Navigate(typeof(AddCourseToProposition),viewModel.AddedCourses); });
 
-            ViewModel.GoBack = new CommandHandler(() =>{
+            viewModel.GoBack = new CommandHandler(() =>{
                 if (this.Frame.CanGoBack)
                 {
                     this.Frame.GoBack();

@@ -6,11 +6,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    >
    
-    <Grid>
-        <Button Content="Użytkownik" HorizontalAlignment="Left" Height="48" Margin="106,88,0,0" VerticalAlignment="Top" Width="300" Click="Button_Click"/>
-        <Button Content="Student" HorizontalAlignment="Left" Height="48" Margin="432,88,0,0" VerticalAlignment="Top" Width="300" Click="Button_Click_1"/>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*" MinHeight="300"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="1*" MinWidth="250"></ColumnDefinition>
+            <ColumnDefinition Width="3*" ></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" >
+            <Button Content="Użytkownik"  Margin="50,50,50,0" HorizontalAlignment="Stretch" Click="Button_Click"/>
+            <Button Content="Student"   Margin="50" HorizontalAlignment="Stretch" Click="Button_Click_1"/>
+        </StackPanel>
+        
 
     </Grid>
 </Page>

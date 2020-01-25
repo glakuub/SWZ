@@ -9,9 +9,24 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*" MinHeight="300"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="1*" MinWidth="250"></ColumnDefinition>
+            <ColumnDefinition Width="3*" ></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        
+         <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
+        <StackPanel  Grid.Row="1" Grid.Column="1">
+            <Button Command="{x:Bind viewModel.GoToFindReplacements}" Content="Znajdź zamiennik" HorizontalAlignment="Stretch" Margin="50,50,50,0"/>    
         </StackPanel>
-        <Button Command="{x:Bind viewModel.GoToFindReplacements}" Content="Znajdź zamiennik" HorizontalAlignment="Left" Margin="105,112,0,0" VerticalAlignment="Top" Height="40" Width="200"/>
+        
     </Grid>
 </Page>

@@ -19,54 +19,89 @@
     </Page.Resources>
 
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
-            <StackPanel Orientation="Horizontal" Margin="50">
-                <StackPanel Margin="0,0,20,0">
-                    <TextBlock Text="Wydział:" />
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
-                    <TextBlock Text="Kierunek studiów"/>
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
-                    <TextBlock Text="Kierunek studiów"/>
-                    <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="Stacjonarne"></RadioButton>
-                        <RadioButton Content="Niestacjonarne"></RadioButton>
-                    </StackPanel>
-                    <TextBlock Text="Język studiów"/>
-                    <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="polski"></RadioButton>
-                        <RadioButton Content="angielski"></RadioButton>
-                    </StackPanel>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="2*" MinHeight="300"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel  >
+                <TextBlock Text="Wydział:" />
+                <TextBox HorizontalAlignment="Stretch" Text="{x:Bind viewModel.SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
+                <TextBlock Text="Kierunek studiów"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
+                <TextBlock Text="Kierunek studiów"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind viewModel.Type0, Mode=TwoWay}"></RadioButton>
+                    <RadioButton Content="Niestacjonarne" ></RadioButton>
                 </StackPanel>
-                <StackPanel Margin="20,0,0,0">
-                    <TextBlock Text="Kod kursu:" />
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
-                    <TextBlock Text="Nazwa kursu:"/>
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="TextBox" VerticalAlignment="Top" Height="30" Width="250"/>
-                    <TextBlock Text="Forma kursu:"/>
-                    <ComboBox HorizontalAlignment="Stretch" 
+                <TextBlock Text="Język studiów"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Content="polski" IsChecked="{x:Bind viewModel.Lang0, Mode=TwoWay}"></RadioButton>
+                    <RadioButton Content="angielski" ></RadioButton>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+        <Grid  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Kod kursu:" />
+                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
+                <TextBlock Text="Nazwa kursu"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30"/>
+                <TextBlock Text="Forma kursu:"/>
+                <ComboBox
+                              HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch" 
                               x:Name="SearchCourseType"
                               SelectedIndex="{x:Bind viewModel.SelectedCourseType, Mode=TwoWay}">
-                    </ComboBox>
-                    
+                </ComboBox>
 
-
-                </StackPanel>
             </StackPanel>
-            <StackPanel Margin="50,0,50,0">
-                <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" 
-                          Height="200" SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Text="Kurs:"></TextBlock>
+            <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}"
+                          SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}"
+                          Grid.Row="1"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
-                          HeaderTemplate="{StaticResource Header}"
-                          >
+                          HeaderTemplate="{StaticResource Header}">
 
 
-                </ListView>
-                <Button Content="Dodaj" Command="{x:Bind viewModel.AddCourse}"></Button>
-            </StackPanel>
-        </StackPanel>
+            </ListView>
+            <Button Grid.Row="2" Content="Dodaj" Command="{x:Bind viewModel.AddCourse}"></Button>
+        </Grid>
+
+
+        
     </Grid>
 </Page>

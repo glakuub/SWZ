@@ -10,26 +10,31 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition ></ColumnDefinition>
-            
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition ></RowDefinition>
-         </Grid.RowDefinitions>
-     
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*" MinHeight="300"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="1*" MinWidth="250"></ColumnDefinition>
+            <ColumnDefinition Width="3*" ></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         
            
             
-         <Button HorizontalAlignment="Left"  Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind Path=viewModel.GoBack}"  Margin="0,0,0,0" VerticalAlignment="Center"/>
-         <TextBlock HorizontalAlignment="Right" Text="{x:Bind viewModel.LoggedUserName}" />
-            
+         <Button  Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind Path=viewModel.GoBack}"  Margin="0,0,0,0" VerticalAlignment="Center"/>
+         <TextBlock Grid.Column="2" HorizontalAlignment="Right" Text="{x:Bind viewModel.LoggedUserName}" />
 
 
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button Content="Znajdź zamiennik" HorizontalAlignment="Stretch" Margin="50"  Click="Button_Click"/>
+            <Button Content="Złóż propozycję" HorizontalAlignment="Stretch" Margin="50,0,50,50"   Click="Button_Click_1"/>
+
+        </StackPanel>
         
-        <Button Grid.Row="1" Content="Znajdź zamiennik" HorizontalAlignment="Left" Margin="105,112,0,0" VerticalAlignment="Top" Height="40" Width="200" Click="Button_Click"/>
-        <Button Grid.Row ="1" Content="Złóż propozycję" HorizontalAlignment="Left" Margin="105,168,0,0" VerticalAlignment="Top" Height="40" Width="200" Click="Button_Click_1"/>
         
     </Grid>
 </Page>

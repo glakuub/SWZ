@@ -21,17 +21,20 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Utworzono propozycję:"></TextBlock>
-        <ListView Grid.Row="0" Grid.Column="1" x:Name="Courses" 
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Utworzono propozycję:"></TextBlock>
+        <ListView Grid.Row="1" Grid.Column="2" x:Name="Courses" 
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               ItemsSource="{x:Bind viewModel.PropositionViewModel.Replacements}" 
                               Height="200"  
@@ -42,7 +45,7 @@
 
         </ListView>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="2" Grid.Column="2">
             <TextBlock Text="Przez:"></TextBlock>
             <TextBlock  Text="{x:Bind viewModel.StudentViewModel.IndexNumber}"></TextBlock>
             <TextBlock  Text="{x:Bind viewModel.StudentViewModel.FirstName}"></TextBlock>

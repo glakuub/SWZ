@@ -21,66 +21,108 @@
 
 
     <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="3*" MinHeight="250"></RowDefinition>
+            <RowDefinition Height="2*" MinHeight="100"></RowDefinition>
+            <RowDefinition Height="2*" MinHeight="100"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Button Grid.Row ="0" Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind ViewModel.GoBack}"/>
-        <TextBlock HorizontalAlignment="Right" Text="{x:Bind ViewModel.LoggedUserName}" />
+        <Button Grid.Row ="0" Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Right" Text="{x:Bind viewModel.LoggedUserName}" />
         
-        <StackPanel Grid.Row="1" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal" Margin="50">
-                <StackPanel Margin="0,0,20,0">
-                    <TextBlock Text="Wydział:" />
-                    <TextBox Text="{x:Bind ViewModel.SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Height="30" Width="250"/>
-                    <TextBlock Text="Kierunek studiów"/>
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind ViewModel.SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250" />
-                    <TextBlock Text="Kierunek studiów"/>
-                    <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind ViewModel.Type0, Mode=TwoWay}"></RadioButton>
-                        <RadioButton Content="Niestacjonarne" ></RadioButton>
-                    </StackPanel>
-                    <TextBlock Text="Język studiów"/>
-                    <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="polski" IsChecked="{x:Bind ViewModel.Lang0, Mode=TwoWay}"></RadioButton>
-                        <RadioButton Content="angielski" ></RadioButton>
-                    </StackPanel>
+        
+            
+                
+
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel  >
+                <TextBlock Text="Wydział:" />
+                <TextBox HorizontalAlignment="Stretch" Text="{x:Bind viewModel.SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
+                <TextBlock Text="Kierunek studiów"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
+                <TextBlock Text="Kierunek studiów"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind viewModel.Type0, Mode=TwoWay}"></RadioButton>
+                    <RadioButton Content="Niestacjonarne" ></RadioButton>
                 </StackPanel>
-                <StackPanel Margin="20,0,0,0">
-                    <TextBlock Text="Kod kursu:" />
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind ViewModel.SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
-                    <TextBlock Text="Nazwa kursu"/>
-                    <TextBox HorizontalAlignment="Left" Margin="0,10" Text="{x:Bind ViewModel.SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="250"/>
-                    <TextBlock Text="Forma kursu:"/>
-                    <ComboBox HorizontalAlignment="Stretch" 
-                              VerticalAlignment="Stretch" 
-                              x:Name="SearchCourseType"
-                              SelectedIndex="{x:Bind ViewModel.SelectedCourseType, Mode=TwoWay}">
-                    </ComboBox>
-                    
-
-
+                <TextBlock Text="Język studiów"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Content="polski" IsChecked="{x:Bind viewModel.Lang0, Mode=TwoWay}"></RadioButton>
+                    <RadioButton Content="angielski" ></RadioButton>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Margin="50,0,50,0">
-                <TextBlock Text="Kurs:"></TextBlock>
-                <ListView x:Name="Courses" ItemsSource="{x:Bind ViewModel.Courses}" Height="200" 
-                          SelectedIndex="{x:Bind ViewModel.SelectedCourseIndex, Mode=TwoWay}" 
+
+        </Grid>
+
+        <Grid  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Kod kursu:" />
+                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
+                <TextBlock Text="Nazwa kursu"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30"/>
+                <TextBlock Text="Forma kursu:"/>
+                <ComboBox
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch" 
+                              x:Name="SearchCourseType"
+                              SelectedIndex="{x:Bind viewModel.SelectedCourseType, Mode=TwoWay}">
+                </ComboBox>
+
+            </StackPanel>
+        </Grid>
+
+       
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Kurs:"></TextBlock>
+            <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" 
+                          Grid.Row="1"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
                           HeaderTemplate="{StaticResource Header}">
 
 
-                </ListView>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Proponowane zamienniki:"></TextBlock>
-                    <Button Content="Dodaj kurs" Command="{x:Bind Path=ViewModel.GoToAddCourseToProposition}"></Button>
-                    <Button  Content="Usuń" Command="{x:Bind Path=ViewModel.DeleteCourse}" CommandParameter="{x:Bind ViewModel.CanDelete, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Orientation="Horizontal" Grid.Row="0" >
+                <TextBlock Text="Proponowane zamienniki:" Padding="20,0,20,0"></TextBlock>
+                <Button Content="Dodaj kurs" Command="{x:Bind Path=viewModel.GoToAddCourseToProposition}" ></Button>
+                <Button  Content="Usuń" Command="{x:Bind Path=viewModel.DeleteCourse}" CommandParameter="{x:Bind viewModel.CanDelete, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ></Button>
                 </StackPanel>
 
-                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind ViewModel.AddedCourses}" Height="200" 
-                          SelectedIndex="{x:Bind ViewModel.SelectedReplacementCourse, Mode=TwoWay}" 
+                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind viewModel.AddedCourses}"
+                          Grid.Row="1"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          SelectedIndex="{x:Bind viewModel.SelectedReplacementCourse, Mode=TwoWay}" 
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
                           HeaderTemplate="{StaticResource Header}">
@@ -89,8 +131,8 @@
                 </ListView>
 
                
-                <Button Content="Przekaż"   Command="{x:Bind ViewModel.CreateProposition}" CommandParameter="{x:Bind ViewModel.CanGoToSummary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
-            </StackPanel>
-        </StackPanel>
+                <Button Content="Przekaż"   Grid.Row="2" Command="{x:Bind viewModel.CreateProposition}" CommandParameter="{x:Bind viewModel.CanGoToSummary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
+            </Grid>
+       
     </Grid>
 </Page>

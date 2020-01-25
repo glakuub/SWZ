@@ -23,7 +23,6 @@ namespace SWZ.ViewModels
             Courses = new ObservableCollection<CourseViewModel>();
            
             CoursesModel = new CoursesModel();
-
             Task.Run(() => { CoursesModel.GetCoursesFromData(); });
             
             
@@ -135,7 +134,7 @@ namespace SWZ.ViewModels
         void filterCourses()
         {
            
-            refreshLocalCourses();
+            RefreshLocalCourses();
             List<CourseViewModel> lcvm = Courses.ToList();
 
             lcvm = lcvm.FindAll(cvm => cvm.Language.Equals(_searchLanguage));
@@ -171,7 +170,7 @@ namespace SWZ.ViewModels
 
 
         }
-        void refreshLocalCourses()
+        void RefreshLocalCourses()
         {
             Courses.Clear();
             foreach (CourseModel cm in CoursesModel.CourseModelsList)
@@ -187,7 +186,7 @@ namespace SWZ.ViewModels
             if (CoursesModel != null)
             {
                 CoursesModel.GetCoursesFromData();
-                refreshLocalCourses();
+                RefreshLocalCourses();
 
             }
         }
