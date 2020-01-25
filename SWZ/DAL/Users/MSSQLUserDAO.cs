@@ -9,7 +9,7 @@ namespace SWZ.DAL.Users
 {
     class MSSQLUserDAO : IUserDAO
     {
-        private static string connectionString = App.ConnectionString;
+        private static readonly string connectionString = App.ConnectionString;
         private SqlCommand command;
         private SqlConnection connection;
         private SqlDataReader dataReader;

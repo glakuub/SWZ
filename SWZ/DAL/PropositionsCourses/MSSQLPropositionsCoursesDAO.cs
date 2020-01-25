@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 namespace SWZ.DAL.PropositionsCourses
 {
     class MSSQLPropositionsCoursesDAO : IPropositionsCoursesDAO
-    {
-        SqlCommand command;
-        SqlConnection connection;
-        SqlDataReader dataReader;
+    {   
+        private static readonly string connectionString = App.ConnectionString;
+        private SqlCommand command;
+        private SqlConnection connection;
+       
         public List<PropositionCourse> GetPropositionCourses()
         {
             throw new NotImplementedException();

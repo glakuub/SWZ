@@ -9,10 +9,10 @@ namespace SWZ.DAL.StudyPlans
 {
     class MSSQLStudyPlansDAO : IStudyPlansDAO
     {
-        static string connectionString = @"Server=jakubgladysz.com;Database=SWZ;User Id=sa;Password=Geforce9600gt!;";
-        SqlCommand command;
-        SqlDataReader dataReader;
-        SqlConnection connection;
+        private static readonly string connectionString = App.ConnectionString;
+        private SqlCommand command;
+        private SqlDataReader dataReader;
+        private SqlConnection connection;
          
         public StudyPlan GetStudyPlan(int id)
         {

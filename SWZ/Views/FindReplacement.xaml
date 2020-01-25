@@ -21,9 +21,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="3*" MinHeight="250"></RowDefinition>
+            <RowDefinition Height="2*" MinHeight="250"></RowDefinition>
             <RowDefinition Height="2*" MinHeight="100"></RowDefinition>
             <RowDefinition Height="2*" MinHeight="100"></RowDefinition>
+            <RowDefinition Height="50" ></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"></ColumnDefinition>
@@ -97,38 +98,46 @@
         <Grid  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Text="Kurs:"></TextBlock>
-                
-                    
-                    <ListView Grid.Row="1" x:Name="Courses" 
+            <ContentControl Grid.Row="1" ContentTemplate="{StaticResource Header}" HorizontalContentAlignment="Stretch"></ContentControl>
+            
+                    <ListView Grid.Row="2" x:Name="Courses" 
                              ScrollViewer.VerticalScrollBarVisibility="Visible"
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               ItemsSource="{x:Bind viewModel.DisplayedCourses}" 
                               SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 
                               ItemTemplateSelector="{StaticResource Selector}"
-                              HeaderTemplate="{StaticResource Header}">
+                              Style="{StaticResource CourseListStyle}"
+                              >
                         
                         
                     </ListView>
-                
-                
-            </Grid>
+
+           
+
+
+        </Grid>
             
             <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 
             <TextBlock Text="Zamienniki:"></TextBlock>
+
+            <ContentControl Grid.Row="1" ContentTemplate="{StaticResource Header}" HorizontalContentAlignment="Stretch"></ContentControl>
+
             <ListView  x:Name="Replacements"  
-                       Grid.Row="1"
+                       Grid.Row="2"
                        ScrollViewer.VerticalScrollBarVisibility="Visible"
                        ItemsSource="{x:Bind viewModel.Replacements}" 
-                       HeaderTemplate="{StaticResource Header}"
                        ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                       Style="{StaticResource CourseListStyle}"
                                   >
 
 
@@ -136,7 +145,8 @@
                     <DataTemplate x:DataType="viewmodel:ReplacementViewModel">
                         <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False"
                                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                              ItemTemplateSelector="{StaticResource Selector}" HorizontalAlignment="Stretch">
+                                              ItemTemplateSelector="{StaticResource Selector}" HorizontalAlignment="Stretch"
+                                              >
 
                         </ListView>
                     </DataTemplate>

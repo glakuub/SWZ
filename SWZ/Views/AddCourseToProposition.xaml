@@ -83,22 +83,26 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
             
             <TextBlock Grid.Row="0" Text="Kurs:"></TextBlock>
+
+            <ContentControl Grid.Row="1" ContentTemplate="{StaticResource Header}" HorizontalContentAlignment="Stretch"></ContentControl>
+
             <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.DisplayedCourses}"
                           SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}"
-                          Grid.Row="1"
+                          Grid.Row="2"
                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
-                          HeaderTemplate="{StaticResource Header}">
+                          Style="{StaticResource CourseListStyle}">
 
 
             </ListView>
-            <Button Grid.Row="2" Content="Dodaj" Command="{x:Bind viewModel.AddCourse}"></Button>
+            <Button Grid.Row="3" Content="Dodaj" Command="{x:Bind viewModel.AddCourse}"></Button>
         </Grid>
 
 

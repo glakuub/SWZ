@@ -16,12 +16,16 @@
     <Style x:Key="Test" TargetType="Page">
         <Setter Property="Background" Value="Beige"></Setter>
     </Style>
+    <Style x:Key="CourseListStyle" TargetType="ListView">
+        <Setter Property="BorderBrush" Value="LightGray"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+    </Style>
     
    
 
 
     <DataTemplate x:Key="Header">
-        <Grid >
+        <Grid Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="200"></ColumnDefinition>

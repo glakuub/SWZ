@@ -92,16 +92,20 @@
         <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Text="Kurs:"></TextBlock>
+
+            <ContentControl Grid.Row="1" ContentTemplate="{StaticResource Header}" HorizontalContentAlignment="Stretch"></ContentControl>
+
             <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.DisplayedCourses}" 
-                          Grid.Row="1"
+                          Grid.Row="2"
                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                           SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
-                          HeaderTemplate="{StaticResource Header}">
+                          Style="{StaticResource CourseListStyle}">
 
 
             </ListView>
@@ -109,6 +113,7 @@
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
@@ -119,19 +124,21 @@
                 <Button  Content="Usuń" Command="{x:Bind Path=viewModel.DeleteCourse}" CommandParameter="{x:Bind viewModel.CanDelete, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ></Button>
                 </StackPanel>
 
-                <ListView x:Name="AddedCourses" ItemsSource="{x:Bind viewModel.AddedCourses}"
-                          Grid.Row="1"
+            <ContentControl Grid.Row="1" ContentTemplate="{StaticResource Header}" HorizontalContentAlignment="Stretch"></ContentControl>
+
+            <ListView x:Name="AddedCourses" ItemsSource="{x:Bind viewModel.AddedCourses}"
+                          Grid.Row="2"
                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                           SelectedIndex="{x:Bind viewModel.SelectedReplacementCourse, Mode=TwoWay}" 
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
-                          HeaderTemplate="{StaticResource Header}">
+                          Style="{StaticResource CourseListStyle}">
 
 
                 </ListView>
 
                
-                <Button Content="Przekaż"   Grid.Row="2" Command="{x:Bind viewModel.CreateProposition}" CommandParameter="{x:Bind viewModel.CanGoToSummary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
+                <Button Content="Przekaż"   Grid.Row="3" Command="{x:Bind viewModel.CreateProposition}" CommandParameter="{x:Bind viewModel.CanGoToSummary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
             </Grid>
        
     </Grid>

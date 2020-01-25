@@ -10,7 +10,7 @@ namespace SWZ.DAL.Propositions
 {
     class MSSQLPropositionDAO : IPropositionDAO
     {
-        static string connectionString = @"Server=jakubgladysz.com;Database=SWZ;User Id=sa;Password=Geforce9600gt!;";
+        static string connectionString = App.ConnectionString;
         SqlCommand command;
         SqlDataReader dataReader;
         SqlConnection connection;

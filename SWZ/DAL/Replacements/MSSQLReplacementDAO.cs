@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace SWZ.DAL.Replacements
 {
     public class MSSQLReplacementDAO : IReplacementDAO
-    {   
-        private static string connectionString = App.ConnectionString;
+    {
+        private static readonly string connectionString = App.ConnectionString;
         private SqlConnection connection;
         private SqlDataReader dataReader;
         private SqlCommand command;
