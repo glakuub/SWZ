@@ -23,10 +23,10 @@ namespace SWZ.ViewModels
         private void AddCourseMethod()
         {
             Debug.WriteLine("AddCourseMethod");
-            if(Courses !=null && Courses.Count > 0)
+            if(DisplayedCourses !=null && DisplayedCourses.Count > 0)
             {   
-                if(_selectedCourseIndex != -1 && Courses.Count > _selectedCourseIndex && Courses[_selectedCourseIndex] != null)
-                AddedCourses.Add(Courses[_selectedCourseIndex]);
+                if(_selectedCourseIndex != -1 && DisplayedCourses.Count > _selectedCourseIndex && DisplayedCourses[_selectedCourseIndex] != null)
+                AddedCourses.Add(DisplayedCourses[_selectedCourseIndex]);
 
                 var rootFrame = Window.Current.Content as Frame;
                 rootFrame.GoBack();

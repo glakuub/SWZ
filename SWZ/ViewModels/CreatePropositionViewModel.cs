@@ -80,7 +80,7 @@ namespace SWZ.ViewModels
         }
         void UpdatePropositionViewModel()
         {   
-            PropositionViewModel.Course = Courses[SelectedCourseIndex];
+            PropositionViewModel.Course = DisplayedCourses[SelectedCourseIndex];
             PropositionViewModel.Replacements = AddedCourses;
             PropositionViewModel.Date = DateTime.Now.ToString();
             PropositionViewModel.Student = new StudentViewModel(new StudentModel());

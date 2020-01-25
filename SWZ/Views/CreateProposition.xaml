@@ -95,7 +95,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Text="Kurs:"></TextBlock>
-            <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.Courses}" 
+            <ListView x:Name="Courses" ItemsSource="{x:Bind viewModel.DisplayedCourses}" 
                           Grid.Row="1"
                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                           SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 

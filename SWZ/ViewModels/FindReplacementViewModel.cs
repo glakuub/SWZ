@@ -39,17 +39,18 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _selectedCourseIndex, value);
-                if(SelectedCourseIndex >=0 && SelectedCourseIndex<Courses.Count)
-                FindReplacements();
+                if(SelectedCourseIndex >=0 && SelectedCourseIndex<DisplayedCourses.Count)
+                FindReplacementsAsync();
 
             }
         }
 
-        void FindReplacements()
+        async void FindReplacementsAsync()
         {
             Replacements.Clear();
-            replacementsModel.SetReplaced(Courses.ElementAt(SelectedCourseIndex).Model);
-            foreach(ReplacementModel rm in replacementsModel.GetReplacementsFromData())
+            replacementsModel.SetReplaced(DisplayedCourses.ElementAt(SelectedCourseIndex).Model);
+            var rmlist = await Task.Run(()=>replacementsModel.GetReplacementsFromData());
+            foreach (ReplacementModel rm in rmlist)
             {
                 Replacements.Add(new ReplacementViewModel(rm));
             }

@@ -23,44 +23,98 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="4*" MinWidth="790"></ColumnDefinition>
             <ColumnDefinition Width="50"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="Utworzono propozycję:"></TextBlock>
-        <ListView Grid.Row="1" Grid.Column="2" x:Name="Courses" 
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Utworzono propozycję:"></TextBlock>
+            <ListView Grid.Row="1"  x:Name="Courses" 
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               ItemsSource="{x:Bind viewModel.PropositionViewModel.Replacements}" 
-                              Height="200"  
+                                
                               ItemTemplateSelector="{StaticResource Selector}"
                               HeaderTemplate="{StaticResource Header}"
                              >
 
 
-        </ListView>
+            </ListView>
+        </Grid>
+        
 
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <TextBlock Text="Przez:"></TextBlock>
-            <TextBlock  Text="{x:Bind viewModel.StudentViewModel.IndexNumber}"></TextBlock>
-            <TextBlock  Text="{x:Bind viewModel.StudentViewModel.FirstName}"></TextBlock>
-            <TextBlock  Text="{x:Bind viewModel.StudentViewModel.LastName}"></TextBlock>
-            <TextBlock  Text="Dla kursu:"></TextBlock>
-            <TextBlock   Text="{x:Bind viewModel.PropositionViewModel.Course.FacultySymbol}"></TextBlock>
-            <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.Code}"></TextBlock>
-            <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.Name}"></TextBlock>
-            <StackPanel  Orientation="Horizontal">
-                <Button Content="Zatwierdź" Command="{x:Bind viewModel.SaveProposition}"></Button>
-                <Button Content="Anuluj" Command="{x:Bind viewModel.Cancel}"></Button>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="1" Text="Przez:"></TextBlock>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock  Text="Numer indeksu:"></TextBlock>
+                <TextBlock  Text="Imię:"></TextBlock>
+                <TextBlock  Text="Nazwisko:"></TextBlock>
             </StackPanel>
 
+            <StackPanel Grid.Row="1" Grid.Column="2">
+                <TextBlock  Text="{x:Bind viewModel.StudentViewModel.IndexNumber}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.StudentViewModel.FirstName}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.StudentViewModel.LastName}"></TextBlock>
+            </StackPanel>
+
+            <TextBlock  Grid.Row="2" Grid.Column="1" Text="Dla kursu:"></TextBlock>
+
+            <StackPanel Grid.Row="3" Grid.Column="1">
+
+                <TextBlock   Text="Kod kursu:"></TextBlock>
+                <TextBlock  Text="Nazwa:"></TextBlock>
+                <TextBlock  Text="Typ:"></TextBlock>
+                <TextBlock  Text="Wydział:"></TextBlock>
+                <TextBlock  Text="Kierunek:"></TextBlock>
+                <TextBlock  Text="Tryb:"></TextBlock>
+                <TextBlock  Text="Język:"></TextBlock>
+                <TextBlock  Text="ECTS:"></TextBlock>
+                <TextBlock  Text="ZZU:"></TextBlock>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Grid.Column="2" >
+
+                <TextBlock   Text="{x:Bind viewModel.PropositionViewModel.Course.Code}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.Name}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.Type}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.FacultySymbol}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.FieldOfStudy}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.StudyType}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.Language}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.ECTS}"></TextBlock>
+                <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.ZZU}"></TextBlock>
+            </StackPanel>
+
+           
+            
+          
+
+        </Grid>
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Zatwierdź" Command="{x:Bind viewModel.SaveProposition}" Margin="0,0,25,0" Width="200"></Button>
+            <Button Content="Anuluj" Command="{x:Bind viewModel.Cancel}" Margin="25,0,0,0" Width="200"></Button>
         </StackPanel>
-       
-        
+
     </Grid>
 </Page>

@@ -14,18 +14,31 @@ namespace SWZ.ViewModels
     {
         public CoursesModel CoursesModel { set; get; }
         
-        public ObservableCollection<CourseViewModel> Courses { set; get; }
+        public ObservableCollection<CourseViewModel> DisplayedCourses { set; get; }
+        private List<CourseViewModel> courseViewModels;
        
         public ICommand GoBack { set; get; }
 
+        
+
         public FindCourseBaseViewModel()
         {
-            Courses = new ObservableCollection<CourseViewModel>();
+            DisplayedCourses = new ObservableCollection<CourseViewModel>();
+            courseViewModels = new List<CourseViewModel>();
            
             CoursesModel = new CoursesModel();
-            Task.Run(() => { CoursesModel.GetCoursesFromData(); });
+            GetDataAsync();
+
+
             
             
+            
+        }
+
+        private async void GetDataAsync()
+        {
+            await Task.Factory.StartNew(() => { CoursesModel.RefreshCoursesFromData(); });
+            RefreshLocalCourses();
         }
 
         string _searchName;
@@ -35,7 +48,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchName, value);
-                filterCourses();
+                FilterCourses();
             }
         }
 
@@ -46,7 +59,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchFaculty, value);
-                filterCourses();
+                FilterCourses();
             }
         }
 
@@ -57,7 +70,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchCode, value);
-                filterCourses();
+                FilterCourses();
             }
         }
 
@@ -68,7 +81,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchFieldOfStudy, value);
-                filterCourses();
+                FilterCourses();
             }
         }
 
@@ -85,7 +98,7 @@ namespace SWZ.ViewModels
                     _searchLanguage = (Language)1;
                 else
                     _searchLanguage = (Language)2;
-                filterCourses();
+                FilterCourses();
             }
         }
 
@@ -101,7 +114,7 @@ namespace SWZ.ViewModels
                     _searchStudyType = (StudyType)1;
                 else
                     _searchStudyType = (StudyType)2;
-                filterCourses();
+                FilterCourses();
             }
         }
 
@@ -112,8 +125,8 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchCourseType, (CourseType)(value + 1));
-                filterCourses();
-                //Debug.WriteLine(value);
+                FilterCourses();
+                
             }
         }
 
@@ -131,11 +144,14 @@ namespace SWZ.ViewModels
 
 
       
-        void filterCourses()
+        void FilterCourses()
         {
-           
+
+
             RefreshLocalCourses();
-            List<CourseViewModel> lcvm = Courses.ToList();
+
+            List<CourseViewModel> lcvm = courseViewModels;
+            
 
             lcvm = lcvm.FindAll(cvm => cvm.Language.Equals(_searchLanguage));
 
@@ -160,35 +176,48 @@ namespace SWZ.ViewModels
             {
                 lcvm = lcvm.FindAll(cvm => cvm.FieldOfStudy.ToUpper().StartsWith(_searchFieldOfStudy.ToUpper()));
             }
-
-
-            Courses.Clear();
-            foreach (CourseViewModel cvm in lcvm)
+            
+            if (ListChanged(DisplayedCourses.ToList(), lcvm))
             {
-                Courses.Add(cvm);
+                DisplayedCourses.Clear();
+                foreach (CourseViewModel cvm in lcvm)
+                {
+                    DisplayedCourses.Add(cvm);
+                }
             }
 
 
         }
         void RefreshLocalCourses()
         {
-            Courses.Clear();
+            courseViewModels.Clear();
             foreach (CourseModel cm in CoursesModel.CourseModelsList)
             {
                 if (cm is CoursesGroupModel)
-                    Courses.Add(new CoursesGroupViewModel(cm as CoursesGroupModel));
+                    courseViewModels.Add(new CoursesGroupViewModel(cm as CoursesGroupModel));
                 else
-                    Courses.Add(new CourseViewModel(cm));
+                    courseViewModels.Add(new CourseViewModel(cm));
             }
         }
-        private void RefreshCoursesFromData()
+        private void RefreshCoursesModel()
         {
             if (CoursesModel != null)
             {
-                CoursesModel.GetCoursesFromData();
-                RefreshLocalCourses();
+                CoursesModel.RefreshCoursesFromData();
+                
 
             }
+        }
+        private bool ListChanged(List<CourseViewModel> before, List<CourseViewModel> after)
+        {
+           
+            if (before.Count != after.Count) return true;
+            for(int i=0;i<before.Count;i++)
+            {
+                if (!before[i].Code.Equals(after[i].Code))
+                    return true;
+            }
+            return false;
         }
     }
 }
