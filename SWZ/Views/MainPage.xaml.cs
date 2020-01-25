@@ -1,5 +1,7 @@
 ﻿using SWZ.ViewModels;
 using SWZ.Views;
+using System;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -25,7 +27,14 @@ namespace SWZ
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(StudentView));
+            try
+            {
+                this.Frame.Navigate(typeof(StudentView));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
        
     }

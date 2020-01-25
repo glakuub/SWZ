@@ -1,6 +1,8 @@
-﻿using SWZ.DAL.Users;
+﻿using SWZ.DAL;
+using SWZ.DAL.Users;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,23 +20,30 @@ namespace SWZ.Models
         {
             StudentModel studentModel = null;
             var userDao = new MSSQLUserDAO();
-            var userDb = userDao.GetUserById(id);
-            if (userDb != null)
+            try
             {
-                if (Enum.Parse<User.UserType>(userDb.Type.ToUpper()).Equals(User.UserType.STUDENT))
+                var userDb = userDao.GetUserById(id);
+                if (userDb != null)
                 {
-                    studentModel = new StudentModel();
-                    studentModel.Id = userDb.Id;
-                    studentModel.FirstName = userDb.FirstName;
-                    studentModel.LastName = userDb.LastName;
-                    studentModel.Login = userDb.Login;
-                    studentModel.Password = userDb.Password;
-                    studentModel.FieldOfStudy = userDb.FieldOfStudy;
-                    studentModel.FacultySymbol = userDb.FacultySymbol;
-                    studentModel.IndexNumber = userDb.IndexNumber;
+                    if (Enum.Parse<User.UserType>(userDb.Type.ToUpper()).Equals(User.UserType.STUDENT))
+                    {
+                        studentModel = new StudentModel();
+                        studentModel.Id = userDb.Id;
+                        studentModel.FirstName = userDb.FirstName;
+                        studentModel.LastName = userDb.LastName;
+                        studentModel.Login = userDb.Login;
+                        studentModel.Password = userDb.Password;
+                        studentModel.FieldOfStudy = userDb.FieldOfStudy;
+                        studentModel.FacultySymbol = userDb.FacultySymbol;
+                        studentModel.IndexNumber = userDb.IndexNumber;
+                    }
+
+
                 }
-
-
+            }catch(NoDatasourceConnectionException e)
+            {
+                Debug.WriteLine(e.Message);
+                throw new DataServiceException();
             }
 
             return studentModel;

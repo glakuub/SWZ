@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,50 +35,57 @@ namespace SWZ.DAL.Courses
             return _getCourses();
         }
 
-        private List<Course> _getCourses(string where=null)
+        private List<Course> _getCourses(string where=null) 
         {
                 List<Course> courses = new List<Course>();
                 string query = where == null ? "SELECT * FROM SWZ.dbo.kursy" : $"SELECT * FROM SWZ.dbo.kursy {where}";
 
 
 
-                connection = new SqlConnection(connectionString);
+            using (connection = new SqlConnection(connectionString))
+            {
                 command = new SqlCommand(query, connection);
 
-                connection.Open();
-                dataReader = command.ExecuteReader();
-
-                while (dataReader.Read())
+                try
                 {
+                    connection.Open();
+                    dataReader = command.ExecuteReader();
 
-                Course course = new Course();
-                if (!dataReader.IsDBNull(0))
-                    course.Id = dataReader.GetInt32(0);
-                if(!dataReader.IsDBNull(1))
-                    course.CourseCode = dataReader.GetString(1);
-                if (!dataReader.IsDBNull(2))
-                    course.CourseName = dataReader.GetString(2);
-                if (!dataReader.IsDBNull(3))
-                    course.Ects = dataReader.GetInt32(3);
-                if (!dataReader.IsDBNull(4))
-                    course.CourseType = dataReader.GetInt32(4);
-                if (!dataReader.IsDBNull(5))
-                    course.Zzu = dataReader.GetInt32(5);
-                if (!dataReader.IsDBNull(6))
-                    course.SemesterNumber = dataReader.GetInt32(6);
-                if (!dataReader.IsDBNull(7))
-                    course.StudyPlanID = dataReader.GetInt32(7);
-                if (!dataReader.IsDBNull(8))
-                    course.CoursesGroupID = dataReader.GetInt32(8);
-                if (!dataReader.IsDBNull(9))
-                    course.IsCoursesGroup = dataReader.GetBoolean(9);
-                courses.Add(course);
+                    while (dataReader.Read())
+                    {
 
+                        Course course = new Course();
+                        if (!dataReader.IsDBNull(0))
+                            course.Id = dataReader.GetInt32(0);
+                        if (!dataReader.IsDBNull(1))
+                            course.CourseCode = dataReader.GetString(1);
+                        if (!dataReader.IsDBNull(2))
+                            course.CourseName = dataReader.GetString(2);
+                        if (!dataReader.IsDBNull(3))
+                            course.Ects = dataReader.GetInt32(3);
+                        if (!dataReader.IsDBNull(4))
+                            course.CourseType = dataReader.GetInt32(4);
+                        if (!dataReader.IsDBNull(5))
+                            course.Zzu = dataReader.GetInt32(5);
+                        if (!dataReader.IsDBNull(6))
+                            course.SemesterNumber = dataReader.GetInt32(6);
+                        if (!dataReader.IsDBNull(7))
+                            course.StudyPlanID = dataReader.GetInt32(7);
+                        if (!dataReader.IsDBNull(8))
+                            course.CoursesGroupID = dataReader.GetInt32(8);
+                        if (!dataReader.IsDBNull(9))
+                            course.IsCoursesGroup = dataReader.GetBoolean(9);
+                        courses.Add(course);
+
+                    }
                 }
-                dataReader.Close();
-                command.Dispose();
-                connection.Close();
-
+                catch(Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw new NoDatasourceConnectionException();
+                }
+                
+            }
                 return courses;
             
         }

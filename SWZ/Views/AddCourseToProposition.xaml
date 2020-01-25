@@ -96,7 +96,7 @@
                           SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}"
                           Grid.Row="2"
                           ScrollViewer.VerticalScrollBarVisibility="Visible"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ItemContainerStyle="{StaticResource OuterListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
                           Style="{StaticResource CourseListStyle}">
 

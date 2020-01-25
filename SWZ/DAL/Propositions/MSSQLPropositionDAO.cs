@@ -25,26 +25,35 @@ namespace SWZ.DAL.Propositions
             List<Proposition> propositions = new List<Proposition>();
 
             string query = "SELECT * FROM SWZ.dbo.propozycje";
-            connection = new SqlConnection(connectionString);
-            command = new SqlCommand(query, connection);
 
-            connection.Open();
-            dataReader = command.ExecuteReader();
 
-            while(dataReader.Read())
+            using (connection = new SqlConnection(connectionString))
             {
-               
-                Proposition proposition = new Proposition(dataReader.GetInt32(0));
-                proposition.proposing = dataReader.GetInt32(1);
-                proposition.authorizing = dataReader.GetInt32(2);
-                if(!dataReader.IsDBNull(3)) proposition.dateOfSubmission = dataReader.GetDateTime(3);
-                proposition.replacementFor = dataReader.GetInt32(4);
-                propositions.Add(proposition);
-            }
-            dataReader.Close();
-            command.Dispose();
-            connection.Close();
+                command = new SqlCommand(query, connection);
 
+                try
+                {
+                    connection.Open();
+                    dataReader = command.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+
+                        Proposition proposition = new Proposition(dataReader.GetInt32(0));
+                        proposition.proposing = dataReader.GetInt32(1);
+                        proposition.authorizing = dataReader.GetInt32(2);
+                        if (!dataReader.IsDBNull(3)) proposition.dateOfSubmission = dataReader.GetDateTime(3);
+                        proposition.replacementFor = dataReader.GetInt32(4);
+                        propositions.Add(proposition);
+                    }
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw new NoDatasourceConnectionException();
+                }
+               
+            }
             return propositions;
         }
              

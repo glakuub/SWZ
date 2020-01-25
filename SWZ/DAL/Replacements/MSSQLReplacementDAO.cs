@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,24 +19,31 @@ namespace SWZ.DAL.Replacements
         {
             string query = $"SELECT * FROM SWZ.dbo.zamienniki WHERE zamienianyid={id}";
             List<Replacement> replacements = new List<Replacement>();
-            connection = new SqlConnection(connectionString);
-            command = new SqlCommand(query, connection);
 
-            connection.Open();
-            dataReader = command.ExecuteReader();
-
-            while (dataReader.Read())
+            using (connection = new SqlConnection(connectionString))
             {
-                if (!dataReader.IsDBNull(0) && !dataReader.IsDBNull(1))
+                command = new SqlCommand(query, connection);
+
+                try
                 {
-                   replacements.Add(new Replacement(dataReader.GetInt32(0), dataReader.GetInt32(1)));
-                    
+                    connection.Open();
+                    dataReader = command.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        if (!dataReader.IsDBNull(0) && !dataReader.IsDBNull(1))
+                        {
+                            replacements.Add(new Replacement(dataReader.GetInt32(0), dataReader.GetInt32(1)));
+
+                        }
+                    }
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw new NoDatasourceConnectionException();
                 }
             }
-            dataReader.Close();
-            command.Dispose();
-            connection.Close();
-
 
             return replacements;
         }
@@ -44,26 +52,32 @@ namespace SWZ.DAL.Replacements
         {
             List<Replacement> replacements = new List<Replacement>();
             string query = "SELECT * FROM SWZ.dbo.zamienniki";
-            
 
-            connection = new SqlConnection(connectionString);
-            command = new SqlCommand(query, connection);
 
-            connection.Open();
-            dataReader = command.ExecuteReader();
-
-            while (dataReader.Read())
+            using (connection = new SqlConnection(connectionString))
             {
-                if (!dataReader.IsDBNull(0) && !dataReader.IsDBNull(1))
+                command = new SqlCommand(query, connection);
+
+                try
                 {
-                    Replacement replacement = new Replacement(dataReader.GetInt32(0), dataReader.GetInt32(1));
-                    replacements.Add(replacement);
+                    connection.Open();
+                    dataReader = command.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        if (!dataReader.IsDBNull(0) && !dataReader.IsDBNull(1))
+                        {
+                            Replacement replacement = new Replacement(dataReader.GetInt32(0), dataReader.GetInt32(1));
+                            replacements.Add(replacement);
+                        }
+                    }
+                }
+                catch(Exception e)
+                {
+                    Debug.Write(e.Message);
+                    throw new NoDatasourceConnectionException();
                 }
             }
-            dataReader.Close();
-            command.Dispose();
-            connection.Close();
-
             return replacements;
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,22 +19,28 @@ namespace SWZ.DAL.ReplacementsCourses
         {
             string query = $"SELECT * FROM SWZ.dbo.zamienniki_kursy WHERE zamiennikid={id}";
             List<ReplacementCourse> replacements_courses = new List<ReplacementCourse>();
-         
-            connection = new SqlConnection(connectionString);
-            command = new SqlCommand(query, connection);
 
-            connection.Open();
-            dataReader = command.ExecuteReader();
-
-            while (dataReader.Read())
+            using (connection = new SqlConnection(connectionString))
             {
-                ReplacementCourse replacementCourse = new ReplacementCourse(dataReader.GetInt32(0),dataReader.GetInt32(1));
-                replacements_courses.Add(replacementCourse); 
+                command = new SqlCommand(query, connection);
 
+                try
+                {
+                    connection.Open();
+                    dataReader = command.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        ReplacementCourse replacementCourse = new ReplacementCourse(dataReader.GetInt32(0), dataReader.GetInt32(1));
+                        replacements_courses.Add(replacementCourse);
+
+                    }
+                }catch(Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw new NoDatasourceConnectionException();
+                }
             }
-            dataReader.Close();
-            command.Dispose();
-            connection.Close();
 
             return replacements_courses;
         }
@@ -53,8 +60,15 @@ namespace SWZ.DAL.ReplacementsCourses
             using (connection = new SqlConnection(connectionString))
             {
                 command = new SqlCommand(query, connection);
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }catch(Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw new NoDatasourceConnectionException();
+                }
                                               
             }
 

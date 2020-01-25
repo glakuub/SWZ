@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SWZ.DAL;
 using SWZ.DAL.Courses;
 using SWZ.DAL.StudyPlans;
 
@@ -30,16 +32,30 @@ namespace SWZ.Models
 
             }
             ICourseDAO courseDAO = new MSSQLCourseDAO();
-            List<Course> coursesList = courseDAO.GetCourses();
-            CourseModelsList.Clear();
-            foreach (Course c in coursesList)
+            List<Course> coursesList = null;
+            try
             {
-                var model = Mapper.FromDTO(c);
-                if(model!=null)
-                CourseModelsList.Add(model);
+               coursesList = courseDAO.GetCourses();
+                CourseModelsList.Clear();
+                foreach (Course c in coursesList)
+                {
+                    var model = Mapper.FromDTO(c);
+                    if (model != null)
+                        CourseModelsList.Add(model);
+                }
+            }
+            catch(NoDatasourceConnectionException e)
+            {
+                Debug.WriteLine(e.Message);
+                throw new DataServiceException("Could not refresh CoursesModel");
             }
 
+           
+
         }
+
+        
+
 
     }
 }

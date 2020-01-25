@@ -103,7 +103,7 @@
                           Grid.Row="2"
                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                           SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ItemContainerStyle="{StaticResource OuterListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
                           Style="{StaticResource CourseListStyle}">
 
@@ -130,7 +130,7 @@
                           Grid.Row="2"
                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                           SelectedIndex="{x:Bind viewModel.SelectedReplacementCourse, Mode=TwoWay}" 
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ItemContainerStyle="{StaticResource OuterListViewItemStyle}"
                           ItemTemplateSelector="{StaticResource Selector}"
                           Style="{StaticResource CourseListStyle}">
 

@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SWZ.Models;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 
 namespace SWZ.ViewModels
 {
@@ -37,8 +40,31 @@ namespace SWZ.ViewModels
 
         private async void GetDataAsync()
         {
-            await Task.Factory.StartNew(() => { CoursesModel.RefreshCoursesFromData(); });
-            RefreshLocalCourses();
+            
+                await Task.Run(async () => 
+                {
+                    try
+                    {
+                        CoursesModel.RefreshCoursesFromData();
+                    }
+                    catch (DataServiceException e)
+                    {
+                        Debug.WriteLine(e.Message);
+                        CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { ShowAlert(); });
+
+                    }
+                });
+
+                RefreshLocalCourses();
+
+            
+            
+        }
+
+        private async void ShowAlert()
+        {
+            var messageDialog = new MessageDialog("Nie można połączyć się z bazą danych");
+            await messageDialog.ShowAsync();
         }
 
         string _searchName;
@@ -203,8 +229,15 @@ namespace SWZ.ViewModels
         {
             if (CoursesModel != null)
             {
-                CoursesModel.RefreshCoursesFromData();
-                
+                try
+                {
+                    CoursesModel.RefreshCoursesFromData();
+                }
+                catch (DataServiceException e)
+                {
+                    Debug.WriteLine(e.Message);
+                  
+                }
 
             }
         }

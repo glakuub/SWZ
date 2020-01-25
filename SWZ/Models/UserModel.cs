@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SWZ.DAL;
 using SWZ.DAL.Users;
 
 namespace SWZ.Models
@@ -19,17 +21,25 @@ namespace SWZ.Models
         {
             UserModel userModel = null;
             var userDao = new MSSQLUserDAO();
-            var userDb = userDao.GetUserById(id);
-            if(userDb!=null)
+            try
             {
-                userModel = new UserModel();
-                userModel.Id = userDb.Id;
-                userModel.FirstName = userDb.FirstName;
-                userModel.LastName = userDb.LastName;
-                userModel.Login = userDb.Login;
-                userModel.Password = userDb.Password;
+                var userDb = userDao.GetUserById(id);
+                if (userDb != null)
+                {
+                    userModel = new UserModel();
+                    userModel.Id = userDb.Id;
+                    userModel.FirstName = userDb.FirstName;
+                    userModel.LastName = userDb.LastName;
+                    userModel.Login = userDb.Login;
+                    userModel.Password = userDb.Password;
 
+                }
             }
+            catch(NoDatasourceConnectionException e)
+            {
+                Debug.WriteLine(e.Message);
+                throw new DataServiceException();
+    }
 
             return userModel;
 

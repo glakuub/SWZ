@@ -142,6 +142,7 @@
     <Compile Include="DAL\LearningEffects\ILearningEffectsDAO.cs" />
     <Compile Include="DAL\LearningEffects\LearningEffect.cs" />
     <Compile Include="DAL\LearningEffects\MSSQLLearningEffectsDAO.cs" />
+    <Compile Include="DAL\NoDatasourceConnectionException.cs" />
     <Compile Include="DAL\PropositionsCourses\IPropositionsCoursesDAO.cs" />
     <Compile Include="DAL\PropositionsCourses\MSSQLPropositionsCoursesDAO.cs" />
     <Compile Include="DAL\PropositionsCourses\PropositionCourse.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Models\CourseModel.cs" />
     <Compile Include="Models\CoursesModel.cs" />
     <Compile Include="Models\CoursesGroupModel.cs" />
+    <Compile Include="Models\DataServiceException.cs" />
     <Compile Include="Models\LearningEffectModel.cs" />
     <Compile Include="Models\PropositionModel.cs" />
     <Compile Include="Models\ReplacementModel.cs" />

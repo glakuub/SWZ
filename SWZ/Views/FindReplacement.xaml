@@ -106,11 +106,11 @@
             
                     <ListView Grid.Row="2" x:Name="Courses" 
                              ScrollViewer.VerticalScrollBarVisibility="Visible"
-                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               ItemsSource="{x:Bind viewModel.DisplayedCourses}" 
                               SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 
                               ItemTemplateSelector="{StaticResource Selector}"
                               Style="{StaticResource CourseListStyle}"
+                              ItemContainerStyle="{StaticResource OuterListViewItemStyle}"
                               >
                         
                         
@@ -136,7 +136,7 @@
                        Grid.Row="2"
                        ScrollViewer.VerticalScrollBarVisibility="Visible"
                        ItemsSource="{x:Bind viewModel.Replacements}" 
-                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                       ItemContainerStyle="{StaticResource OuterListViewItemStyle}"
                        Style="{StaticResource CourseListStyle}"
                                   >
 

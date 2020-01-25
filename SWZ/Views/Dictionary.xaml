@@ -13,6 +13,12 @@
         <Setter Property="Padding" Value="0"></Setter>
     </Style>
 
+    <Style x:Key="OuterListViewItemStyle" TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemStyle}">
+       
+        <Setter Property="BorderBrush" Value="LightSlateGray"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+    </Style>
+
     <Style x:Key="Test" TargetType="Page">
         <Setter Property="Background" Value="Beige"></Setter>
     </Style>
@@ -40,27 +46,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"></RowDefinition>
             </Grid.RowDefinitions>
-
-          
-                <TextBlock Grid.Column="0" Text="Kod"></TextBlock>
-
-
-            <TextBlock Grid.Column="1" Text="Nazwa"></TextBlock>
-
-
-            <TextBlock Grid.Column="2" Text="Typ"></TextBlock>
-
-            <TextBlock Grid.Column="3" Text="Wydział"></TextBlock>
-
-            <TextBlock Grid.Column="4" Text="Kiernek"></TextBlock>
-
-            <TextBlock Grid.Column="5" Text="Tryb"></TextBlock>
-
-            <TextBlock Grid.Column="6" Text="Język"></TextBlock>
-
-            <TextBlock Grid.Column="7" Text="ECTS"></TextBlock>
-            
-            <TextBlock Grid.Column="8" Text="ZZU"></TextBlock>
+        
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="0" Text="Kod"></TextBlock>
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="1" Text="Nazwa"></TextBlock>
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="2" Text="Typ"></TextBlock>
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="3" Text="Wydział"></TextBlock>
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="4" Text="Kierunek"></TextBlock>
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="5" Text="Tryb"></TextBlock>
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="6" Text="Język"></TextBlock>
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="7" Text="ECTS"></TextBlock>
+            <TextBlock Padding="10,0,0,0" VerticalAlignment="Center" Grid.Column="8" Text="ZZU"></TextBlock>
         </Grid>
     </DataTemplate>
 
@@ -69,7 +64,7 @@
     </DataTemplate>
     
     <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
-        <Grid >
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
@@ -97,7 +92,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel">
-        <Grid HorizontalAlignment="Stretch">
+        <Grid HorizontalAlignment="Stretch" >
             <Grid.RowDefinitions>
                 <RowDefinition MinHeight="30"></RowDefinition>
                 <RowDefinition></RowDefinition>

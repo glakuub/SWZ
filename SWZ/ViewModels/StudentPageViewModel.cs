@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,23 @@ namespace SWZ.ViewModels
 
         private string GetUserName(int id)
         {
-            var user = new StudentViewModel(StudentModel.GetById(id));
-            return $"{user.FirstName} {user.LastName}";
+            StudentViewModel user = null;
+            try
+            {
+                var sm = StudentModel.GetById(id);
+                user = new StudentViewModel(sm);
+            }
+            catch(DataServiceException e)
+            {
+                Debug.WriteLine(e.Message);
+               
+            }
+            return user==null?"Błąd połącznia":$"{user.FirstName} {user.LastName}";
         }
+    }
+    class LoginException : Exception
+    {
+        private static readonly string _message = "Could not connect to data source. ";
+        public override string Message => base.Message;
     }
 }

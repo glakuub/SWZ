@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,8 +28,16 @@ namespace SWZ.DAL.PropositionsCourses
                 command.Parameters.AddWithValue("@1", propositionCourse.PropositionID);
                 command.Parameters.AddWithValue("@2", propositionCourse.CourseID);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw new NoDatasourceConnectionException();
+                }
 
             }
 
