@@ -23,6 +23,8 @@ namespace SWZ.ViewModels
 
         public ICommand GoBack { set; get; }
 
+        public IEnumerable<CourseType> TypeEnumVals = Enum.GetValues(typeof(CourseType)).Cast<CourseType>();
+
 
 
         public FindCourseBaseViewModel()
@@ -74,7 +76,7 @@ namespace SWZ.ViewModels
             await messageDialog.ShowAsync();
         }
 
-        string _searchName;
+        string _searchName = string.Empty;
         public string SearchName
         {
             get { return _searchName; }
@@ -85,7 +87,7 @@ namespace SWZ.ViewModels
             }
         }
 
-        string _searchFaculty;
+        string _searchFaculty = string.Empty;
         public string SearchFaculty
         {
             get { return _searchFaculty; }
@@ -96,7 +98,7 @@ namespace SWZ.ViewModels
             }
         }
 
-        string _searchCode;
+        string _searchCode = string.Empty;
         public string SearchCode
         {
             get { return _searchCode; }
@@ -107,7 +109,7 @@ namespace SWZ.ViewModels
             }
         }
 
-        string _searchFieldOfStudy;
+        string _searchFieldOfStudy = string.Empty;
         public string SearchFieldOfStudy
         {
             get { return _searchFieldOfStudy; }
@@ -151,13 +153,13 @@ namespace SWZ.ViewModels
             }
         }
 
-        CourseType _searchCourseType = (CourseType)0;
+        CourseType _searchCourseType = default;
         public int SelectedCourseType
         {
-            get { return (int)_searchCourseType - 1; }
+            get { return (int)_searchCourseType; }
             set
             {
-                SetProperty(ref _searchCourseType, (CourseType)(value + 1));
+                SetProperty(ref _searchCourseType, (CourseType)value);
                 FilterCourses();
                 
             }
@@ -180,16 +182,14 @@ namespace SWZ.ViewModels
         void FilterCourses()
         {
 
-
             RefreshLocalCourses();
-
             List<CourseViewModel> lcvm = courseViewModels;
             
-
             lcvm = lcvm.FindAll(cvm => cvm.Language.Equals(_searchLanguage));
 
             lcvm = lcvm.FindAll(cvm => cvm.StudyType.Equals(_searchStudyType));
 
+            if(_searchCourseType!=default)
             lcvm = lcvm.FindAll(cvm => cvm.Type.Equals(_searchCourseType));
 
             if (_searchName != null && _searchName != string.Empty)
@@ -218,6 +218,12 @@ namespace SWZ.ViewModels
                     DisplayedCourses.Add(cvm);
                 }
             }
+
+            if (_searchCode.Equals(string.Empty)
+                && _searchFaculty.Equals(string.Empty)
+                && _searchFieldOfStudy.Equals(string.Empty)
+                && _searchName.Equals(string.Empty))
+            DisplayedCourses.Clear();
 
 
         }

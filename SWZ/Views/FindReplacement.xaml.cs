@@ -38,9 +38,8 @@ namespace SWZ.Views
 
           
             this.InitializeComponent();
-            var _typeEnumVals = Enum.GetValues(typeof(CourseType)).Cast<CourseType>();
-            if (_typeEnumVals != null)
-                SearchCourseType.ItemsSource = _typeEnumVals;
+           
+          
             
         }
 
