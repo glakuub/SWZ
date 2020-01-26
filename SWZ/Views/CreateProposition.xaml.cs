@@ -34,9 +34,7 @@ namespace SWZ.Views
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
 
 
-            var _typeEnumVals = Enum.GetValues(typeof(CourseType)).Cast<CourseType>();
-            if (_typeEnumVals != null)
-                SearchCourseType.ItemsSource = _typeEnumVals;
+           
         }
 
       
