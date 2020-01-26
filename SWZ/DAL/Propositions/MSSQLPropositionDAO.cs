@@ -63,16 +63,25 @@ namespace SWZ.DAL.Propositions
             int insertedId = -1;
             string query = $"INSERT INTO SWZ.dbo.propozycje (skladajacy, datazlozenia, zamieniany)" +
                 $" OUTPUT Inserted.ID" +
-                $" VALUES (1,@1,{proposition.replacementFor});";
+                $" VALUES (@1,@2,@3);";
 
             using (connection = new SqlConnection(connectionString))
             {
                 command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@1", proposition.dateOfSubmission);
+                command.Parameters.AddWithValue("@1", proposition.proposing);
+                command.Parameters.AddWithValue("@2", proposition.dateOfSubmission);
+                command.Parameters.AddWithValue("@3", proposition.replacementFor);
+                try
+                {
+                    connection.Open();
+                    insertedId = (int)command.ExecuteScalar();
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw new NoDatasourceConnectionException();
+                }
 
-                connection.Open();
-                insertedId = (int)command.ExecuteScalar();
-                
             }
 
             return insertedId;

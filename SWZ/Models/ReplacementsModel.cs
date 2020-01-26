@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SWZ.DAL;
 using SWZ.DAL.Replacements;
 using SWZ.DAL.ReplacementsCourses;
 
@@ -32,25 +34,33 @@ namespace SWZ.Models
                 IReplacementDAO replacementDAO = new MSSQLReplacementDAO();
                 IReplacementsCoursesDAO replacementsCoursesDAO = new MSSQLReplacementsCoursesDAO();
 
-                List<Replacement> replacements = replacementDAO.FindByReplacedId(replacedModel.Id);
-                CoursesModel coursesModel = new CoursesModel();
-
-                foreach (Replacement r in replacements)
+                try
                 {
-                    ReplacementModel replacementModel = new ReplacementModel();
-                    replacementModel.Replaced = replacedModel;
-                    List<ReplacementCourse> replacements_courses = replacementsCoursesDAO.FindByReplacementId(r.Id);
-                    foreach (ReplacementCourse rc in replacements_courses)
+                    List<Replacement> replacements = replacementDAO.FindByReplacedId(replacedModel.Id);
+                    CoursesModel coursesModel = new CoursesModel();
+
+                    foreach (Replacement r in replacements)
                     {
-                        replacementModel.AddCourse(coursesModel.GetCourseByID(rc.courseID));
+                        ReplacementModel replacementModel = new ReplacementModel();
+                        replacementModel.Replaced = replacedModel;
+                        List<ReplacementCourse> replacements_courses = replacementsCoursesDAO.FindByReplacementId(r.Id);
+                        foreach (ReplacementCourse rc in replacements_courses)
+                        {
+                            replacementModel.AddCourse(coursesModel.GetCourseByID(rc.courseID));
+                        }
+
+                        rml.Add(replacementModel);
+
+
                     }
 
-                    rml.Add(replacementModel);
-
-
                 }
-
-
+                catch
+                (NoDatasourceConnectionException e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw new DataServiceException();
+                }
 
 
             }

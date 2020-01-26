@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,8 +37,19 @@ namespace SWZ.ViewModels
             }
         }
 
-        public void Save() => this_.Save();
-
+        public void Save()
+        {
+            try
+            {
+                this_.Save();
+            }
+            catch(DataServiceException e)
+            {
+                Debug.WriteLine(e.Message);
+                throw e;
+            }
+        }
+       
         public PropositionViewModel(PropositionModel model = null):base(model)
         {
             if (model != null)

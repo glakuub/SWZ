@@ -26,9 +26,8 @@ namespace SWZ.Views
         PropositionSummaryViewModel viewModel;
         public PropositionSummary()
         {
-            viewModel = new PropositionSummaryViewModel();
-            
             this.InitializeComponent();
+            viewModel = new PropositionSummaryViewModel();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

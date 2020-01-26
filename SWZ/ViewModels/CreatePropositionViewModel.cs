@@ -83,7 +83,7 @@ namespace SWZ.ViewModels
             PropositionViewModel.Course = DisplayedCourses[SelectedCourseIndex];
             PropositionViewModel.Replacements = AddedCourses;
             PropositionViewModel.Date = DateTime.Now.ToString();
-            PropositionViewModel.Student = new StudentViewModel(new StudentModel());
+            PropositionViewModel.Student = new StudentViewModel(UserSession.Get.Model);
 
         }
         public void DeleteSelected()

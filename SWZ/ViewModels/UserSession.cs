@@ -41,6 +41,7 @@ namespace SWZ.ViewModels
         public int StudentIndexNumber => _current.user.IndexNumber;
         public string StudentFirstName => _current.user.FirstName;
         public string StudentLastName => _current.user.LastName;
+        public dynamic Model { get { return user; } }
 
 
 

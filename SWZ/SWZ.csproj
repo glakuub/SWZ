@@ -200,6 +200,9 @@
       <DependentUpon>AddCourseToProposition.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CommandHandler.cs" />
+    <Compile Include="Views\NoDataserviceConnectionDialog.xaml.cs">
+      <DependentUpon>NoDataserviceConnectionDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateProposition.xaml.cs">
       <DependentUpon>CreateProposition.xaml</DependentUpon>
     </Compile>
@@ -243,6 +246,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Views\AddCourseToProposition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoDataserviceConnectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

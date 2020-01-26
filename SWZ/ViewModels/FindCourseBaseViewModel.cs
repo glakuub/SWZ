@@ -7,63 +7,70 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SWZ.Models;
+using SWZ.Views;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 
 namespace SWZ.ViewModels
 {
-    class FindCourseBaseViewModel: NotificationBase
+    class FindCourseBaseViewModel : NotificationBase
     {
         public CoursesModel CoursesModel { set; get; }
-        
+
         public ObservableCollection<CourseViewModel> DisplayedCourses { set; get; }
         private List<CourseViewModel> courseViewModels;
-       
+
         public ICommand GoBack { set; get; }
 
-        
+
 
         public FindCourseBaseViewModel()
         {
             DisplayedCourses = new ObservableCollection<CourseViewModel>();
             courseViewModels = new List<CourseViewModel>();
-           
+
             CoursesModel = new CoursesModel();
             GetDataAsync();
 
 
-            
-            
-            
+
+
+
         }
 
         private async void GetDataAsync()
         {
-            
-                await Task.Run(async () => 
+
+            await Task.Run(async () =>
+            {
+                try
                 {
-                    try
-                    {
-                        CoursesModel.RefreshCoursesFromData();
-                    }
-                    catch (DataServiceException e)
-                    {
-                        Debug.WriteLine(e.Message);
-                        CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { ShowAlert(); });
+                    CoursesModel.RefreshCoursesFromData();
+                }
+                catch (DataServiceException e)
+                {
+                    Debug.WriteLine(e.Message);
+                    ShowAlert();
+                    
 
-                    }
-                });
+                }
+            });
 
-                RefreshLocalCourses();
+            RefreshLocalCourses();
 
-            
-            
+
+
         }
 
-        private async void ShowAlert()
+        protected void ShowAlert()
         {
-            var messageDialog = new MessageDialog("Nie można połączyć się z bazą danych");
+            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { ShowAlertAsync(); });
+        }
+
+        private async void ShowAlertAsync()
+        {
+            var messageDialog = new NoDataserviceConnectionDialog();
             await messageDialog.ShowAsync();
         }
 

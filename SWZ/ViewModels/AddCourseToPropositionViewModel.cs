@@ -14,7 +14,16 @@ namespace SWZ.ViewModels
     class AddCourseToPropositionViewModel: FindCourseBaseViewModel
     {
         public ICommand AddCourse { set; get; }
+        
         public ObservableCollection<CourseViewModel> AddedCourses { set; get; }
+
+        public string LoggedUserName
+        {
+            get
+            {
+                return UserSession.Get.IsSet ? $"Zalogowano jako: { UserSession.Get.StudentFirstName} {UserSession.Get.StudentLastName}" : string.Empty;
+            }
+        }
 
         public AddCourseToPropositionViewModel()
         {

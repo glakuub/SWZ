@@ -1,7 +1,9 @@
-﻿using SWZ.DAL.Propositions;
+﻿using SWZ.DAL;
+using SWZ.DAL.Propositions;
 using SWZ.DAL.PropositionsCourses;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,20 +21,32 @@ namespace SWZ.Models
 
         public void Save()
         {
+            
             IPropositionDAO pdao = new MSSQLPropositionDAO();
             Proposition prop = new Proposition();
             prop.dateOfSubmission = DateOfSubmission;
             prop.proposing = Proposing.Id;
             prop.replacementFor = Replacing.Id;
 
-            int prop_id = pdao.SaveProposition(prop);
 
-            IPropositionsCoursesDAO pcdao = new MSSQLPropositionsCoursesDAO();
-
-             foreach(CourseModel cm in Replacements)
+            try
             {
-                pcdao.SavePropositionCourse(new PropositionCourse(prop_id, cm.Id));
+                int prop_id = pdao.SaveProposition(prop);
+                IPropositionsCoursesDAO pcdao = new MSSQLPropositionsCoursesDAO();
+
+                foreach (CourseModel cm in Replacements)
+                {
+                    pcdao.SavePropositionCourse(new PropositionCourse(prop_id, cm.Id));
+                }
+                
             }
+            catch(NoDatasourceConnectionException e)
+            {
+                Debug.Write(e.Message);
+                throw new DataServiceException();
+            }
+               
+          
 
         }
     }

@@ -49,17 +49,35 @@ namespace SWZ.ViewModels
         {
             Replacements.Clear();
             replacementsModel.SetReplaced(DisplayedCourses.ElementAt(SelectedCourseIndex).Model);
-            var rmlist = await Task.Run(()=>replacementsModel.GetReplacementsFromData());
-            foreach (ReplacementModel rm in rmlist)
-            {
-                Replacements.Add(new ReplacementViewModel(rm));
-            }
+
+            List<ReplacementModel> result = null;
+            result = await Task.Run(() => {
+                    
+
+                    try
+                    {
+                        return replacementsModel.GetReplacementsFromData();
+                    }
+                    catch (DataServiceException e)
+                    {
+                        Debug.WriteLine(e.Message);
+                        ShowAlert();
+                    }
+                    return result;
+                });
+            if(result!=null )
+                foreach (ReplacementModel rm in result)
+                {
+                    Replacements.Add(new ReplacementViewModel(rm));
+                }
+            
         }
         private string GetUserName(int id)
         {
             var user = new StudentViewModel(StudentModel.GetById(id));
             return $"{user.FirstName} {user.LastName}";
         }
+       
     }
 
 

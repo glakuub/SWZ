@@ -45,7 +45,7 @@ namespace SWZ.ViewModels
 
         private async void ShowAlert()
         {
-            var messageDialog = new MessageDialog("Nie można połączyć się z bazą danych");
+            var messageDialog = new NoDataserviceConnectionDialog();
             await messageDialog.ShowAsync();
         }
 

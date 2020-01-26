@@ -7,22 +7,28 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using SWZ.Models;
+using System.Diagnostics;
+using SWZ.Views;
 
 namespace SWZ.ViewModels
 {
     class PropositionSummaryViewModel: NotificationBase
     {
-        public PropositionViewModel PropositionViewModel { set; get; }
-        public StudentViewModel StudentViewModel { set; get; }
+
+
+        private PropositionViewModel _proposition;
+        public PropositionViewModel PropositionViewModel { set { _proposition = value; StudentViewModel = _proposition.Student; } get { return _proposition; } }
+        public StudentViewModel StudentViewModel { private set; get; }
         public ICommand SaveProposition { set; get; }
         public ICommand Cancel { set; get; }
 
         public PropositionSummaryViewModel()
-        {   
-            if(UserSession.Get.UserID != null)
-            StudentViewModel = new StudentViewModel(StudentModel.GetById(UserSession.Get.UserID.Value));
-            Cancel = new CommandHandler(GoBackMethod);
-            SaveProposition = new CommandHandler(SavePropositionMethod);
+        {
+
+                    
+                    Cancel = new CommandHandler(GoBackMethod);
+                    SaveProposition = new CommandHandler(SavePropositionMethod);
+ 
         }
         private void GoBackMethod()
         {
@@ -31,11 +37,24 @@ namespace SWZ.ViewModels
         }
         private void SavePropositionMethod()
         {
-            PropositionViewModel.Save();
-            var rootFrame = Window.Current.Content as Frame;
-            rootFrame.BackStack.RemoveAt(rootFrame.BackStackDepth - 1);
-            rootFrame.GoBack();
+            try
+            {
+                PropositionViewModel.Save();
+                var rootFrame = Window.Current.Content as Frame;
+                rootFrame.BackStack.RemoveAt(rootFrame.BackStackDepth - 1);
+                rootFrame.GoBack();
+            }
+            catch(DataServiceException e)
+            {
+                Debug.WriteLine(e.Message);
+                ShowAlertAsync();
+            }
             
+        }
+        private async void ShowAlertAsync()
+        {
+            var messageDialog = new NoDataserviceConnectionDialog();
+            await messageDialog.ShowAsync();
         }
 
 

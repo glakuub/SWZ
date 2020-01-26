@@ -33,6 +33,9 @@
             <ColumnDefinition Width="50"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <Button Grid.Row ="0" Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Right" Text="{x:Bind viewModel.LoggedUserName}" />
+
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7*"></ColumnDefinition>
