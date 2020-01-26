@@ -9,8 +9,9 @@ using System.Windows.Input;
 using SWZ.Models;
 using SWZ.Views;
 using Windows.ApplicationModel.Core;
+using Windows.UI;
 using Windows.UI.Core;
-using Windows.UI.Popups;
+using Windows.UI.Xaml.Media;
 
 namespace SWZ.ViewModels
 {
@@ -25,19 +26,19 @@ namespace SWZ.ViewModels
 
         public IEnumerable<CourseType> TypeEnumVals = Enum.GetValues(typeof(CourseType)).Cast<CourseType>();
 
+        private Brush _formColor = new SolidColorBrush(Windows.UI.Colors.LightPink);
+        public Brush FormColor { set { SetProperty(ref _formColor, value); } get { return _formColor; } } 
 
 
         public FindCourseBaseViewModel()
         {
+            
+
             DisplayedCourses = new ObservableCollection<CourseViewModel>();
             courseViewModels = new List<CourseViewModel>();
-
+            
             CoursesModel = new CoursesModel();
             GetDataAsync();
-
-
-
-
 
         }
 
@@ -76,6 +77,24 @@ namespace SWZ.ViewModels
             await messageDialog.ShowAsync();
         }
 
+        private void CheckIfFilled()
+        {
+            if(IsAnyOfRequiredFilled())
+                FormColor = new SolidColorBrush(Windows.UI.Colors.Gray);
+            else
+                FormColor = new SolidColorBrush(Windows.UI.Colors.LightPink);
+
+        }
+
+        private bool IsAnyOfRequiredFilled()
+        {
+            if (_searchName != null && !_searchName.Equals(string.Empty)) return true;
+            if (_searchFaculty != null && !_searchFaculty.Equals(string.Empty)) return true;
+            if (_searchCode != null && !_searchCode.Equals(string.Empty)) return true;
+            if (_searchFieldOfStudy != null && !_searchFieldOfStudy.Equals(string.Empty)) return true;
+
+            return false;
+        }
         string _searchName = string.Empty;
         public string SearchName
         {
@@ -83,6 +102,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchName, value);
+                CheckIfFilled();
                 FilterCourses();
             }
         }
@@ -94,6 +114,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchFaculty, value);
+                CheckIfFilled();
                 FilterCourses();
             }
         }
@@ -105,6 +126,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchCode, value);
+                CheckIfFilled();
                 FilterCourses();
             }
         }
@@ -116,6 +138,7 @@ namespace SWZ.ViewModels
             set
             {
                 SetProperty(ref _searchFieldOfStudy, value);
+                CheckIfFilled();
                 FilterCourses();
             }
         }
