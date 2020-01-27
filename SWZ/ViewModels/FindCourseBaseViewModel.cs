@@ -217,20 +217,20 @@ namespace SWZ.ViewModels
 
             if (_searchName != null && _searchName != string.Empty)
             {
-                lcvm = lcvm.FindAll(cvm => cvm.Name.ToUpper().StartsWith(_searchName.ToUpper()));
+                lcvm = lcvm.FindAll(cvm => cvm.Name.ToUpper().Contains(_searchName.ToUpper()));
             }
 
             if (_searchFaculty != null && _searchFaculty != string.Empty)
             {
-                lcvm = lcvm.FindAll(cvm => cvm.FacultySymbol.ToUpper().StartsWith(_searchFaculty.ToUpper()));
+                lcvm = lcvm.FindAll(cvm => cvm.FacultySymbol.ToUpper().Contains(_searchFaculty.ToUpper()));
             }
             if (_searchCode != null && _searchCode != string.Empty)
             {
-                lcvm = lcvm.FindAll(cvm => cvm.Code.ToUpper().StartsWith(_searchCode.ToUpper()));
+                lcvm = lcvm.FindAll(cvm => cvm.Code.ToUpper().Contains(_searchCode.ToUpper()));
             }
             if (_searchFieldOfStudy != null && _searchFieldOfStudy != string.Empty)
             {
-                lcvm = lcvm.FindAll(cvm => cvm.FieldOfStudy.ToUpper().StartsWith(_searchFieldOfStudy.ToUpper()));
+                lcvm = lcvm.FindAll(cvm => cvm.FieldOfStudy.ToUpper().Contains(_searchFieldOfStudy.ToUpper()));
             }
             
             if (ListChanged(DisplayedCourses.ToList(), lcvm))
