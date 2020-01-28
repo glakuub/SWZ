@@ -59,7 +59,7 @@ namespace SWZ.DAL.Courses
                         if (!dataReader.IsDBNull(0))
                             course.Id = dataReader.GetInt32(0);
                         if (!dataReader.IsDBNull(1))
-                            course.CourseCode = Regex.Replace(dataReader.GetString(1), @"\s+", "");
+                            course.CourseCode = Regex.Replace(Regex.Replace(dataReader.GetString(1), "\r", ""),"\n","");
                         if (!dataReader.IsDBNull(2))
                             course.CourseName = dataReader.GetString(2);
                         if (!dataReader.IsDBNull(3))
