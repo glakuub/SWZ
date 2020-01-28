@@ -106,12 +106,13 @@
             <ContentControl Grid.Row="1" ContentTemplate="{StaticResource Header}" HorizontalContentAlignment="Stretch"></ContentControl>
             
                     <ListView Grid.Row="2" x:Name="Courses" 
-                             ScrollViewer.VerticalScrollBarVisibility="Visible"
-                              ItemsSource="{x:Bind viewModel.DisplayedCourses}" 
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              ItemsSource="{x:Bind viewModel.DisplayedCourses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                               SelectedIndex="{x:Bind viewModel.SelectedCourseIndex, Mode=TwoWay}" 
                               ItemTemplateSelector="{StaticResource Selector}"
                               Style="{StaticResource CourseListStyle}"
                               ItemContainerStyle="{StaticResource OuterListViewItemStyle}"
+                                                          
                               >
                         
                         
@@ -142,11 +143,12 @@
                                   >
 
 
-                <ListView.ItemTemplate>
+                <ListView.ItemTemplate >
                     <DataTemplate x:DataType="viewmodel:ReplacementViewModel">
                         <ListView ItemsSource="{x:Bind Courses}" IsHitTestVisible="False"
-                                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                              ItemTemplateSelector="{StaticResource Selector}" HorizontalAlignment="Stretch"
+                                  x:Name="ReplacementCourses"
+                                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                  ItemTemplateSelector="{StaticResource Selector}" HorizontalAlignment="Stretch"
                                               >
 
                         </ListView>

@@ -33,9 +33,9 @@
     <DataTemplate x:Key="CourseSearch" x:DataType="viewmodel:FindCourseBaseViewModel">
         <StackPanel Grid.Column="0">
             <TextBlock Text="Kod kursu:" />
-            <TextBox  BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" AcceptsReturn="False" />
+            <TextBox  BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" AcceptsReturn="False" x:Name="searchCode"/>
             <TextBlock Text="Nazwa kursu"/>
-            <TextBox BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30"/>
+            <TextBox BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" x:Name="searchName"/>
             <TextBlock Text="Forma kursu:"/>
             <ComboBox
                               HorizontalAlignment="Stretch"
@@ -53,18 +53,18 @@
 
         <StackPanel  Grid.Column="1">
             <TextBlock Text="Symbol wydziału:" />
-            <TextBox BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
+            <TextBox BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" x:Name="searchFaculty"/>
             <TextBlock Text="Kierunek studiów"/>
-            <TextBox BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
+            <TextBox BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" x:Name="searchFieldOfStudy" />
             <TextBlock Text="Kierunek studiów"/>
             <StackPanel Orientation="Horizontal">
-                <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind Type0, Mode=TwoWay}"></RadioButton>
-                <RadioButton Content="Niestacjonarne" ></RadioButton>
+                <RadioButton x:Name="fullTime" Content="Stacjonarne"  IsChecked="{x:Bind Type0, Mode=TwoWay}"></RadioButton>
+                <RadioButton x:Name="partTime" Content="Niestacjonarne" ></RadioButton>
             </StackPanel>
             <TextBlock Text="Język studiów"/>
             <StackPanel Orientation="Horizontal">
-                <RadioButton Content="polski" IsChecked="{x:Bind Lang0, Mode=TwoWay}"></RadioButton>
-                <RadioButton Content="angielski" ></RadioButton>
+                <RadioButton x:Name="langPolish" Content="polski" IsChecked="{x:Bind Lang0, Mode=TwoWay}"></RadioButton>
+                <RadioButton x:Name="langEnglish" Content="angielski" ></RadioButton>
             </StackPanel>
         </StackPanel>
 
@@ -103,8 +103,8 @@
         
     </DataTemplate>
     
-    <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel">
-        <Grid>
+    <DataTemplate x:Key="Course" x:DataType="viewmodel:CourseViewModel" x:Name="CourseListTemplate">
+        <Grid x:Name="CourseGrid" AutomationProperties.AutomationId="Course">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
@@ -119,7 +119,7 @@
                 <ColumnDefinition Width="1*" MinWidth="35"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
+            <TextBlock x:Name ="Code" Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
             <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
             <TextBlock Text="{x:Bind Type}" Grid.Column="2"></TextBlock>
             <TextBlock Text="{x:Bind FacultySymbol}" Grid.Column="3"></TextBlock>
@@ -131,8 +131,8 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel">
-        <Grid HorizontalAlignment="Stretch" >
+    <DataTemplate x:Key="CoursesGroup" x:DataType="viewmodel:CoursesGroupViewModel" x:Name="CoursesGroupListTemplate">
+        <Grid HorizontalAlignment="Stretch" x:Name="CourseGrid">
             <Grid.RowDefinitions>
                 <RowDefinition MinHeight="30"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -148,7 +148,7 @@
                 <ColumnDefinition Width="1*" MinWidth="35"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="30"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
+            <TextBlock x:Name ="Code" Text="{x:Bind Code}" Grid.Column="0"></TextBlock>
             <TextBlock Text="{x:Bind Name}" Grid.Column="1"></TextBlock>
             <TextBlock Text="{x:Bind Type}" Grid.Column="2"></TextBlock>
             <TextBlock Text="{x:Bind FacultySymbol}" Grid.Column="3"></TextBlock>
@@ -170,7 +170,7 @@
                                 <ColumnDefinition Width="1*" MinWidth="80"></ColumnDefinition>
                                 <ColumnDefinition Width="6.5*" MinWidth="80"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Code}" Grid.Column="1"></TextBlock>
+                            <TextBlock x:Name="Code" Text="{x:Bind Code}" Grid.Column="1"></TextBlock>
                             <TextBlock Text="{x:Bind Type}" Grid.Column="2"></TextBlock>
                         </Grid>
                     </DataTemplate>
@@ -179,7 +179,7 @@
         </Grid>
     </DataTemplate>
 
-    <viewmodel:CourseDataTemplateSelector x:Key="Selector"
+    <viewmodel:CourseDataTemplateSelector x:Key="Selector" x:Name="SelectorName"
                                               Course="{StaticResource Course}"
                                               CoursesGroup="{StaticResource CoursesGroup}"></viewmodel:CourseDataTemplateSelector
                                               >

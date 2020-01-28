@@ -25,7 +25,7 @@
         
          <Button Style="{StaticResource NavigationBackButtonNormalStyle}" Command="{x:Bind viewModel.GoBack}"/>
         <StackPanel  Grid.Row="1" Grid.Column="1">
-            <Button Command="{x:Bind viewModel.GoToFindReplacements}" Content="Znajdź zamiennik" HorizontalAlignment="Stretch" Margin="50,50,50,0"/>    
+            <Button x:Name="findReplacementButton" Command="{x:Bind viewModel.GoToFindReplacements}" Content="Znajdź zamiennik" HorizontalAlignment="Stretch" Margin="50,50,50,0"/>    
         </StackPanel>
         
     </Grid>
