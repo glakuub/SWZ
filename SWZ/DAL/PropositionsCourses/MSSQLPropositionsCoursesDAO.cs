@@ -22,7 +22,7 @@ namespace SWZ.DAL.PropositionsCourses
         public void SavePropositionCourse(PropositionCourse propositionCourse)
         {
             string query = "INSERT INTO SWZ.dbo.propozycje_kursy VALUES (@1,@2)";
-            using (connection = new SqlConnection(App.ConnectionString))
+            using (connection = new SqlConnection(connectionString))
             {
                 command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@1", propositionCourse.PropositionID);
@@ -33,7 +33,7 @@ namespace SWZ.DAL.PropositionsCourses
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Debug.WriteLine(e.Message);
                     throw new NoDatasourceConnectionException();

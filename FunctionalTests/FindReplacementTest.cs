@@ -41,12 +41,13 @@ namespace FunctionalTests
         [DataRow("map002206wc", null, null, null, null, null, null, new string[] { "map002206wc" }, "map002206wc", new string[] { "maz1500c", "maz1500w" })]
         [DataRow(null, null, "w08", null, null, null, null, new string[] { "INZ1518C", "INZ1519L", "INZ1519Wc", "INZ1519W" }, "INZ1519Wc", null)]
         [DataRow(null, "dan", "w11", null, null, null, null, new string[] { "INP002263Wcl" }, "INP002263Wcl", new string[] { "INZ1517L", "INZ1517Wc" })]
-        [DataRow(null, null, null, null, null, "angielski", "niestacjonarne",null, null, null)]
+        [DataRow(null, null, null, null, null, "angielski", "niestacjonarne", null, null, null)]
         public void FindReplacementSequence(string code, string name, string faculty, string field, string courseType, string lang,
             string studyType, string[] expectedCourses, string toSelect, string[] expectedReplacements)
         {
 
             UserButtonCLick();
+            Thread.Sleep(500);
             FindReplacementButtonCLick();
             Thread.Sleep(2000);
 

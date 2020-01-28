@@ -8,9 +8,9 @@ namespace SWZ.Models
 {
     class LearningEffectModel
     {
-        int id;
-        string KEK;
-        string KEKDescription;
-        string PRK;
+        public int Id { set; get; }
+        public string KEK { set; get; }
+        public string KEKDescription { set; get; }
+        public string PRK { set; get; }
     }
 }

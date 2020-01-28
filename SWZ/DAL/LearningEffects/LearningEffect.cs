@@ -8,14 +8,14 @@ namespace SWZ.DAL.LearningEffects
 {
     class LearningEffect
     {
-        int id;
-        public string KEK;
-        public string KEKDescription;
-        public string PRK;
+        public int Id { set; get; }
+        public string KEK { set; get; }
+        public string KEKDescription { set; get; }
+        public string PRK { set; get; }
 
-        public LearningEffect(int id)
+        public LearningEffect()
         {
-            this.id = id;
+           
         }
     }
 }

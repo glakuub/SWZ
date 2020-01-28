@@ -45,7 +45,7 @@ namespace SWZ.ViewModels
         private async void GetDataAsync()
         {
 
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
                 try
                 {
@@ -55,7 +55,7 @@ namespace SWZ.ViewModels
                 {
                     Debug.WriteLine(e.Message);
                     ShowAlert();
-                    
+
 
                 }
             });
@@ -68,7 +68,7 @@ namespace SWZ.ViewModels
 
         protected void ShowAlert()
         {
-            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { ShowAlertAsync(); });
+            _ = CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { ShowAlertAsync(); });
         }
 
         private async void ShowAlertAsync()
