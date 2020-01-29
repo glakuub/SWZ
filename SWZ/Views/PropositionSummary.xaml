@@ -34,15 +34,18 @@
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
+            
             <TextBlock Grid.Row="0" Text="Utworzono propozycję:"></TextBlock>
-            <ListView Grid.Row="1"  x:Name="Courses" 
+            <ContentControl Grid.Row="1" ContentTemplate="{StaticResource Header}" HorizontalContentAlignment="Stretch"></ContentControl>
+            <ListView Grid.Row="2"  x:Name="Courses" 
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               ItemsSource="{x:Bind viewModel.PropositionViewModel.Replacements}" 
-                                
+                              Style="{StaticResource CourseListStyle}"
                               ItemTemplateSelector="{StaticResource Selector}"
-                              HeaderTemplate="{StaticResource Header}"
+                              
                              >
 
 
@@ -50,10 +53,10 @@
         </Grid>
         
 
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="1" Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="3.4*"></ColumnDefinition>
+                <ColumnDefinition Width="1.4*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -71,15 +74,15 @@
                 <TextBlock  Text="Nazwisko:"></TextBlock>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="2">
-                <TextBlock  Text="{x:Bind viewModel.StudentViewModel.IndexNumber}"></TextBlock>
+            <StackPanel Grid.Row="1" Grid.Column="2"  >
+                <TextBlock Text="{x:Bind viewModel.StudentViewModel.IndexNumber}"></TextBlock>
                 <TextBlock  Text="{x:Bind viewModel.StudentViewModel.FirstName}"></TextBlock>
                 <TextBlock  Text="{x:Bind viewModel.StudentViewModel.LastName}"></TextBlock>
             </StackPanel>
 
             <TextBlock  Grid.Row="2" Grid.Column="1" Text="Dla kursu:"></TextBlock>
 
-            <StackPanel Grid.Row="3" Grid.Column="1">
+            <StackPanel Grid.Row="3" Grid.Column="1"  >
 
                 <TextBlock   Text="Kod kursu:"></TextBlock>
                 <TextBlock  Text="Nazwa:"></TextBlock>
@@ -93,7 +96,7 @@
 
             </StackPanel>
 
-            <StackPanel Grid.Row="3" Grid.Column="2" >
+            <StackPanel Grid.Row="3" Grid.Column="2"  >
 
                 <TextBlock   Text="{x:Bind viewModel.PropositionViewModel.Course.Code}"></TextBlock>
                 <TextBlock  Text="{x:Bind viewModel.PropositionViewModel.Course.Name}"></TextBlock>

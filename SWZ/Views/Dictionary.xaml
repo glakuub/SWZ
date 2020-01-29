@@ -56,7 +56,7 @@
             <TextBox BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" x:Name="searchFaculty"/>
             <TextBlock Text="Kierunek studiów"/>
             <TextBox BorderBrush="{x:Bind FormColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" x:Name="searchFieldOfStudy" />
-            <TextBlock Text="Kierunek studiów"/>
+            <TextBlock Text="Tryb studiów"/>
             <StackPanel Orientation="Horizontal">
                 <RadioButton x:Name="fullTime" Content="Stacjonarne"  IsChecked="{x:Bind Type0, Mode=TwoWay}"></RadioButton>
                 <RadioButton x:Name="partTime" Content="Niestacjonarne" ></RadioButton>

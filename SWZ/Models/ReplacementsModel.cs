@@ -14,21 +14,21 @@ namespace SWZ.Models
 {
     class ReplacementsModel
     {
-        CourseModel replacedModel;
-        List<ReplacementModel> replacementModels;
+        private CourseModel _replacedModel;
+        private readonly List<ReplacementModel> _replacementModels;
 
         public ReplacementsModel()
         {
-           replacementModels = new List<ReplacementModel>();
+           _replacementModels = new List<ReplacementModel>();
         }
         public void SetReplaced(CourseModel replacedModel)
         {
-            this.replacedModel = replacedModel;
+            this._replacedModel = replacedModel;
         }
         public List<ReplacementModel> GetReplacementsFromData()
         {
             List<ReplacementModel> rml = new List<ReplacementModel>();
-            if (replacedModel != null)
+            if (_replacedModel != null)
             {
                
                 IReplacementDAO replacementDAO = new MSSQLReplacementDAO();
@@ -36,13 +36,13 @@ namespace SWZ.Models
 
                 try
                 {
-                    List<Replacement> replacements = replacementDAO.FindByReplacedId(replacedModel.Id);
+                    List<Replacement> replacements = replacementDAO.FindByReplacedId(_replacedModel.Id);
                     CoursesModel coursesModel = new CoursesModel();
 
                     foreach (Replacement r in replacements)
                     {
                         ReplacementModel replacementModel = new ReplacementModel();
-                        replacementModel.Replaced = replacedModel;
+                        replacementModel.Replaced = _replacedModel;
                         List<ReplacementCourse> replacements_courses = replacementsCoursesDAO.FindByReplacementId(r.Id);
                         foreach (ReplacementCourse rc in replacements_courses)
                         {

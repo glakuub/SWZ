@@ -49,23 +49,7 @@
                 </Grid.ColumnDefinitions>
 
             <ContentControl DataContext="{x:Bind viewModel}" ContentTemplate="{StaticResource CourseSearch}" HorizontalContentAlignment="Stretch"></ContentControl>
-                <!--
-            <StackPanel Grid.Column="0">
-                <TextBlock Text="Kod kursu:" />
-                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
-                <TextBlock Text="Nazwa kursu"/>
-                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30"/>
-                <TextBlock Text="Forma kursu:"/>
-                <ComboBox
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch" 
-                              x:Name="SearchCourseType"
-                              ItemsSource="{x:Bind viewModel.TypeEnumVals}"
-                              SelectedIndex="{x:Bind viewModel.SelectedCourseType, Mode=TwoWay}"
-                              Margin="0,10">
-                </ComboBox>
-
-            </StackPanel>!-->
+             
 
         </Grid>
         <Grid  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1">
@@ -76,23 +60,7 @@
             </Grid.ColumnDefinitions>
 
             <ContentControl Grid.Column="1" HorizontalContentAlignment="Stretch" ContentTemplate="{StaticResource FacultySearch}" DataContext="{x:Bind viewModel}"/>
-            <!--
-            <StackPanel  Grid.Column="1">
-                <TextBlock Text="Symbol wydziału:" />
-                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchFaculty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
-                <TextBlock Text="Kierunek studiów"/>
-                <TextBox HorizontalAlignment="Stretch" Margin="0,10" Text="{x:Bind viewModel.SearchFieldOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" />
-                <TextBlock Text="Kierunek studiów"/>
-                <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="Stacjonarne"  IsChecked="{x:Bind viewModel.Type0, Mode=TwoWay}"></RadioButton>
-                    <RadioButton Content="Niestacjonarne" ></RadioButton>
-                </StackPanel>
-                <TextBlock Text="Język studiów"/>
-                <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="polski" IsChecked="{x:Bind viewModel.Lang0, Mode=TwoWay}"></RadioButton>
-                    <RadioButton Content="angielski" ></RadioButton>
-                </StackPanel>
-            </StackPanel>!-->
+           
 
         </Grid>
 

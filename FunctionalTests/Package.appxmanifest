@@ -6,7 +6,7 @@
   IgnorableNamespaces="uap mp">
 
   <Identity Name="4f8ed92b-c18b-4c02-b040-63ff849f595a"
-            Publisher="CN=Jakub"
+            Publisher="CN=Jakub Gładysz"
             Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="4f8ed92b-c18b-4c02-b040-63ff849f595a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>

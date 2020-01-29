@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SWZ.Models
 {
-    public class CoursesGroupModel: CourseModel
+    public class CoursesGroupModel : CourseModel
     {
         private List<CourseModel> _courses;
         public void AddCourse(CourseModel course)
         {
             if (_courses == null) _courses = new List<CourseModel>();
             _courses.Add(course);
-            
+
         }
         public CourseModel GetCourseAt(int index)
         {
@@ -22,6 +22,11 @@ namespace SWZ.Models
         public int GetCoursesCount()
         {
             return _courses.Count();
+        }
+
+        public List<CourseModel> GetCourses()
+        {
+            return  _courses;
         }
     }
 }
