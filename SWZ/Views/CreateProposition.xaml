@@ -114,7 +114,7 @@
                 </ListView>
 
                
-                <Button Content="Przekaż"   Grid.Row="3" Command="{x:Bind viewModel.CreateProposition}" CommandParameter="{x:Bind viewModel.CanGoToSummary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
+                <Button Content="Podsumowanie"   Grid.Row="3" Command="{x:Bind viewModel.CreateProposition}" CommandParameter="{x:Bind viewModel.CanGoToSummary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
             </Grid>
        
     </Grid>

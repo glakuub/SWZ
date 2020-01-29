@@ -14,8 +14,22 @@ namespace SWZ.ViewModels
     class AddCourseToPropositionViewModel: FindCourseBaseViewModel
     {
         public ICommand AddCourse { set; get; }
-        
+
+        private bool _canAdd = false;
+        public bool CanAdd { set { SetProperty(ref _canAdd, value); } get { return _canAdd; } }
         public ObservableCollection<CourseViewModel> AddedCourses { set; get; }
+
+        private new int _selectedCourseIndex = -1;
+        public new int SelectedCourseIndex
+        {
+            get { return _selectedCourseIndex; }
+            set
+            {
+                SetProperty(ref _selectedCourseIndex, value);
+                CanAddCheck();
+
+            }
+        }
 
         public string LoggedUserName
         {
@@ -25,13 +39,20 @@ namespace SWZ.ViewModels
             }
         }
 
+        private Predicate<object> can = (can) => { return can == null ? true : (bool)can; };
+
         public AddCourseToPropositionViewModel()
         {
-            AddCourse = new CommandHandler(AddCourseMethod);
+            AddCourse = new CommandHandler(AddCourseMethod, can);
+            DisplayedCourses.CollectionChanged += (sender, args) => { CanAddCheck(); };
+            CanAddCheck();
+            
         }
+
+       
         private void AddCourseMethod()
         {
-            Debug.WriteLine("AddCourseMethod");
+            
             if(DisplayedCourses !=null && DisplayedCourses.Count > 0)
             {   
                 if(_selectedCourseIndex != -1 && DisplayedCourses.Count > _selectedCourseIndex && DisplayedCourses[_selectedCourseIndex] != null)
@@ -39,6 +60,17 @@ namespace SWZ.ViewModels
 
                 var rootFrame = Window.Current.Content as Frame;
                 rootFrame.GoBack();
+            }
+        }
+        private void CanAddCheck()
+        {
+            if (DisplayedCourses != null && DisplayedCourses.Count > 0 && _selectedCourseIndex != -1 && DisplayedCourses.Count > _selectedCourseIndex && DisplayedCourses[_selectedCourseIndex] != null)
+            {
+                CanAdd = true;
+            }
+            else
+            {
+                CanAdd = false;
             }
         }
     }
