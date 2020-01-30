@@ -79,7 +79,7 @@
 
 
             </ListView>
-            <Button Grid.Row="3" Content="Dodaj" Command="{x:Bind viewModel.AddCourse}"></Button>
+            <Button Grid.Row="3" Content="Dodaj" Command="{x:Bind viewModel.AddCourse}" CommandParameter="{x:Bind viewModel.CanAdd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Button>
         </Grid>
 
 

@@ -6,7 +6,7 @@ using System;
 using System.Threading;
 
 
-namespace FunctionalTests
+namespace UnitTestProject1
 {
     [TestClass]
     public class FindReplacementTest
@@ -47,7 +47,7 @@ namespace FunctionalTests
         {
 
             UserButtonCLick();
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             FindReplacementButtonCLick();
             Thread.Sleep(2000);
 
