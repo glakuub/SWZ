@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SWZ.Models;
-using SWZ.Views;
+//using SWZ.Views;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace SWZ.ViewModels
@@ -18,7 +19,7 @@ namespace SWZ.ViewModels
     class FindCourseBaseViewModel : NotificationBase
     {
         public CoursesModel CoursesModel { set; get; }
-
+        public ContentDialog AlertDialog { set; get; }
         public ObservableCollection<CourseViewModel> DisplayedCourses { set; get; }
         private List<CourseViewModel> courseViewModels;
 
@@ -73,8 +74,8 @@ namespace SWZ.ViewModels
 
         private async void ShowAlertAsync()
         {
-            var messageDialog = new NoDataserviceConnectionDialog();
-            await messageDialog.ShowAsync();
+            if (AlertDialog != null)
+                await AlertDialog.ShowAsync();
         }
 
         private void CheckIfFilled()

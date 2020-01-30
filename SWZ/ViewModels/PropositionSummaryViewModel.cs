@@ -8,14 +8,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using SWZ.Models;
 using System.Diagnostics;
-using SWZ.Views;
+//using SWZ.Views;
 
 namespace SWZ.ViewModels
 {
     class PropositionSummaryViewModel: NotificationBase
     {
 
-
+        public ContentDialog AlertDialog { set; get; }
         private PropositionViewModel _proposition;
         public PropositionViewModel PropositionViewModel { set { _proposition = value; StudentViewModel = _proposition.Student; } get { return _proposition; } }
         public StudentViewModel StudentViewModel { private set; get; }
@@ -53,8 +53,8 @@ namespace SWZ.ViewModels
         }
         private async void ShowAlertAsync()
         {
-            var messageDialog = new NoDataserviceConnectionDialog();
-            await messageDialog.ShowAsync();
+            if(AlertDialog!=null)
+            await AlertDialog.ShowAsync();
         }
 
 

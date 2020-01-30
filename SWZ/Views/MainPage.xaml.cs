@@ -17,6 +17,8 @@ namespace SWZ
         public MainPage()
         {
             viewModel = new MainPageViewModel();
+            viewModel.StudentPageType = typeof(StudentPage);
+            viewModel.UserPageType = typeof(UserPage);
             this.InitializeComponent();
             
         }

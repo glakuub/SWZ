@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using SWZ.Views;
+//using SWZ.Views;
 using SWZ.Models;
 using System.Diagnostics;
 using Windows.UI.Popups;
@@ -20,6 +20,9 @@ namespace SWZ.ViewModels
         public ICommand GoToUserPage { set; get; }
         public ICommand GoToStudentPage { set; get; }
 
+        public Type StudentPageType { set; get; }
+        public Type UserPageType { set; get; }
+        public ContentDialog AlertDialog { set; get; }
         public MainPageViewModel()
         {
            
@@ -33,8 +36,9 @@ namespace SWZ.ViewModels
             try
             {
                 LogUserIn();
+
                 var rootFrame = Window.Current.Content as Frame;
-                rootFrame.Navigate(typeof(StudentPage));
+                rootFrame.Navigate(StudentPageType);
             }
             catch(DataServiceException e)
             {
@@ -45,15 +49,15 @@ namespace SWZ.ViewModels
 
         private async void ShowAlert()
         {
-            var messageDialog = new NoDataserviceConnectionDialog();
-            await messageDialog.ShowAsync();
+            if (AlertDialog != null)
+            await AlertDialog.ShowAsync();
         }
 
         private void GoToUserPageMethod()
         {
             LogUserOut();
             var rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(typeof(UserPage));
+            rootFrame.Navigate(UserPageType);
         }
 
         private void LogUserOut()

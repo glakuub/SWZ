@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SWZ.Models;
-using SWZ.Views;
+//using SWZ.Views;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -15,6 +15,7 @@ namespace SWZ.ViewModels
 {
      class CreatePropositionViewModel: FindCourseBaseViewModel
     {
+        public Type PropositionSummaryPageType { set; get; }
 
         private bool _canDelete = false;
         public bool CanDelete { set { SetProperty(ref _canDelete, value); } get{ return _canDelete; } }
@@ -75,7 +76,7 @@ namespace SWZ.ViewModels
         {   
             var rootFrame = Window.Current.Content as Frame;
             UpdatePropositionViewModel();
-            rootFrame.Navigate(typeof(PropositionSummary), PropositionViewModel);
+            rootFrame.Navigate(PropositionSummaryPageType, PropositionViewModel);
          
         }
         void UpdatePropositionViewModel()

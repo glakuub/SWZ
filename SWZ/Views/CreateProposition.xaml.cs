@@ -19,6 +19,8 @@ namespace SWZ.Views
         public CreateProposition()
         {
             viewModel = new CreatePropositionViewModel();
+            viewModel.AlertDialog = new NoDataserviceConnectionDialog();
+            viewModel.PropositionSummaryPageType = typeof(PropositionSummary);
             viewModel.GoToAddCourseToProposition = new CommandHandler(()=>{
             Frame.Navigate(typeof(AddCourseToProposition),viewModel.AddedCourses); });
 
@@ -29,6 +31,7 @@ namespace SWZ.Views
                 }
             });
 
+            
 
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Enabled;

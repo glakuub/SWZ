@@ -26,9 +26,11 @@ namespace SWZ.Views
     public sealed partial class AddCourseToProposition : Page
     {
         AddCourseToPropositionViewModel viewModel;
+
         public AddCourseToProposition()
         {
             viewModel = new AddCourseToPropositionViewModel();
+            viewModel.AlertDialog = new NoDataserviceConnectionDialog();
             viewModel.GoBack = new CommandHandler(() =>
             {
                 if (this.Frame.CanGoBack)

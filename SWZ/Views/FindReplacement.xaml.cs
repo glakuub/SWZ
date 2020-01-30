@@ -33,7 +33,7 @@ namespace SWZ.Views
             
             
             viewModel = new FindReplacementViewModel();
-            
+            viewModel.AlertDialog = new NoDataserviceConnectionDialog();
             viewModel.GoBack = new CommandHandler(()=> { this.Frame.GoBack(); });
 
           

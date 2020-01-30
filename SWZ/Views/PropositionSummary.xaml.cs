@@ -26,8 +26,10 @@ namespace SWZ.Views
         PropositionSummaryViewModel viewModel;
         public PropositionSummary()
         {
-            this.InitializeComponent();
+            
             viewModel = new PropositionSummaryViewModel();
+            viewModel.AlertDialog = new NoDataserviceConnectionDialog();
+            this.InitializeComponent();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
