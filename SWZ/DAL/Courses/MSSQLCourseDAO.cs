@@ -27,7 +27,7 @@ namespace SWZ.DAL.Courses
 
         public List<Course> FindCoursesInGroup(int id)
         {
-            return _getCourses($"WHERE GrupaKursówID={id};");
+            return _getCourses($"WHERE GrupaKursowID={id};");
         }
 
 

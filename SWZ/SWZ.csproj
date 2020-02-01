@@ -140,12 +140,6 @@
     <Compile Include="DAL\Languages\ILanguagesDAO.cs" />
     <Compile Include="DAL\Languages\Language.cs" />
     <Compile Include="DAL\Languages\MSSQLLanguagesDAO.cs" />
-    <Compile Include="DAL\LearningEffectsCourses\ILearningEffectsCoursesDAO.cs" />
-    <Compile Include="DAL\LearningEffectsCourses\LearningEffectCourse.cs" />
-    <Compile Include="DAL\LearningEffectsCourses\MSSQLLearningEffectsCoursesDAO.cs" />
-    <Compile Include="DAL\LearningEffects\ILearningEffectsDAO.cs" />
-    <Compile Include="DAL\LearningEffects\LearningEffect.cs" />
-    <Compile Include="DAL\LearningEffects\MSSQLLearningEffectsDAO.cs" />
     <Compile Include="DAL\NoDatasourceConnectionException.cs" />
     <Compile Include="DAL\PropositionsCourses\IPropositionsCoursesDAO.cs" />
     <Compile Include="DAL\PropositionsCourses\MSSQLPropositionsCoursesDAO.cs" />
